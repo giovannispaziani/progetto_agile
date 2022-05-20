@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -18,23 +19,43 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+    protected $redirectTo = RouteServiceProvider::HOME;
 
+    public function showLoginForm()
+    {
+      return view('auth.login');
+    }
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
 
-    public function authenticate(Request $request)
+    public function login(Request $request)
     {
         $credentials=$request->only('username', 'password');
+        $user_type=$request->only('type');
         
         //qui si possono fare una serie di if a cascata per ogni utente
         if(Auth::attempt($credentials)){
             //autenticazione passata
+            switch($user_type){
+                default:
+                    return redirect()->route('home');
+                case "Ricercatore":
+                   
+                   break;
+                case "Manager":
+                    
+                    break;
+                case "Finanziatore":
+                    
+                    break;
+            }
+            
 
         }else{
-
+           abort(403);
         }
     }
 
