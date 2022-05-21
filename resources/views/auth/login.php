@@ -97,7 +97,6 @@ body {
     <h2>Please Sign In</h2>
     <input type="varchar" placeholder="username"/>
     <input type="password" placeholder="password"/>
-    <button>submit</button>
     <h2>&nbsp;</h2>
   </div>
 </div>
