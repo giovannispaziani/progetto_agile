@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-class dashboardRicercatoreController extends Controller
+class HomeController extends Controller
 {
- /**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -23,6 +21,6 @@ class dashboardRicercatoreController extends Controller
      */
     public function index()
     {
-        return view('ricercatore.dashboardRicercatore');
+        return view('dashboard');
     }
 }

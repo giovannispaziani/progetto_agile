@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
   <div class="container">
     <div class="navbar-wrapper">
-      <a class="navbar-brand" href="{{ route('dashboardRicercatore') }}">{{ $title }}</a>
+      <a class="navbar-brand" href="{{ route('home') }}">{{ $title }}</a>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
       <span class="sr-only">Toggle navigation</span>
@@ -28,8 +28,8 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('dashboardRicercatore') }}" class="nav-link">
-              <i class="material-icons">dashboard</i> {{ __('Dashboard Ricercatore') }}
+            <a href="{{ route('home') }}" class="nav-link">
+              <i class="material-icons">dashboard</i> {{ __('Dashboard Manager') }}
             </a>
         </li>
         <li class="nav-item ">

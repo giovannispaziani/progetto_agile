@@ -23,6 +23,6 @@ class dashboardRicercatoreController extends Controller
      */
     public function index()
     {
-        return view('ricercatore.dashboardRicercatore');
+        return view('dashboard');
     }
 }

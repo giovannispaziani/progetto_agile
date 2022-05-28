@@ -28,7 +28,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('dashboardRicercatore') }}" class="nav-link">
+            <a href="{{ route('home') }}" class="nav-link">
               <i class="material-icons">dashboard</i> {{ __('Dashboard Ricercatore') }}
             </a>
         </li>
