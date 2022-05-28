@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/home');
 });
 
 //rotte di autenticazione
@@ -29,7 +29,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/ricercatore', 'dashboardRicercatoreController@index')->name('dashboardRicercatore.index');
 
 Route::group([
     'middleware' => ['auth', 'type:Ricercatore,Manager,Finanziatore'],
