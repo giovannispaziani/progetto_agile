@@ -29,7 +29,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/ricercatore', [App\Http\Controllers\dashboardRicercatoreController::class, 'index'])->name('dashboardRicercatore');
+Route::get('/ricercatore', 'dashboardRicercatoreController@index')->name('employees.index');
 
 Route::group([
     'middleware' => ['auth', 'type:Ricercatore,Manager,Finanziatore'],

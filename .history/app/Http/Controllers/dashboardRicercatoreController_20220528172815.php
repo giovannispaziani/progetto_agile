@@ -11,9 +11,9 @@ class dashboardRicercatoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function dashboardRicercatore()
     {
-        return view('ricercatore.dashboardRicercatore');
+        return view('dashboardRicercatore.blade.php');
     }
 
     /**
