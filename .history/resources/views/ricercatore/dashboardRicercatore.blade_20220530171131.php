@@ -4,8 +4,7 @@
   <div class="content">
     <div class="container-fluid">
 
-      <h2>I miei progetti</h2>
-      <p>Progetto #1</p>
+
 
     </div>
   </div>

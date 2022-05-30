@@ -6,7 +6,11 @@
 
       <h2>I miei progetti</h2>
       <p>Progetto #1</p>
+=======
 
+
+
+>>>>>>> 48dffd0df0b5821531ef18d7f3cc792c64c749a2
     </div>
   </div>
 @endsection
