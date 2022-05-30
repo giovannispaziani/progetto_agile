@@ -6,7 +6,7 @@
     <div class="container-fluid">
     <h2> I miei progetti: </h2>
     <div id="accordion" role="tablist">
-  <!--Progetti attivi-->
+  <!--Progetto attivi-->
   <div class="card card-collapse">
     <div class="card-header" role="tab" id="headingOne">
       <h5 class="mb-0">
@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-  <!--Progetti conclusi-->
+  <!--Progetto conclusi-->
   <div class="card card-collapse">
     <div class="card-header" role="tab" id="headingTwo">
       <h5 class="mb-0">
@@ -39,7 +39,7 @@
       </div>
     </div>
   </div>
-  <!--Progetti eliminati-->
+  <!--Progetto eliminati-->
   <div class="card card-collapse">
     <div class="card-header" role="tab" id="headingThree">
       <h5 class="mb-0">
