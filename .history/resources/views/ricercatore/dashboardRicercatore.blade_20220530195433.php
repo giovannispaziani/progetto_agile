@@ -1,9 +1,15 @@
-@extends('layouts.app', ['activePage' => 'dashboard', 'titlePage' => __('Dashboard')])
+@extends('layouts.app', ['activePage' => 'dashboard', 'titlePage' => __('Dashboard Ricercatore')])
 
 @section('content')
   <div class="content">
     <div class="container-fluid">
-      <div class="row">sidebar
+<<<<<<< HEAD
+
+      <h2>I miei progetti</h2>
+      <p>Progetto #1</p>
+
+=======
+      <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
@@ -414,6 +420,7 @@
           </div>
         </div>
       </div>
+>>>>>>> parent of f828323 (Dashboard cleaned)
     </div>
   </div>
 @endsection
