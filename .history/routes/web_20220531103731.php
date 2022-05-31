@@ -43,12 +43,12 @@ Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->
 Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('table-list', function () {
-		return view('table_list');
+		return view('ricercatore.budgetRicercatore');
 	})->name('table');
 
-	Route::get('budgetRicercatore', function () {
+	Route::get('table-list', function () {
 		return view('ricercatore.budgetRicercatore');
-	})->name('budgetRicercatore');
+	})->name('table');
 
 	Route::get('typography', function () {
 		return view('pages.typography');

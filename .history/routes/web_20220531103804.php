@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('budgetRicercatore', function () {
 		return view('ricercatore.budgetRicercatore');
-	})->name('budgetRicercatore');
+	})->name('table');
 
 	Route::get('typography', function () {
 		return view('pages.typography');

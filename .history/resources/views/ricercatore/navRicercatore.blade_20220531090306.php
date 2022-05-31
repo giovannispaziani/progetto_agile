@@ -32,6 +32,9 @@
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="#">{{ __('Nuova pubblicazione su Progetto #1') }}</a>
             <a class="dropdown-item" href="#">{{ __('La tua richiesta budget è stata accettata') }}</a>
+            <a class="dropdown-item" href="#">{{ __('You\'re now friend with Andrew') }}</a>
+            <a class="dropdown-item" href="#">{{ __('Another Notification') }}</a>
+            <a class="dropdown-item" href="#">{{ __('Another One') }}</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -42,9 +45,10 @@
             </p>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-            <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profilo') }}</a>
+            <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
+            <a class="dropdown-item" href="#">{{ __('Settings') }}</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Esci') }}</a>
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
           </div>
         </li>
       </ul>

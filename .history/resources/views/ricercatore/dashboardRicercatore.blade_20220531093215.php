@@ -26,7 +26,7 @@
               <div class="card card-stats">
                 <div class="card-header card-header-danger card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">science</i>
+                    <i class="material-icons">info_outline</i>
                   </div>
                   <p class="card-category">Ricercatori</p>
                   <h3 class="card-title">6</h3>
@@ -42,14 +42,14 @@
               <div class="card card-stats">
                 <div class="card-header card-header-info card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">article</i>
+                    <i class="fa fa-twitter"></i>
                   </div>
                   <p class="card-category">Tue pubblicazioni</p>
                   <h3 class="card-title">4</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">analytics</i> 1 pubblicazione restante
+                    <i class="material-icons">update</i> Just Updated
                   </div>
                 </div>
               </div>

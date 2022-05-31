@@ -49,7 +49,7 @@
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">analytics</i> 1 pubblicazione restante
+                    <i class="material-icons">update</i> Just Updated
                   </div>
                 </div>
               </div>

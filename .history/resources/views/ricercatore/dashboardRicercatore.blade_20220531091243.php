@@ -5,56 +5,7 @@
 
     <div class="container-fluid">
 
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">account_balance</i>
-                  </div>
-                  <p class="card-category">Budget allocabile</p>
-                  <h3 class="card-title">€2500</h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">date_range</i> Scadenza milestone: 15 giugno
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-danger card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">science</i>
-                  </div>
-                  <p class="card-category">Ricercatori</p>
-                  <h3 class="card-title">6</h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">update</i> Aggiornato ora
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-info card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">article</i>
-                  </div>
-                  <p class="card-category">Tue pubblicazioni</p>
-                  <h3 class="card-title">4</h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">analytics</i> 1 pubblicazione restante
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        
 
     <h2> I miei progetti: </h2>
     <div id="accordion" role="tablist">

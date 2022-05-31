@@ -10,14 +10,14 @@
               <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">account_balance</i>
+                    <i class="material-icons">store</i>
                   </div>
                   <p class="card-category">Budget allocabile</p>
-                  <h3 class="card-title">€2500</h3>
+                  <h3 class="card-title">€2</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">date_range</i> Scadenza milestone: 15 giugno
+                    <i class="material-icons">date_range</i> Last 24 Hours
                   </div>
                 </div>
               </div>
@@ -26,14 +26,14 @@
               <div class="card card-stats">
                 <div class="card-header card-header-danger card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">science</i>
+                    <i class="material-icons">info_outline</i>
                   </div>
-                  <p class="card-category">Ricercatori</p>
-                  <h3 class="card-title">6</h3>
+                  <p class="card-category">Fixed Issues</p>
+                  <h3 class="card-title">75</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">update</i> Aggiornato ora
+                    <i class="material-icons">local_offer</i> Tracked from Github
                   </div>
                 </div>
               </div>
@@ -42,14 +42,14 @@
               <div class="card card-stats">
                 <div class="card-header card-header-info card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">article</i>
+                    <i class="fa fa-twitter"></i>
                   </div>
-                  <p class="card-category">Tue pubblicazioni</p>
-                  <h3 class="card-title">4</h3>
+                  <p class="card-category">Followers</p>
+                  <h3 class="card-title">+245</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">analytics</i> 1 pubblicazione restante
+                    <i class="material-icons">update</i> Just Updated
                   </div>
                 </div>
               </div>

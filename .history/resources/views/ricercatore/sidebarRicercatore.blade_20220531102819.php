@@ -12,7 +12,7 @@
   <div class="sidebar-wrapper">
     <ul class="nav">
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('dashboardRicercatore') }}">
+        <a class="nav-link" href="{{ route('home') }}">
           <i class="material-icons">dashboard</i>
             <p>{{ __('Dashboard') }}</p>
         </a>
@@ -43,8 +43,8 @@
               </a>
             </li>
           </ul>-->
-      <li class="nav-item{{ $activePage == 'budgetRicercatore' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('budgetRicercatore') }}">
+      <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('table') }}">
           <i class="material-icons">monetization_on</i>
             <p>{{ __('Richieste Budget') }}</p>
         </a>
