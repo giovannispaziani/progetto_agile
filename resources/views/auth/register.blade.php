@@ -106,7 +106,6 @@
             </div>
             
               <!-- type of user -->
-              @if (auth()->check())
 
               <div class="form-check form-check-radio" style="margin-left: 5% ; margin-top: 10%">
                 <label class="form-check-label">
@@ -117,7 +116,6 @@
                 </span>
                 </label>
               
-              @endif
               <div class="form-check form-check-radio" style="margin-left: 5% ; margin-top: 10%">
                 <label class="form-check-label">
                 <input class="form-check-input" type="radio" name="type" id="exampleRadios1" value="Ricercatore" checked>
