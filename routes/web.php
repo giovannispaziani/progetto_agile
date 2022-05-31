@@ -76,5 +76,5 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 
-
-
+Route::get('/create-project', 'App\Http\Controllers\creazioneProgetto@index')->name('project-create');
+Route::post('/create-project', 'App\Http\Controllers\creazioneProgetto@create')->name('project-create-post');
