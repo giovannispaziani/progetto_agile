@@ -87,7 +87,6 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-
 /* conferma email */
 Route::get('/email/verify', function(){
 	return view('auth.verify-email');
@@ -105,3 +104,7 @@ Route::post('/email/verification-notification', function (Request $request){
 	return back()->with('message','Verification link sent!');
 })->middleware(['auth','throttle:6,1'])->name('verification.send');
 
+
+/* Creazione progetto  */
+Route::get('/create-project', 'App\Http\Controllers\creazioneProgetto@index')->name('project-create');
+Route::post('/create-project', 'App\Http\Controllers\creazioneProgetto@create')->name('project-create-post');

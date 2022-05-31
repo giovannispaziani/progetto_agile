@@ -24,5 +24,40 @@ class UsersTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
+
+        //'Ricercatore','Manager','Finanziatore'
+
+        DB::table('users')->insert([
+            'name' => 'Ricercatore',
+            'surname' => 'Di Prova',
+            'email' => 'ricercatore@prova.com',
+            'email_verified_at' => now(),
+            'type' => 'Ricercatore',
+            'password' => Hash::make('secret'),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Manager',
+            'surname' => 'Di Prova',
+            'email' => 'manager@prova.com',
+            'email_verified_at' => now(),
+            'type' => 'Manager',
+            'password' => Hash::make('secret'),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Finanziatore',
+            'surname' => 'Di Prova',
+            'email' => 'finanziatore@prova.com',
+            'email_verified_at' => now(),
+            'type' => 'Finanziatore',
+            'password' => Hash::make('secret'),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
     }
 }
