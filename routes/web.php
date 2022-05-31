@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/ricercatore', [App\Http\Controllers\dashboardRicercatoreController::class, 'index'])->name('dashboardRicercatore');
 
 Route::group([
     'middleware' => ['auth', 'type:Ricercatore,Manager,Finanziatore'],
@@ -40,9 +43,14 @@ Auth::routes();
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
+
 	Route::get('table-list', function () {
-		return view('pages.table_list');
+		return view('table_list');
 	})->name('table');
+
+	Route::get('budgetRicercatore', function () {
+		return view('ricercatore.budgetRicercatore');
+	})->name('budgetRicercatore');
 
 	Route::get('typography', function () {
 		return view('pages.typography');
@@ -72,9 +80,31 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
+    Route::get('profileRicercatore', ['as' => 'ricercatore.editRicercatore', 'uses' => 'App\Http\Controllers\ProfileResearcherController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+	
 });
 
+
+/* conferma email */
+Route::get('/email/verify', function(){
+	return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}',function (EmailVerificationRequest $request){
+	$request->fulfill();
+
+	return redirect('/home');
+})->middleware(['auth','signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request){
+	$request->user()->sendEmailVerificationNotification();
+
+	return back()->with('message','Verification link sent!');
+})->middleware(['auth','throttle:6,1'])->name('verification.send');
+
+
+/* Creazione progetto  */
 Route::get('/create-project', 'App\Http\Controllers\creazioneProgetto@index')->name('project-create');
 Route::post('/create-project', 'App\Http\Controllers\creazioneProgetto@create')->name('project-create-post');
