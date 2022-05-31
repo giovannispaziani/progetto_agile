@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class creazioneProgetto extends Controller
 {
@@ -13,6 +15,26 @@ class creazioneProgetto extends Controller
 
     public function create(Request $request)
     {
-        return $request;
+        try {
+            $userType = Auth::user()->type;
+    
+            if($userType == "Manager"){
+                $progetto = new Project();
+                $progetto->id_responsabile = Auth::user()->id;
+                $progetto->nome = $request['nome'];
+                $progetto->descrizione = $request['descrizione'];
+                $progetto->data_inizio = $request['inizio'];
+                $progetto->data_fine = $request['fine'];
+                $progetto->stato = 'in corso';
+                $progetto->save();
+            }
+            else{
+                return view('pages.creazioneProgettoSuccess')->with("message","ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
+            }
+        } catch (\Throwable $th) {
+            return view('pages.creazioneProgettoSuccess')->with("message","Si è verificato un errore :-(");
+        }
+
+        return view('pages.creazioneProgettoSuccess')->with("message","Progetto creato con successo");
     }
 }
