@@ -19,17 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//rotte di autenticazione
-Route::get('login', 'App\Http\Controllers\Auth\LoginController@showLoginForm');
-Route::post('login','App\Http\Controllers\Auth\LoginController@login');
-/*Route::get('logout', 'App\Http\Controllers\Auth\LoginController@getLogout');*/
-
-
-
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/ricercatore', [App\Http\Controllers\dashboardRicercatoreController::class, 'index'])->name('dashboardRicercatore');
 
@@ -41,6 +33,8 @@ Route::group([
 Auth::routes();
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
+Route::get('/registerFin','App\Http\Controllers\RegisterFinController@index')->name('registerFin');
+Route::post('/registerFin','App\Http\Controllers\RegisterFinController@create')->name('registerFin-post');
 
 Route::group(['middleware' => 'auth'], function () {
 

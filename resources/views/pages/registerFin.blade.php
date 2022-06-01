@@ -1,25 +1,16 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'register', 'title' => __('Material Dashboard')])
+@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'registerFin', 'title' => __('Material Dashboard')])
 
 @section('content')
-<div class="container" style="height: auto;">
+<div class="container" style="height: auto; padding-top:100px">
   <div class="row align-items-center">
     <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-      <form class="form" method="POST" action="{{ route('register') }}">
+      <form class="form" method="POST" action="{{ route('registerFin-post') }}">
         @csrf
 
         <div class="card card-login card-hidden mb-3">
           <div class="card-header card-header-primary text-center">
             <h4 class="card-title"><strong>{{ __('Register') }}</strong></h4>
             <div class="social-line">
-              <!--<a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-facebook-square"></i>
-              </a>
-              <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-twitter"></i>
-              </a>
-              <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-google-plus"></i>
-              </a>-->
             </div>
           </div>
           <div class="card-body ">
@@ -104,26 +95,6 @@
                 </div>
               @endif
             </div>
-            
-              <!-- type of user -->
-              
-              <div class="form-check form-check-radio" style="margin-left: 5% ; margin-top: 10%">
-                <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="type" id="exampleRadios1" value="Ricercatore" checked>
-                Ricercatore
-                <span class="circle">
-                  <span class="check"></span>
-                </span>
-                </label>
-              
-                <label class="form-check-label" style="margin-left:20px">
-                <input class="form-check-input" type="radio" name="type" id="exampleRadios2" value="Manager">
-                  Manager
-                  <span class="circle">
-                   <span class="check"></span>
-                </span>
-                  </label>
-              </div>
              
             <div class="form-check mr-auto ml-3 mt-3">
               <label class="form-check-label" style="margin-top:10%">

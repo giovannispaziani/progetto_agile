@@ -77,10 +77,9 @@
           <p>{{ __('RTL Support') }}</p>
         </a>
       </li>
-      <li class="nav-item active-pro{{ $activePage == 'upgrade' ? ' active' : '' }}">
-        <a class="nav-link text-white bg-danger" href="{{ route('upgrade') }}">
-          <i class="material-icons text-white">unarchive</i>
-          <p>{{ __('Upgrade to PRO') }}</p>
+      <li class="nav-item active-pro{{ $activePage == 'registerFin' ? ' active' : '' }}">
+        <a class="nav-link text-white bg-danger" href="{{ route('registerFin') }}">
+          <p>{{ __('login Finanziatore') }}</p>
         </a>
       </li>
     </ul>
