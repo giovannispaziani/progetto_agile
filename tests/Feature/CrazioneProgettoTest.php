@@ -2,13 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\Project;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-//use Illuminate\Foundation\Auth\User;
 use App\Models\User;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -35,6 +30,7 @@ class CrazioneProgettoTest extends TestCase
 
     public function test_post_as_manager()
     {
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
         $user = User::factory()->create([
             'name' => 'Manager',
@@ -57,13 +53,16 @@ class CrazioneProgettoTest extends TestCase
                             'fine' => "2023-01-01"
                          ]);
         
-        $this->assertTrue(DB::table('projects')->where("nome","nomeTest")->exists(),"Project was not created");
+        $response->assertSee("Progetto creato con successo");
+
+        $this->assertTrue(DB::table('projects')->where("nome","nomeTest")->exists(),"Project was created");
 
         DB::table('projects')->where("nome","nomeTest")->delete();
     }
 
     public function test_post_as_ricercatore()
     {
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
         $user = User::factory()->create([
             'name' => 'Ricercatore',
@@ -86,11 +85,14 @@ class CrazioneProgettoTest extends TestCase
                             'fine' => "2023-01-01"
                          ]);
         
+        $response->assertSee("ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
+
         $this->assertTrue(!DB::table('projects')->where("nome","nomeTest")->exists(),"Project was created without proper permission (user is not a Manager)");
     }
 
     public function test_post_as_finanziatore()
     {
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
         $user = User::factory()->create([
             'name' => 'Finanziatore',
@@ -113,6 +115,8 @@ class CrazioneProgettoTest extends TestCase
                             'fine' => "2023-01-01"
                          ]);
         
+        $response->assertSee("ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
+
         $this->assertTrue(!DB::table('projects')->where("nome","nomeTest")->exists(),"Project was created without proper permission (user is not a Finanziatore)");
     }
 }
