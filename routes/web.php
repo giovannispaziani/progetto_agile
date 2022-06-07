@@ -101,5 +101,5 @@ Route::post('/email/verification-notification', function (Request $request){
 
 
 /* Creazione progetto  */
-Route::get('/create-project', 'App\Http\Controllers\creazioneProgetto@index')->name('project-create');
-Route::post('/create-project', 'App\Http\Controllers\creazioneProgetto@create')->name('project-create-post');
+Route::get('/create-project', 'App\Http\Controllers\creazioneProgettoController@index')->name('project-create');
+Route::post('/create-project', 'App\Http\Controllers\creazioneProgettoController@create')->name('project-create-post');
