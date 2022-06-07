@@ -77,11 +77,6 @@
           <p>{{ __('RTL Support') }}</p>
         </a>
       </li>
-      <li class="nav-item active-pro{{ $activePage == 'registerFin' ? ' active' : '' }}">
-        <a class="nav-link text-white bg-danger" href="{{ route('registerFin') }}">
-          <p>{{ __('login Finanziatore') }}</p>
-        </a>
-      </li>
     </ul>
   </div>
 </div>

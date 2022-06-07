@@ -1,4 +1,4 @@
-@extends('layouts.ricercatore.appRicercatore', ['activePage' => 'table', 'titlePage' => __('Table List')])
+@extends('layouts.manager.appManager', ['activePage' => 'table', 'titlePage' => __('Table List')])
 
 @section('content')
 <div class="content">

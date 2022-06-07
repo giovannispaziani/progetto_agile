@@ -1,4 +1,4 @@
-@extends('layouts.ricercatore.appRicercatore', ['activePage' => 'dashboard', 'titlePage' => __('Dashboard Ricercatore')])
+@extends('layouts.manager.appManager', ['activePage' => 'dashboardManager', 'titlePage' => __('Dashboard Manager')])
 
 @section('content')
   <div class="content">

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'registerFin', 'title' => __('Material Dashboard')])
+@extends('layouts.manager.appManager', ['class' => 'off-canvas-sidebar', 'activePage' => 'registerFin', 'title' => __('Registrazione Finanziatore')])
 
 @section('content')
 <div class="container" style="height: auto; padding-top:100px">

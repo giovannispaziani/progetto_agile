@@ -10,80 +10,26 @@
     </a>
   </div>
   <div class="sidebar-wrapper">
-    <ul class="nav">
-      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('dashboardRicercatore') }}">
-          <i class="material-icons">dashboard</i>
-            <p>{{ __('Dashboard') }}</p>
+    <ul class="nav">    
+    <li class="nav-item{{ $activePage == 'dashboardManager' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('dashboardManager') }}">
+        <i class="material-icons">dashboard</i>
+          <p>{{ __('Dashboard Manager') }}</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'profileRicercatore' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('ricercatore.editRicercatore') }}">
-          <i class="material-icons">library_books</i>
-            <p>{{ __('Pubblicazioni esterne') }}</p>
-        </a>
-      </li>
-      <!--<li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('user.index') }}">
-          <i class="material-icons">monetization_on</i>
-            <p>{{ __('User Management') }}</p>
-        </a>
-      </li>-->
-        <!--<ul class="nav">
-            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
-                <span class="sidebar-mini"> UP </span>
-                <span class="sidebar-normal">{{ __('User profile') }} </span>
-              </a>
-            </li>
-            <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('user.index') }}">
-                <span class="sidebar-mini"> BU </span>
-                <span class="sidebar-normal"> {{ __('User Management') }} </span>
-              </a>
-            </li>
-          </ul>-->
-      <li class="nav-item{{ $activePage == 'budgetRicercatore' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('budgetRicercatore') }}">
-          <i class="material-icons">monetization_on</i>
-            <p>{{ __('Richieste Budget') }}</p>
-        </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'registerFin' ? ' active' : '' }}">
+    <li class="nav-item{{ $activePage == 'registerFin' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('registerFin') }}">
-          <p>{{ __('Registra un Finanziatore') }}</p>
+        <i class="material-icons">face</i>
+          <p>{{ __('Registrazione Finanziatore') }}</p>
         </a>
       </li>
-      <!--<li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('typography') }}">
-          <i class="material-icons">library_books</i>
-            <p>{{ __('Typography') }}</p>
+
+      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('project-create') }}">
+        <i class="material-icons">work</i>
+          <p>{{ __('Creazione progetto ')}}</p>
         </a>
-      </li>-->
-      <!--<li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('icons') }}">
-          <i class="material-icons">bubble_chart</i>
-          <p>{{ __('Icons') }}</p>
-        </a>
-      </li>-->
-      <!--<li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('map') }}">
-          <i class="material-icons">location_ons</i>
-            <p>{{ __('Maps') }}</p>
-        </a>
-      </li>-->
-      <!--<li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('notifications') }}">
-          <i class="material-icons">notifications</i>
-          <p>{{ __('Notifications') }}</p>
-        </a>
-      </li>-->
-      <!--<li class="nav-item active-pro{{ $activePage == 'upgrade' ? ' active' : '' }}">
-        <a class="nav-link text-white bg-danger" href="{{ route('upgrade') }}">
-          <i class="material-icons text-white">unarchive</i>
-          <p>{{ __('Upgrade to PRO') }}</p>
-        </a>
-      </li>-->
+      </li>
     </ul>
   </div>
 </div>
