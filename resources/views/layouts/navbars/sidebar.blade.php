@@ -15,13 +15,13 @@
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'profileRicercatore' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('ricercatore.editRicercatore') }}">
+        <a class="nav-link" href="{{ route('home') }}">
           <i class="material-icons">library_books</i>
             <p>{{ __('Pubblicazioni esterne') }}</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'budgetRicercatore' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('budgetRicercatore') }}">
+      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('home') }}">
           <i class="material-icons">monetization_on</i>
             <p>{{ __('Richieste Budget') }}</p>
         </a>
