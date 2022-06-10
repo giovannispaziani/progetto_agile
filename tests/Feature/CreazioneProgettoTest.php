@@ -11,16 +11,7 @@ class CrazioneProgettoTest extends TestCase
 {
     public function test_page_get()
     {
-        $user = User::factory()->create([
-            'name' => 'Manager',
-            'surname' => 'Di Prova',
-            'email' => 'manager@prova.com',
-            'email_verified_at' => now(),
-            'type' => 'Manager',
-            'password' => Hash::make('secret'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        $user = User::factory()->make();
 
         $response = $this->actingAs($user)
                          ->get('/create-project');
