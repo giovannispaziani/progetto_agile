@@ -1,4 +1,4 @@
-@extends('layouts.manager.appManager', ['activePage' => 'dashboard', 'titlePage' => __('Creazione progetto')])
+@extends('layouts.app', ['activePage' => 'dashboard', 'titlePage' => __('Creazione progetto')])
 
 @section('content')
   <div class="content">

@@ -1,13 +1,19 @@
-@if(Auth::user()->type=="Manager")
-  @extends('layouts.manager.appManager', ['activePage' => 'dashboard', 'titlePage' => __('Dashboard')])
-@elseif(Auth::user()->type=="Finanziatore")
-  @extends('layouts.app', ['activePage' => 'dashboard', 'titlePage' => __('Dashboard')])
-@else(Auth::user()->type=="Ricercatore")
-  @extends('layouts.ricercatore.appRicercatore', ['activePage' => 'dashboard', 'titlePage' => __('Dashboard')])
-@endif
+@extends('layouts.app', ['activePage' => 'dashboard', 'titlePage' => __('Dashboard')])
 
 @section('content')
-  Benvenuto <b>{{Auth::user()->nome}}
+
+@switch(Auth::user()->type)
+  @case("Ricercatore")
+    @include('pages.dashboardRicercatore')
+    @break
+  @case("Manager")
+    @include('pages.dashboardManager')
+    @break
+  @case("Finanziatore")
+    @include('pages.dashboardRicercatore')
+    @break
+@endswitch
+
 @endsection
 
 
