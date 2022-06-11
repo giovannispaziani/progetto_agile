@@ -1,8 +1,5 @@
-@extends('layouts.ricercatore.appRicercatore', ['activePage' => 'dashboard', 'titlePage' => __('Dashboard Ricercatore')])
 
-@section('content')
   <div class="content">
-
     <div class="container-fluid">
 
         <div class="row">
@@ -44,7 +41,7 @@
                   <div class="card-icon">
                     <i class="material-icons">article</i>
                   </div>
-                  <p class="card-category">Tue pubblicazioni</p>
+                  <p class="card-category">Publicazioni progetti</p>
                   <h3 class="card-title">4</h3>
                 </div>
                 <div class="card-footer">
@@ -113,13 +110,3 @@
 
     </div>
   </div>
-@endsection
-
-@push('js')
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
-    });
-  </script>
-@endpush

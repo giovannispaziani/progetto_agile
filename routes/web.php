@@ -22,17 +22,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/ricercatore', [App\Http\Controllers\dashboardRicercatoreController::class, 'index'])->name('dashboardRicercatore');
-
-Route::group([
-    'middleware' => ['auth', 'type:Ricercatore,Manager,Finanziatore'],
-], function(){
-    //rotte che solo Ricercatori Manager e finanziatori possono vedere
-});
-Auth::routes();
-
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 Route::get('/registerFin','App\Http\Controllers\RegisterFinController@index')->name('registerFin');
 Route::post('/registerFin','App\Http\Controllers\RegisterFinController@create')->name('registerFin-post');
@@ -76,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
     Route::get('profileRicercatore', ['as' => 'ricercatore.editRicercatore', 'uses' => 'App\Http\Controllers\ProfileResearcherController@edit']);
+	Route::get('profileManager', ['as' => 'manager.editManager', 'uses' => 'App\Http\Controllers\ProfileResearcherController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 	
