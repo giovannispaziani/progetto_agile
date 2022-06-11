@@ -22,14 +22,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/ricercatore', [App\Http\Controllers\dashboardRicercatoreController::class, 'index'])->name('dashboardRicercatore');
-Route::get('/dashboardManager', [App\Http\Controllers\dashboardManagerController::class, 'index'])->name('dashboardManager');
-
-
-Auth::routes();
-
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 Route::get('/registerFin','App\Http\Controllers\RegisterFinController@index')->name('registerFin');
 Route::post('/registerFin','App\Http\Controllers\RegisterFinController@create')->name('registerFin-post');

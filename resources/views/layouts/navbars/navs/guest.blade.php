@@ -22,16 +22,6 @@
           <a href="{{ route('register') }}" class="nav-link">
             <i class="material-icons">person_add</i> {{ __('Registrati') }}
           </a>
-        <li class="nav-item">
-            <a href="{{ route('dashboardManager') }}" class="nav-link">
-              <i class="material-icons">dashboard</i> {{ __('Dashboard Manager') }}
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('dashboardRicercatore') }}" class="nav-link">
-              <i class="material-icons">dashboard</i> {{ __('Dashboard Ricercatore') }}
-            </a>
-        </li>
       </ul>
     </div>
   </div>
