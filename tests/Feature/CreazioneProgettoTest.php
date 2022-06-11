@@ -11,11 +11,20 @@ class CrazioneProgettoTest extends TestCase
 {
     public function test_page_get()
     {
-        $user = User::factory()->make();
+        $user = User::factory()->create([
+            'name' => 'Manager',
+            'surname' => 'Di Prova',
+            'email' => 'manager@prova.com',
+            'email_verified_at' => now(),
+            'type' => 'Manager',
+            'password' => Hash::make('secret'),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
 
         $response = $this->actingAs($user)
                          ->get('/create-project');
-        
+
         $response->assertStatus(200);
     }
 
@@ -43,7 +52,7 @@ class CrazioneProgettoTest extends TestCase
                             'inizio' => "2022-01-01",
                             'fine' => "2023-01-01"
                          ]);
-        
+
         $response->assertSee("Progetto creato con successo");
 
         $this->assertTrue(DB::table('projects')->where("nome","nomeTest")->exists(),"Project was created");
@@ -75,7 +84,7 @@ class CrazioneProgettoTest extends TestCase
                             'inizio' => "2022-01-01",
                             'fine' => "2023-01-01"
                          ]);
-        
+
         $response->assertSee("ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
 
         $this->assertTrue(!DB::table('projects')->where("nome","nomeTest")->exists(),"Project was created without proper permission (user is not a Manager)");
@@ -105,7 +114,7 @@ class CrazioneProgettoTest extends TestCase
                             'inizio' => "2022-01-01",
                             'fine' => "2023-01-01"
                          ]);
-        
+
         $response->assertSee("ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
 
         $this->assertTrue(!DB::table('projects')->where("nome","nomeTest")->exists(),"Project was created without proper permission (user is not a Finanziatore)");

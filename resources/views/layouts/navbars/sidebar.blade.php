@@ -53,7 +53,7 @@
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('project-create') }}">
         <i class="material-icons">work</i>
-          <p>{{ __('Creazione progetto ')}}</p>
+          <p>{{ __('Creazione progetto')}}</p>
         </a>
       </li>
     </ul>
