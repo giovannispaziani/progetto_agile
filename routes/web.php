@@ -93,3 +93,6 @@ Route::post('/email/verification-notification', function (Request $request){
 /* Creazione progetto  */
 Route::get('/create-project', 'App\Http\Controllers\creazioneProgettoController@index')->name('project-create');
 Route::post('/create-project', 'App\Http\Controllers\creazioneProgettoController@create')->name('project-create-post');
+
+/* Dashboard Progetto */
+Route::get('/project-dashboard', 'App\Http\Controllers\projectDashboardController@index')->name('project-dashboard');
