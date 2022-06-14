@@ -5,6 +5,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\creazioneProgettoController;
+
+use App\Http\Controllers\projectDashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -95,4 +97,4 @@ Route::get('/create-project', 'App\Http\Controllers\creazioneProgettoController@
 Route::post('/create-project', 'App\Http\Controllers\creazioneProgettoController@create')->name('project-create-post');
 
 /* Dashboard Progetto */
-Route::get('/project-dashboard', 'App\Http\Controllers\projectDashboardController@index')->name('project-dashboard');
+Route::get('/project-dashboard/{id}',[projectDashboardController::class,'index'])->name('project-dashboard')->middleware();

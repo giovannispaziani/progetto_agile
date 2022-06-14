@@ -15,6 +15,7 @@ class ProjectTableSeeder extends Seeder
     public function run()
     {
         DB::table('projects')->insert([
+            'id' => 1,
             'id_responsabile' => 1,
             'nome' => 'Primo Progetto',
             'descrizione' => 'Un progetto a caso',
