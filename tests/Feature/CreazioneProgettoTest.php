@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -9,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 class CrazioneProgettoTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_page_get()
     {
         $user = User::factory()->create([
@@ -43,8 +46,6 @@ class CrazioneProgettoTest extends TestCase
             'updated_at' => now()
         ]);
 
-        DB::table('projects')->where("nome","nomeTest")->delete();
-
         $response = $this->actingAs($user)
                          ->post('/create-project',[
                             'nome' => "nomeTest",
@@ -55,9 +56,9 @@ class CrazioneProgettoTest extends TestCase
 
         $response->assertSee("Progetto creato con successo");
 
-        $this->assertTrue(DB::table('projects')->where("nome","nomeTest")->exists(),"Project was created");
-
-        DB::table('projects')->where("nome","nomeTest")->delete();
+        $this->assertDatabaseHas('projects', [
+            'nome' => 'nomeTest',
+        ]);
     }
 
     public function test_post_as_ricercatore()
@@ -75,8 +76,6 @@ class CrazioneProgettoTest extends TestCase
             'updated_at' => now()
         ]);
 
-        DB::table('projects')->where("nome","nomeTest")->delete();
-
         $response = $this->actingAs($user)
                          ->post('/create-project',[
                             'nome' => "nomeTest",
@@ -87,7 +86,9 @@ class CrazioneProgettoTest extends TestCase
 
         $response->assertSee("ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
 
-        $this->assertTrue(!DB::table('projects')->where("nome","nomeTest")->exists(),"Project was created without proper permission (user is not a Manager)");
+        $this->assertDatabaseMissing('projects', [
+            'nome' => 'nomeTest',
+        ]);
     }
 
     public function test_post_as_finanziatore()
@@ -105,8 +106,6 @@ class CrazioneProgettoTest extends TestCase
             'updated_at' => now()
         ]);
 
-        DB::table('projects')->where("nome","nomeTest")->delete();
-
         $response = $this->actingAs($user)
                          ->post('/create-project',[
                             'nome' => "nomeTest",
@@ -117,6 +116,8 @@ class CrazioneProgettoTest extends TestCase
 
         $response->assertSee("ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
 
-        $this->assertTrue(!DB::table('projects')->where("nome","nomeTest")->exists(),"Project was created without proper permission (user is not a Finanziatore)");
+        $this->assertDatabaseMissing('projects', [
+            'nome' => 'nomeTest',
+        ]);
     }
 }
