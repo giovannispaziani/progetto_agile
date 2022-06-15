@@ -15,6 +15,7 @@ class PubblicationTableSeeder extends Seeder
     public function run()
     {
         DB::table('pubblications')->insert([
+            'id' => 1,
             'id_progetto' => 1,
             'id_autore' => 2,
             'titolo' => 'Prima pubblicazione 1',
@@ -25,6 +26,7 @@ class PubblicationTableSeeder extends Seeder
         
 
         DB::table('pubblications')->insert([
+            'id' => 2,
             'id_progetto' => 1,
             'id_autore' => 2,
             'titolo' => 'Prima pubblicazione 2',
@@ -35,6 +37,7 @@ class PubblicationTableSeeder extends Seeder
 
 
         DB::table('pubblications')->insert([
+            'id' => 3,
             'id_progetto' => 1,
             'id_autore' => 5,
             'titolo' => 'Prima pubblicazione 3',

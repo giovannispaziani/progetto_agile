@@ -23,7 +23,7 @@
             
                   <div class="card-body" >
                     <h4 class="card-title">Responsabile:</h4>
-                    <a href="../utente/{{ $data['id_responsabile'] }}" class="card-text">{{ $data['responsabile'] }}</a>
+                    <a href="../users/{{ $data['id_responsabile'] }}" class="card-text">{{ $data['responsabile'] }}</a>
                   </div>  
 
                   <div class="card-body" >
@@ -126,7 +126,7 @@
               <tbody>
                 @forelse ($data['budget'] as $budget)
                   <tr>
-                      <td class="text-center"><a href="../users/{{ $budget['id'] }}">&#10150;</a></td>
+                      <td class="text-center"><a href="../budgets/{{ $budget['id'] }}">&#10150;</a></td>
                       <td>{{ $budget['scopo'] }}</td>
                       <td>{{ $budget['budget'] }}</td> 
                   </tr>

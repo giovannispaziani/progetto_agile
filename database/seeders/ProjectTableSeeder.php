@@ -19,8 +19,8 @@ class ProjectTableSeeder extends Seeder
             'id_responsabile' => 1,
             'nome' => 'Primo Progetto',
             'descrizione' => 'Un progetto a caso',
-            'data_inizio' => now(),
-            'data_fine' => now(),
+            'data_inizio' => "2022-01-01",
+            'data_fine' => "2022-02-02",
             'stato' => 'in corso',
             'created_at' => now(),
             'updated_at' => now()

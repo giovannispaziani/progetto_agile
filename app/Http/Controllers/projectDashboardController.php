@@ -76,7 +76,7 @@ class projectDashboardController extends Controller
             return view('pages.projectDashboard')->with("title", "Creazione Progetto")->with("data",$data);
         }
         else{
-            return view('pages.error')->with("title", "HTTP code 404")->with("description","Progetto non trovato");
+            return view('pages.error')->with("title", "errore")->with("description","Progetto non trovato");
         }
     }
 }
