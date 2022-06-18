@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\creazioneProgettoController;
 
 use App\Http\Controllers\projectDashboardController;
+use App\Http\Controllers\projectListController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -98,3 +99,6 @@ Route::post('/create-project', 'App\Http\Controllers\creazioneProgettoController
 
 /* Dashboard Progetto */
 Route::get('/project-dashboard/{id}',[projectDashboardController::class,'index'])->name('project-dashboard')->middleware();
+
+/* Lista Progetti */
+Route::get('/project-list',[projectListController::class,'index'])->name('project-list')->middleware();
