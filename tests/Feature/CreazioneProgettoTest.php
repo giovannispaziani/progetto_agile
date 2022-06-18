@@ -6,9 +6,11 @@ use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CrazioneProgettoTest extends TestCase
 {
+    use RefreshDatabase;
     public function test_page_get()
     {
         $user = User::factory()->create([
