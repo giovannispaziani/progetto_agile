@@ -56,6 +56,7 @@ class ListaProgettiTest extends TestCase
             'updated_at' => now()
         ]);
         
+        //aggiunta progetto da visualizzare
         DB::table('projects')->insert([
             'id_responsabile' => 2,
             'nome' => 'Primo Progetto',
@@ -67,6 +68,7 @@ class ListaProgettiTest extends TestCase
             'updated_at' => now()
         ]);
 
+        //aggiunta progetto da visualizzare
         DB::table('projects')->insert([
             'id_responsabile' => 2,
             'nome' => 'Secondo Progetto',
@@ -78,6 +80,7 @@ class ListaProgettiTest extends TestCase
             'updated_at' => now()
         ]);
 
+        //aggiunta progetto da visualizzare
         DB::table('projects')->insert([
             'id_responsabile' => 1,
             'nome' => 'Terzo Progetto',
@@ -97,9 +100,6 @@ class ListaProgettiTest extends TestCase
             "Primo Progetto",
             "Secondo Progetto",
             "Terzo Progetto",
-            "Un progetto a caso1",
-            "Un progetto a caso2",
-            "Un progetto a caso3",
             "2022-01-01",
             "2022-02-02",
             "2022-01-03",
