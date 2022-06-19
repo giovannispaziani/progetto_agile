@@ -35,8 +35,6 @@ class RegisterTest extends TestCase
         ];
 
         $response = $this->post('/register', $user);
-
-        $response->assertRedirect('/home');
    
         $this->assertDatabaseHas('users', [
             'email' => 'register@gmail.com',
@@ -68,6 +66,7 @@ class RegisterTest extends TestCase
             'password_confirmation' => 'password'
         ];
 
+        $response = $this->post('/register', $user);  //equivalente tasto submit
         
         $this->assertDatabaseHas('users', [      //Affermare che una tabella nel database contiene record che corrispondono
             'email' => 'register@gmail.com',
@@ -79,8 +78,7 @@ class RegisterTest extends TestCase
             'name' => 'NameTwo',
         ]);
 
-        $response = $this->post('/register', $user);  //equivalente tasto submit
-        //$response->assertRedirect('/'); //si assicura che mi reindirizza alla pagina welcome quando fallisce
+        
 
     }
 
