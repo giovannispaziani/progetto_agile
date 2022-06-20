@@ -71,7 +71,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profileManager', ['as' => 'manager.editManager', 'uses' => 'App\Http\Controllers\ProfileResearcherController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-	
+
 });
 
 
@@ -99,6 +99,13 @@ Route::post('/create-project', 'App\Http\Controllers\creazioneProgettoController
 
 /* Dashboard Progetto */
 Route::get('/project-dashboard/{id}',[projectDashboardController::class,'index'])->name('project-dashboard')->middleware();
+
+/* Pubblicazione scientifica ricercatore */
+Route::get('/pubblicazioniScientifiche', 'App\Http\Controllers\PubblicazioniScientificheController@index')->name('pubblicazioniScientifiche');
+Route::post('/pubblicazioniScientifiche','App\Http\Controllers\PubblicazioniScientificheController@aggiungiPubblicazioneScientifica')->name('pubblicazioniScientifiche-post');
+
+/* Budget Ricercatore */
+Route::get('/budgetRicercatore', 'App\Http\Controllers\BudgetRicercatoreController@index')->name('budgetRicercatore')->middleware();
 
 /* Lista Progetti */
 Route::get('/project-list',[projectListController::class,'index'])->name('project-list')->middleware();
