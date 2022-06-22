@@ -58,6 +58,8 @@ class ModificaProgettoTest extends TestCase
                             'fine' => "2023-03-03"
                          ]);
 
+        $response->assertStatus(302);
+
         $this->assertDatabaseHas('projects', [
             'id' => 7,
             'data_fine' => '2023-03-03',
@@ -68,7 +70,6 @@ class ModificaProgettoTest extends TestCase
             'data_fine' => '2022-02-02',
         ]);
     }
-
 
     public function test_update_ending_date_as_unauthorized_user()
     {
