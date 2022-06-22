@@ -4,7 +4,7 @@
 
 @switch(Auth::user()->type)
   @case("Ricercatore")
-    @include('pages.dashboardRicercatore')
+  @include('pages.dashboardRicercatore')
     @break
   @case("Manager")
     @include('pages.dashboardManager')

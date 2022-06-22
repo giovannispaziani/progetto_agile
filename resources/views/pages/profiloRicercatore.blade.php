@@ -12,23 +12,18 @@
             <div class="card-header card-header-primary text-center" style="grid-column: 1/3 !important"> INFORMAZIONI RICERCATORE </div>
             
                   <div class="card-body">
-                    <h4 class="card-title">Id utente:</h4>
-                    <p class="card-text" >{{ $data['id'] }}</p>
-                  </div>
-
-                  <div class="card-body">
                     <h4 class="card-title">Nome:</h4>
-                    <p class="card-text" >{{ $data['name'] }}</p>
+                    <p class="card-text" >{{ $data['nome_ricercatore'] }}</p>
                   </div>
 
                   <div class="card-body">
                     <h4 class="card-title">Cognome:</h4>
-                    <p class="card-text" >{{ $data['surname'] }}</p>
+                    <p class="card-text" >{{ $data['cognome_ricercatore'] }}</p>
                   </div>
 
                   <div class="card-body">
                     <h4 class="card-title">Email:</h4>
-                    <p class="card-text" >{{ $data['email'] }}</p>
+                    <p class="card-text" >{{ $data['email_ricercatore'] }}</p>
                   </div>
 
       </div>

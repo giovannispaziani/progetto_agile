@@ -17,6 +17,8 @@ class DashboardRicercatoreController extends Controller
             $progetto = DB::table("projects")->where("id",$contributi)->first();
 
                 // Contributi ricercatore nei progetti interni
+                if ($progetto != null) {
+
                 $i = 0;
                 $progetti = [];
                 foreach ($contributi as $id_ricercatore) {
@@ -25,11 +27,16 @@ class DashboardRicercatoreController extends Controller
                     $i++;
                 }
 
-                $data = [
+            } else {
+                return view('pages.error')->with("title", "errore")->with("description","Nessun progetto trovato");
+            }
+
+                $data= [
                     "nome_progetto" => $progetto->nome,                    
-                    "descrizione_progetto" => $progetto->descrizione,
-   
+                    "descrizione_progetto" => $progetto->descrizione
                 ];
+
+                array_push($data);
                 
                 return view('pages.dashboardRicercatore')->with("title", "Dashboard Ricercatore")->with("data",$data);
         

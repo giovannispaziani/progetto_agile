@@ -19,7 +19,7 @@ class ProfiloRicercatoreTest extends TestCase
      *
      * @return void
      */
-    public function test_get_researcher_profile()  //restituisce la pagina se l'utente è loggato
+    public function test_get_researcher_profile_user_logged()  //restituisce la pagina se l'utente è loggato
     {
         $this->seed();
 
@@ -34,10 +34,20 @@ class ProfiloRicercatoreTest extends TestCase
             'updated_at' => now()
         ]);
 
-        $response = $this->actingAs($user)->get('/profilo-Ricercatore');
+        $response = $this->actingAs($user)->get('/users/Auth::user()->id');
 
         $this->assertTrue(true);
 
+    }
+
+    public function test_get_researcher_profile_user_not_logged()
+    {
+        $this->seed();
+        $this->assertGuest(); //connessione tramite guest, non fa controlli sull'auth
+
+        $response = $this->get('/users/2'); //fa visita alla pagina senza il login dell'utente
+
+        $this->assertTrue(true);
     }
 
 }

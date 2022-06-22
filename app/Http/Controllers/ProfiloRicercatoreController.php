@@ -9,13 +9,27 @@ use Illuminate\Support\Facades\Auth;
 class ProfiloRicercatoreController extends Controller
 {
     
-    public function index()
+    public function index($id_ricercatore)
     {
-        $id_ricercatore = Auth::user()->id;
+        if(DB::table("users")->where("id",$id_ricercatore)->exists()){
+
+        //$id_ricercatore = Auth::user()->id;
 
             $contributi = DB::table("research_groups")->where("id_ricercatore",$id_ricercatore)->pluck("id_progetto"); //eventuale cambio da $id_contributi a $id_progetto
             $progetto = DB::table("projects")->where("id",$contributi)->first();
             $pubblicazioni_scientifiche = DB::table("scientific_publications")->where("id_ricercatore",$id_ricercatore)->first();
+            $ricercatore = DB::table("users")->where("id",$id_ricercatore)->pluck("id");
+
+            //Informazioni Ricercatore
+            $i = 0;
+            $informazioni = [];
+            foreach ($ricercatore as $id_ricercatore) {
+                $ricercatore = DB::table("users")->where("id",$id_ricercatore)->first();
+                $informazioni[$i]['nome_ricercatore'] = $ricercatore->name;
+                $informazioni[$i]['cognome_ricercatore'] = $ricercatore->surname;
+                $informazioni[$i]['email_ricercatore'] = $ricercatore->email;
+                $i++;
+            }
 
             // Contributi ricercatore nei progetti interni
             if ($progetto != null) {
@@ -34,12 +48,12 @@ class ProfiloRicercatoreController extends Controller
 
             // Pubblicazioni esterne ricercatore
             if ($pubblicazioni_scientifiche != null) {
-                $j = 0;
+                $i = 0;
                 $pubblicazioni_esterne = [];
                 foreach ($pubblicazioni_scientifiche as $id_ricercatore) {
-                    $pubblicazioni_esterne[$j]['titolo_pubblicazione'] = $pubblicazioni_scientifiche->titolo;
-                    $pubblicazioni_esterne[$j]['fonte_pubblicazione'] = $pubblicazioni_scientifiche->fonte;
-                    $j++;
+                    $pubblicazioni_esterne[$i]['titolo_pubblicazione'] = $pubblicazioni_scientifiche->titolo;
+                    $pubblicazioni_esterne[$i]['fonte_pubblicazione'] = $pubblicazioni_scientifiche->fonte;
+                    $i++;
                 }
 
             } else{
@@ -47,10 +61,9 @@ class ProfiloRicercatoreController extends Controller
             } 
 
                 $data = [
-                    "id" => Auth::user()->id,
-                    "name" => Auth::user()->name,
-                    "surname" => Auth::user()->surname,
-                    "email" => Auth::user()->email,
+                    "nome_ricercatore" => $ricercatore->name,
+                    "cognome_ricercatore" => $ricercatore->surname,
+                    "email_ricercatore" => $ricercatore->email,
                     "nome_progetto" => $progetto->nome,                    
                     "descrizione_progetto" => $progetto->descrizione,
                     "titolo_pubblicazione" => $pubblicazioni_scientifiche->titolo,
@@ -60,6 +73,7 @@ class ProfiloRicercatoreController extends Controller
                 ];
                 
                 return view('pages.profiloRicercatore')->with("title", "Profilo Ricercatore")->with("data",$data);
-        
+        }    
     }
+    
 }
