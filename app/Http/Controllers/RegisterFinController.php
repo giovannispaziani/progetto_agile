@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterFinController extends Controller
 {
@@ -24,7 +25,11 @@ class RegisterFinController extends Controller
     */
     public function index()
     {
-        return view('pages.registerFin');
+        if(Auth::user()->type=="Manager"){
+            return view('pages.registerFin');
+        }else{
+            abort(403);
+        }
     }
     use RegistersUsers;
 
@@ -69,14 +74,18 @@ class RegisterFinController extends Controller
      */
     protected function create(Request $request)
     {
-        $User= new User();
-        $User->name = $request['name'];
-        $User->surname = $request['surname'];
-        $User->type = 'Finanziatore';
-        $User->email = $request['email'];
-        $User->password = Hash::make($request['password']);
-        $User->save();
-        return redirect("home");
+        if(Auth::user()->type=="Manager"){
+            $User= new User();
+            $User->name = $request['name'];
+            $User->surname = $request['surname'];
+            $User->type = 'Finanziatore';
+            $User->email = $request['email'];
+            $User->password = Hash::make($request['password']);
+            $User->save();
+            return redirect("home");
+        }else{
+            abort(403);
+        }
     }
 
 }

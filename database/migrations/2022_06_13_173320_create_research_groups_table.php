@@ -15,14 +15,15 @@ class CreateResearchGroupsTable extends Migration
     {
         Schema::create('research_groups', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_progetto');
-            $table->unsignedBigInteger('id_ricercatore');
+            $table->unsignedBigInteger('id_progetto')->nullable();
+            $table->unsignedBigInteger('id_ricercatore')->nullable();
             $table->timestamps();
         });
 
         Schema::table('research_groups', function (Blueprint $table) {
             $table->foreign('id_progetto')->references('id')->on('projects');
             $table->foreign('id_ricercatore')->references('id')->on('users');
+            $table->unique(['id_progetto','id_ricercatore']);
         });
     }
 

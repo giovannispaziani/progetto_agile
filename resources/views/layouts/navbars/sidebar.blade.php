@@ -49,7 +49,12 @@
           <p>{{ __('Registrazione Finanziatore') }}</p>
         </a>
       </li>
-
+      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('project-list') }}">
+        <i class="material-icons">work</i>
+          <p>{{ __('Lista Progetti')}}</p>
+        </a>
+      </li>
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('project-create') }}">
         <i class="material-icons">work</i>
