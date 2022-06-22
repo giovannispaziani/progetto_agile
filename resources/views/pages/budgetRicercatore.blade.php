@@ -8,7 +8,7 @@
         <div class="card">
           <div class="card-header card-header-primary">
             <h4 class="card-title ">Richieste budget</h4>
-            <p class="card-category"> Here is a subtitle for this table</p>
+            <p class="card-category"></p>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -18,34 +18,34 @@
                     ID
                   </th>
                   <th>
-                    Name
+                    Progetto
                   </th>
                   <th>
-                    Country
+                    Motivo
                   </th>
                   <th>
-                    City
+                    Stato
                   </th>
                   <th>
-                    Salary
+                    Importo
                   </th>
                 </thead>
                 <tbody>
                   <tr>
                     <td>
-                      1
+                      3
                     </td>
                     <td>
-                      Dakota Rice
+                      Progetto #1
                     </td>
                     <td>
-                      Niger
+                      Tools
                     </td>
                     <td>
-                      Oud-Turnhout
+                      In attesa
                     </td>
                     <td class="text-primary">
-                      $36,738
+                      €500
                     </td>
                   </tr>
                   <tr>
@@ -53,86 +53,36 @@
                       2
                     </td>
                     <td>
-                      Minerva Hooper
+                      Progetto #1
                     </td>
                     <td>
-                      Curaçao
+                        Licenza
                     </td>
                     <td>
-                      Sinaai-Waas
+                      Approvato
                     </td>
                     <td class="text-primary">
-                      $23,789
+                      €350
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      3
+                      1
                     </td>
                     <td>
-                      Sage Rodriguez
+                        Progetto #1
                     </td>
                     <td>
-                      Netherlands
+                      Altro
                     </td>
                     <td>
-                      Baileux
+                      Rifiutato
                     </td>
                     <td class="text-primary">
-                      $56,142
+                      €1000
                     </td>
                   </tr>
                   <tr>
-                    <td>
-                      4
-                    </td>
-                    <td>
-                      Philip Chaney
-                    </td>
-                    <td>
-                      Korea, South
-                    </td>
-                    <td>
-                      Overland Park
-                    </td>
-                    <td class="text-primary">
-                      $38,735
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      5
-                    </td>
-                    <td>
-                      Doris Greene
-                    </td>
-                    <td>
-                      Malawi
-                    </td>
-                    <td>
-                      Feldkirchen in Kärnten
-                    </td>
-                    <td class="text-primary">
-                      $63,542
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      6
-                    </td>
-                    <td>
-                      Mason Porter
-                    </td>
-                    <td>
-                      Chile
-                    </td>
-                    <td>
-                      Gloucester
-                    </td>
-                    <td class="text-primary">
-                      $78,615
-                    </td>
-                  </tr>
                 </tbody>
               </table>
             </div>
