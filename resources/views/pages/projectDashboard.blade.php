@@ -78,23 +78,27 @@
 
            <!--TABELLA RICERCATORI-->
           <div class="card card-nav-tabs" style="width: 45%; margin-left: 10%">
-            <div class="card-header card-header-primary text-center"> RICERCATORI </div>
-
+            <div class="card-header card-header-primary text-center"> RICERCATORI 
+          </div>
             <table class="table" style="width: 90%">
 
               <thead>
                   <tr>
                       <th></th>
                       <th>Nome</th>
-                      <th>Cognome</th>    
+                      <th>Cognome</th>  
+                      <th>aggiungi <a href="/lista-ricercatore/{{$data['id_progetto']}}">
+                        <i class="material-icons">co_present</i>
+                      </a> </th>  
                   </tr>
               </thead>
               <tbody>
                 @forelse ($data['ricercatori'] as $ricercatore)
                   <tr>
-                      <td class="text-center"><a href="../users/{{ $ricercatore['id'] }}">&#10150;</a></td>
-                      <td>{{ $ricercatore['nome'] }}</td>
-                      <td>{{ $ricercatore['cognome'] }}</td> 
+                    <td class="text-center"><a href="../users/{{ $ricercatore['id'] }}">&#10150;</a></td>
+                    <td>{{ $ricercatore['nome'] }}</td>
+                    <td>{{ $ricercatore['cognome'] }}</td>
+                    <td><a href="/project-dashboard/{{$data['id_progetto']}}/remove/{{$ricercatore['id']}}"><button>remove</button></a></td>
                   </tr>
                 @empty
                   <tr>
