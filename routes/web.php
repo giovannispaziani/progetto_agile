@@ -109,3 +109,6 @@ Route::get('/budgetRicercatore', 'App\Http\Controllers\BudgetRicercatoreControll
 
 /* Lista Progetti */
 Route::get('/project-list',[projectListController::class,'index'])->name('project-list')->middleware();
+
+/* Aggiorna data di fine progetto */
+Route::post('/cambio-data-fine-progetto', [projectDashboardController::class,'updateFine'])->name('update-project-date');

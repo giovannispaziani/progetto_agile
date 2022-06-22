@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class projectDashboardController extends Controller
 {
@@ -60,6 +62,7 @@ class projectDashboardController extends Controller
             }
 
             $data = [
+                "id" => $id,
                 "nome" => $progetto->nome,
                 "descrizione" => $progetto->descrizione,
                 "id_responsabile" => $progetto->id_responsabile,
@@ -78,5 +81,28 @@ class projectDashboardController extends Controller
         else{
             return view('pages.error')->with("title", "errore")->with("description","Progetto non trovato");
         }
+    }
+
+
+    public function updateFine(Request $request)
+    {
+        try {
+
+            $id_progetto = $request['id_progetto'];
+            $progetto = Project::where('id', $id_progetto)->first();   //progetto in questione
+            $userId = Auth::user()->id;                                //id dell'utente
+    
+            if($userId == $progetto->id_responsabile){   //se è il responsabile a fare questa richiesta
+                $progetto->data_fine = $request['fine'];     //cambio la data di fine
+                $progetto->save();                           //salvo nel db
+            }
+            else{                                        //se NON è il responsabile a fare questa richiesta do errore
+                return view('pages.error')->with("message","ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
+            }
+        } catch (\Throwable $th) {
+            return view('pages.error')->with("message","Si è verificato un errore :-(");
+        }
+
+        return redirect()->route('project-dashboard', [$id_progetto]);   //riporto alla pagina del progetto
     }
 }
