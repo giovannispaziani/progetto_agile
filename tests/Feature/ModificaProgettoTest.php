@@ -15,33 +15,37 @@ class ModificaProgettoTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_update_ending_date_as_authorized_user()
+    private $authorizedUser;
+    private $unauthorizedUser;
+
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
-        $authorizedUser = User::factory()->create([
+        $this->authorizedUser = User::factory()->create([
             'name' => 'authorized',
             'surname' => 'user',
             'email' => 'aaa@aaa.aaa',
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
-            'password' => "password1",
+            'password' => Hash::make("password1"),
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        $unauthorizedUser = User::factory()->create([
+        $this->unauthorizedUser = User::factory()->create([
             'name' => 'unauthorized',
             'surname' => 'user',
             'email' => 'bbb@bbb.bbb',
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
-            'password' => "password2",
+            'password' => Hash::make("password2"),
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        $res = DB::table('projects')->insert([
+        DB::table('projects')->insert([
             'id' => 7,
-            'id_responsabile' => $authorizedUser->id,
+            'id_responsabile' => $this->authorizedUser->id,
             'nome' => 'Primo Progetto',
             'descrizione' => 'Un progetto a caso1',
             'data_inizio' => "2022-01-01",
@@ -50,9 +54,12 @@ class ModificaProgettoTest extends TestCase
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        assertTrue($res);
+    }
 
-        $response = $this->actingAs($authorizedUser)
+    public function test_update_ending_date_as_authorized_user()
+    {
+
+        $response = $this->actingAs($this->authorizedUser)
                          ->post('/cambio-data-fine-progetto',[
                             'id_progetto' => 7,
                             'fine' => "2023-03-03"
@@ -73,42 +80,8 @@ class ModificaProgettoTest extends TestCase
 
     public function test_update_ending_date_as_unauthorized_user()
     {
-        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
-
-        $authorizedUser = User::factory()->create([
-            'name' => 'authorized',
-            'surname' => 'user',
-            'email' => 'aaa@aaa.aaa',
-            'email_verified_at' => now(),
-            'type' => 'Ricercatore',
-            'password' => "password1",
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-        $unauthorizedUser = User::factory()->create([
-            'name' => 'unauthorized',
-            'surname' => 'user',
-            'email' => 'bbb@bbb.bbb',
-            'email_verified_at' => now(),
-            'type' => 'Ricercatore',
-            'password' => "password2",
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-        $res = DB::table('projects')->insert([
-            'id' => 7,
-            'id_responsabile' => $authorizedUser->id,
-            'nome' => 'Primo Progetto',
-            'descrizione' => 'Un progetto a caso1',
-            'data_inizio' => "2022-01-01",
-            'data_fine' => "2022-02-02",
-            'stato' => 'concluso',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-        assertTrue($res);
         
-        $response = $this->actingAs($unauthorizedUser)
+        $response = $this->actingAs($this->unauthorizedUser)
                          ->post('/cambio-data-fine-progetto',[
                             'id_progetto' => 7,
                             'fine' => "2023-03-03"
