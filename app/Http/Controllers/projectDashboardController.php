@@ -62,7 +62,7 @@ class projectDashboardController extends Controller
             }
 
             $data = [
-                "id" => $id,
+                "id_progetto"=> $id,
                 "nome" => $progetto->nome,
                 "descrizione" => $progetto->descrizione,
                 "id_responsabile" => $progetto->id_responsabile,

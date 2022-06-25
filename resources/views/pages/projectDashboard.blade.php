@@ -95,70 +95,78 @@
       <!--FINE TABELLA FINANZIATORI-->
 
       <!--TABELLA RICERCATORI-->
-      <div class="card card-nav-tabs" style="width: 45%; margin-left: 10%">
-        <div class="card-header card-header-primary text-center"> RICERCATORI </div>
+          <div class="card card-nav-tabs" style="width: 45%; margin-left: 10%">
+            <div class="card-header card-header-primary text-center"> RICERCATORI 
+          </div>
+            <table class="table" style="width: 90%">
 
-        <table class="table" style="width: 90%">
+              <thead>
+                  <tr>
+                      <th></th>
+                      <th>Nome</th>
+                      <th>Cognome</th>  
+                      <th>aggiungi <a href="/lista-ricercatore/{{$data['id_progetto']}}">
+                        <i class="material-icons">co_present</i>
+                      </a> </th>  
+                  </tr>
+              </thead>
+              <tbody>
+                @forelse ($data['ricercatori'] as $ricercatore)
+                  <tr>
+                    <td class="text-center"><a href="../users/{{ $ricercatore['id'] }}">&#10150;</a></td>
+                    <td>{{ $ricercatore['nome'] }}</td>
+                    <td>{{ $ricercatore['cognome'] }}</td>
+                    <td><a href="/project-dashboard/{{$data['id_progetto']}}/remove/{{$ricercatore['id']}}"><button>remove</button></a></td>
+                  </tr>
+                @empty
+                  <tr>
+                      <td class="text-center"><a href="#"></a></td>
+                      <td>nessun</td>
+                      <td>ricercatore</td> 
+                  </tr>
+                @endforelse
+              </tbody>  
 
-          <thead>
-              <tr>
-                  <th></th>
-                  <th>Nome</th>
-                  <th>Cognome</th>    
-              </tr>
-          </thead>
-          <tbody>
-            @forelse ($data['ricercatori'] as $ricercatore)
-              <tr>
-                  <td class="text-center"><a href="../users/{{ $ricercatore['id'] }}">&#10150;</a></td>
-                  <td>{{ $ricercatore['nome'] }}</td>
-                  <td>{{ $ricercatore['cognome'] }}</td> 
-              </tr>
-            @empty
-              <tr>
-                  <td class="text-center"><a href="#"></a></td>
-                  <td>nessun</td>
-                  <td>ricercatore</td> 
-              </tr>
-            @endforelse
-          </tbody>  
+          </table>
 
-      </table>
-      <!--FINE TABELLA RICERCATORI-->
+        </div> 
+         <!--FINE TABELLA RICERCATORI-->
 
-    </div> 
+         <!--TABELLA BUDGET-->
+         <div class="card card-nav-tabs" style="width: 45%">
+             <div class="card-header card-header-primary text-center"> BUDGET (€) </div>
 
-    <!--TABELLA BUDGET-->
-    <div class="card card-nav-tabs" style="width: 45%">
-      <div class="card-header card-header-primary text-center"> BUDGET (€) </div>
-      <table class="table" style="width: 90%">
-        <thead>
-          <tr>
-            <th></th>
-            <th>scopo</th>
-            <th>ammontare</th>
-          </tr>
-        </thead>
-        <tbody>
-          @forelse ($data['budget'] as $budget)
-            <tr>
-              <td class="text-center"><a href="../budgets/{{ $budget['id'] }}">&#10150;</a></td>
-              <td>{{ $budget['scopo'] }}</td>
-              <td>{{ $budget['budget'] }}</td> 
-            </tr>
-          @empty
-            <tr>
-              <td class="text-center"><a href="#"></a></td>
-              <td>nessun</td>
-              <td>budget</td> 
-            </tr>
-          @endforelse
-        </tbody>  
-      </table>
-    </div> 
-    <!--FINE TABELLA BUDGET-->
+             <table class="table" style="width: 90%">
 
-    <!--TABELLA PUBBLICAZIONI-->
+              <thead>
+                  <tr>
+                      <th></th>
+                      <th>scopo</th>
+                      <th>ammontare</th>    
+                  </tr>
+              </thead>
+              <tbody>
+                @forelse ($data['budget'] as $budget)
+                  <tr>
+                      <td class="text-center"><a href="../budgets/{{ $budget['id'] }}">&#10150;</a></td>
+                      <td>{{ $budget['scopo'] }}</td>
+                      <td>{{ $budget['budget'] }}</td> 
+                  </tr>
+                @empty
+                  <tr>
+                      <td class="text-center"><a href="#"></a></td>
+                      <td>nessun</td>
+                      <td>budget</td> 
+                  </tr>
+                @endforelse
+              </tbody>  
+
+             </table>
+
+          </div> 
+       <!--FINE TABELLA BUDGET-->
+
+       <!--TABELLA PUBBLICAZIONI-->
     <div class="card card-nav-tabs" style="width: 45%; margin-left: 10%">
       <div class="card-header card-header-primary text-center"> PUBBLICAZIONI </div>
       <table class="table" style="width: 90%">
@@ -274,7 +282,7 @@
               @endif
             </div>
 
-            <input type="hidden" name="id_progetto" value="{{ $data['id'] }}">
+            <input type="hidden" name="id_progetto" value="{{ $data['id_progetto'] }}">
 
           </form>
         </div>
@@ -310,7 +318,7 @@
         
         <form class="form" method="POST" id="deleteProject" action="{{ route('elimina-progetto') }}">
           @csrf
-          <input type="hidden" name="id_progetto" value="{{ $data['id'] }}">
+          <input type="hidden" name="id_progetto" value="{{ $data['id_progetto'] }}">
         </form>
 
       </div>
@@ -333,7 +341,7 @@
         <div class="modal-body">
           <form class="form" method="POST" id="editProject" action="{{ route('modifica-progetto') }}">
             @csrf
-            <input type="hidden" name="id_progetto" value="{{ $data['id'] }}">
+            <input type="hidden" name="id_progetto" value="{{ $data['id_progetto'] }}">
 
             <div class="bmd-form-group{{ $errors->has('nome') ? ' has-danger' : '' }}">
               <div class="form-group">
