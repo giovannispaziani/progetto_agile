@@ -16,14 +16,14 @@ class CreatePubblicationsTable extends Migration
         Schema::create('pubblications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_autore');
-            $table->unsignedBigInteger('id_progetto');
+            $table->unsignedBigInteger('id_progetto')->nullable(true);
             $table->string('titolo');
             $table->string('file_path');
             $table->timestamps();
         });
 
         Schema::table('pubblications', function (Blueprint $table) {
-            $table->foreign('id_progetto')->references('id')->on('projects');
+            $table->foreign('id_progetto')->references('id')->on('projects')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('id_autore')->references('id')->on('users');
         });
     }

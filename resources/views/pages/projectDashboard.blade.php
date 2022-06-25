@@ -5,6 +5,17 @@
 
   <div class="container-fluid">
 
+  @auth
+    @if (Auth::user()->type == "Manager")
+
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-danger btn-round btn-sm"  data-toggle="modal" data-target="#deleteDialog">Elimina progetto</button>
+      <button type="button" class="btn btn-default btn-round btn-sm"  data-toggle="modal" data-target="#editDialog">Modifica</button>
+    </div>
+
+    @endif
+  @endauth
+
     <div class="row">
 
       <!--TABELLA INFO-->
@@ -234,46 +245,175 @@
   </div>
 </div>
 
-@auth
+
 <!-- Modal edit ending date -->
-<div class="modal fade" id="editEndingDate" tabindex="-1" role="dialog" aria-labelledby="editEndingDateLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modifica data di fine</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="form" method="POST" id="changeDate" action="{{ route('update-project-date') }}">
-          @csrf
+@auth
+  @if (Auth::user()->id == $data['id_responsabile'])  <!-- se aperta dal responsabile -->
+  <div class="modal fade" id="editEndingDate" tabindex="-1" role="dialog" aria-labelledby="editEndingDateLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modifica data di fine</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="form" method="POST" id="changeDate" action="{{ route('update-project-date') }}">
+            @csrf
 
-          <div class="bmd-form-group{{ $errors->has('fine') ? ' has-danger' : '' }}">
-            <div class="form-group">
-              <label for="fine">Fine stimata</label>
-              <input type="date" name="fine" class="form-control" placeholder="{{ __('Data stimata di fine progetto...') }}" value="{{ $data['data_fine'] }}" required>
-            </div>
-            @if ($errors->has('fine'))
-              <div id="fine-error" class="error text-danger pl-3" for="fine" style="display: block;">
-                <strong>{{ $errors->first('fine') }}</strong>
+            <div class="bmd-form-group{{ $errors->has('fine') ? ' has-danger' : '' }}">
+              <div class="form-group">
+                <label for="fine">Fine stimata</label>
+                <input type="date" name="fine" class="form-control" placeholder="{{ __('Data stimata di fine progetto...') }}" value="{{ $data['data_fine'] }}" required>
               </div>
-            @endif
-          </div>
+              @if ($errors->has('fine'))
+                <div id="fine-error" class="error text-danger pl-3" for="fine" style="display: block;">
+                  <strong>{{ $errors->first('fine') }}</strong>
+                </div>
+              @endif
+            </div>
 
-          <input type="hidden" name="id_progetto" value="{{ $data['id'] }}">
+            <input type="hidden" name="id_progetto" value="{{ $data['id'] }}">
 
-        </form>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+          <button type="submit" form="changeDate" class="btn btn-primary">Modifica data</button>
+        </div>
+
       </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-        <button type="submit" form="changeDate" class="btn btn-primary">Modifica data</button>
-      </div>
-
     </div>
   </div>
-</div>
+  @endif
+
+  @if (Auth::user()->type == "Manager")
+
+  <!-- Modal delete project -->
+  <div class="modal fade bd-example-modal-sm" id="deleteDialog" tabindex="-1" role="dialog" aria-labelledby="deleteDialogLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteDialogLabel">Eliminare il progetto?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+        <div class="modal-footer d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ANNULLA</button>
+          <button type="submit" form="deleteProject" class="btn btn-danger">ELIMINA</button>
+        </div>
+        
+        <form class="form" method="POST" id="deleteProject" action="{{ route('elimina-progetto') }}">
+          @csrf
+          <input type="hidden" name="id_progetto" value="{{ $data['id'] }}">
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal edit info project -->
+  <div class="modal fade bd-example-modal-lg" id="editDialog" tabindex="-1" role="dialog" aria-labelledby="editDialogLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="editDialogLabel">Modifica progetto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form class="form" method="POST" id="editProject" action="{{ route('modifica-progetto') }}">
+            @csrf
+            <input type="hidden" name="id_progetto" value="{{ $data['id'] }}">
+
+            <div class="bmd-form-group{{ $errors->has('nome') ? ' has-danger' : '' }}">
+              <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" class="form-control" placeholder="{{ __('Nome progetto...') }}" value="{{ $data['nome'] }}" required>
+              </div>
+              @if ($errors->has('nome'))
+                <div id="nome-error" class="error text-danger pl-3" for="nome" style="display: block;">
+                  <strong>{{ $errors->first('nome') }}</strong>
+                </div>
+              @endif
+            </div>
+
+            <div class="bmd-form-group{{ $errors->has('descrizione') ? ' has-danger' : '' }}">
+              <div class="form-group">
+                <label for="descrizione">Descrizione</label>
+                <textarea name="descrizione" class="form-control" placeholder="{{ __('Descrizione del progetto...') }}" required rows="5">{{ $data['descrizione'] }}</textarea>
+              </div>
+              @if ($errors->has('descrizione'))
+                <div id="descrizione-error" class="error text-danger pl-3" for="descrizione" style="display: block;">
+                  <strong>{{ $errors->first('descrizione') }}</strong>
+                </div>
+              @endif
+            </div>
+
+            <div class="bmd-form-group{{ $errors->has('inizio') ? ' has-danger' : '' }}">
+              <div class="form-group">
+                <label for="inizio">Inizio</label>
+                <input type="date" name="inizio" class="form-control" placeholder="{{ __('Data inizio progetto...') }}" value="{{ $data['data_inizio'] }}" required>
+              </div>
+              @if ($errors->has('inizio'))
+                <div id="inizio-error" class="error text-danger pl-3" for="inizio" style="display: block;">
+                  <strong>{{ $errors->first('inizio') }}</strong>
+                </div>
+              @endif
+            </div>
+
+            <div class="bmd-form-group{{ $errors->has('fine') ? ' has-danger' : '' }}">
+              <div class="form-group">
+                <label for="fine">Fine stimata</label>
+                <input type="date" name="fine" class="form-control" placeholder="{{ __('Data stimata di fine progetto...') }}" value="{{ $data['data_fine'] }}" required>
+              </div>
+              @if ($errors->has('fine'))
+                <div id="fine-error" class="error text-danger pl-3" for="fine" style="display: block;">
+                  <strong>{{ $errors->first('fine') }}</strong>
+                </div>
+              @endif
+            </div>
+
+            <label for="stato">Stato</label>
+            <select class="form-control" name="stato" id="stato">
+              <option value="in corso" {{ ($data['stato'] == "in corso")? "default" : "" }}>in corso</option>
+              <option value="concluso" {{ ($data['stato'] == "concluso")? "default" : "" }}>concluso</option>
+              <option value="cancellato" {{ ($data['stato'] == "cancellato")? "default" : "" }}>cancellato</option>
+            </select>
+
+            <label for="responsabile">Responsabile</label>
+            <select class="form-control" name="resbonsabile" id="resbonsabile">
+              @foreach ($data['users'] as $user)
+                  @if($data['id_responsabile'] == $user->id)
+                    <option value={{ $user->id }} default>{{ $user->name." ".$user->surname }}</option>
+                  @else
+                    <option value={{ $user->id }}>{{ $user->name." ".$user->surname }}</option>
+                  @endif
+              @endforeach
+            </select>
+
+          </form>
+        </div>
+        
+        <div class="modal-footer d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulle</button>
+          <button type="submit" form="editProject" class="btn btn-primary">Modifica</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  @endif
 @endauth
 
 

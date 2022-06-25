@@ -75,6 +75,12 @@ class projectDashboardController extends Controller
                 "budget" => $budgets,
                 "pubblicazioni" => $pubblicazioni
             ];
+
+            if(!Auth::guest()){
+                if (Auth::user()->type == "Manager") {
+                    $data['users'] = DB::table("users")->select(['id','name','surname'])->whereRaw("type = 'Manager' OR type = 'Ricercatore' ")->get();
+                }
+            }
             
             return view('pages.projectDashboard')->with("title", "Creazione Progetto")->with("data",$data);
         }
@@ -82,7 +88,6 @@ class projectDashboardController extends Controller
             return view('pages.error')->with("title", "errore")->with("description","Progetto non trovato");
         }
     }
-
 
     public function updateFine(Request $request)
     {
@@ -97,12 +102,61 @@ class projectDashboardController extends Controller
                 $progetto->save();                           //salvo nel db
             }
             else{                                        //se NON è il responsabile a fare questa richiesta do errore
-                return view('pages.error')->with("message","ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
+                return view('pages.error')->with("title", "errore")->with("description","ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
             }
         } catch (\Throwable $th) {
-            return view('pages.error')->with("message","Si è verificato un errore :-(");
+            return view('pages.error')->with("title", "errore")->with("description","Si è verificato un errore :-(");
         }
 
         return redirect()->route('project-dashboard', [$id_progetto]);   //riporto alla pagina del progetto
+    }
+
+    public function updateProject(Request $request)
+    {
+        try {
+
+            $id_progetto = $request['id_progetto'];
+            $progetto = Project::where('id', $id_progetto)->first();   //progetto in questione
+    
+            if(Auth::user()->type == "Manager"){                     //se è un manager a fare questa richiesta
+
+                // modifico i dati del progetto
+                $progetto->nome = $request['nome'];
+                $progetto->descrizione = $request['descrizione'];
+                $progetto->data_inizio = $request['inizio'];
+                $progetto->data_fine = $request['fine'];
+                $progetto->stato = $request['stato'];
+                $progetto->id_responsabile = (int)$request['resbonsabile'];
+                $progetto->save();                           //salvo nel db
+            }
+            else{                                        //se NON è il responsabile a fare questa richiesta do errore
+                return view('pages.error')->with("title", "errore")->with("description","ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
+            }
+        } catch (\Throwable $th) {
+            return view('pages.error')->with("title", "errore")->with("description","Si è verificato un errore :-(");
+        }
+
+        return redirect()->route('project-dashboard', [$id_progetto]);   //riporto alla pagina del progetto
+    }
+
+    public function deleteProject(Request $request)
+    {
+        try {
+
+            $id_progetto = $request['id_progetto'];
+            $progetto = Project::where('id', $id_progetto)->first();   //progetto in questione
+    
+            if(Auth::user()->type == "Manager"){                     //se è un manager a fare questa richiesta
+
+                $progetto->delete();
+            }
+            else{                                        //se NON è il responsabile a fare questa richiesta do errore
+                return view('pages.error')->with("title", "errore")->with("description","ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
+            }
+        } catch (\Throwable $th) {
+            return view('pages.error')->with("title", "errore")->with("description","Si è verificato un errore :-(".$th->getMessage());
+        }
+
+        return redirect()->route('project-list');   //riporto alla lista dei progetti
     }
 }

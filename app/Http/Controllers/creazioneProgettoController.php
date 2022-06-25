@@ -29,10 +29,10 @@ class creazioneProgettoController extends Controller
                 $progetto->save();
             }
             else{
-                return view('pages.error')->with("message","ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
+                return view('pages.error')->with("title", "errore")->with("ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
             }
         } catch (\Throwable $th) {
-            return view('pages.error')->with("message","Si è verificato un errore :-(");
+            return view('pages.error')->with("title", "errore")->with("Si è verificato un errore :-(");
         }
 
         return view('pages.creazioneProgettoSuccess')->with("message","Progetto creato con successo");

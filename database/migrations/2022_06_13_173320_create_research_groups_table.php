@@ -21,8 +21,8 @@ class CreateResearchGroupsTable extends Migration
         });
 
         Schema::table('research_groups', function (Blueprint $table) {
-            $table->foreign('id_progetto')->references('id')->on('projects');
-            $table->foreign('id_ricercatore')->references('id')->on('users');
+            $table->foreign('id_progetto')->references('id')->on('projects')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_ricercatore')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

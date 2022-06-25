@@ -173,7 +173,8 @@ class ModificaProgettoTest extends TestCase
                             'id_progetto' => 7
                          ]);
 
-        $response->assertStatus(401);
+        $response->assertStatus(200);
+        $response->assertSee("ERRORE");
 
         $this->assertDatabaseHas('projects', [
             'id' => 7
@@ -182,7 +183,7 @@ class ModificaProgettoTest extends TestCase
 
     public function test_delete_as_unauthorized_user()
     {
-        $getResponse = $this->actingAs($this->authorizedUserResponsabile)->get('/project-dashboard/7');
+        $getResponse = $this->actingAs($this->unauthorizedUser)->get('/project-dashboard/7');
         $getResponse->assertStatus(200);
         $getResponse->assertDontSee("Elimina");
 
@@ -191,7 +192,8 @@ class ModificaProgettoTest extends TestCase
                             'id_progetto' => 7
                          ]);
 
-        $response->assertStatus(401);
+        $response->assertStatus(200);
+        $response->assertSee("ERRORE");
                  
 
         $this->assertDatabaseHas('projects', [
@@ -224,7 +226,8 @@ class ModificaProgettoTest extends TestCase
 
         $response = $this->actingAs($this->authorizedUserResponsabile)->post('/modifica-progetto',$this->edit);
 
-        $response->assertStatus(401);
+        $response->assertStatus(200);
+        $response->assertSee("ERRORE");
 
         $this->assertDatabaseMissing('projects', $this->expectedEdit);
         $this->assertDatabaseHas('projects', $this->projectData);
@@ -232,13 +235,14 @@ class ModificaProgettoTest extends TestCase
 
     public function test_edit_as_unauthorized_user()
     {
-        $getResponse = $this->actingAs($this->authorizedUserResponsabile)->get('/project-dashboard/7');
+        $getResponse = $this->actingAs($this->unauthorizedUser)->get('/project-dashboard/7');
         $getResponse->assertStatus(200);
         $getResponse->assertDontSee("Modifica progetto");
 
         $response = $this->actingAs($this->unauthorizedUser)->post('/modifica-progetto',$this->edit);
 
-        $response->assertStatus(401);
+        $response->assertStatus(200);
+        $response->assertSee("ERRORE");
 
         $this->assertDatabaseMissing('projects', $this->expectedEdit);
         $this->assertDatabaseHas('projects', $this->projectData);
