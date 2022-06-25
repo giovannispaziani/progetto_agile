@@ -25,7 +25,7 @@ class CreateProjectsTable extends Migration
         });
 
         Schema::table('projects', function (Blueprint $table) {
-            $table->foreign('id_responsabile')->references('id')->on('users');
+            $table->foreign('id_responsabile')->references('id')->on('users')->onUpdate('cascade')->onDelete('no action');
         });
     }
 

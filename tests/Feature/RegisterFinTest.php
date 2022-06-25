@@ -50,6 +50,7 @@ class RegisterFinTest extends TestCase
     }
      /** @test */
     public function register_by_manager(){
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
        
         $manager = User::factory()->create([
             'name' => 'manager',

@@ -21,8 +21,8 @@ class CreateFinancialGroupsTable extends Migration
         });
 
         Schema::table('financial_groups', function (Blueprint $table) {
-            $table->foreign('id_progetto')->references('id')->on('projects');
-            $table->foreign('id_finanziatore')->references('id')->on('users');
+            $table->foreign('id_progetto')->references('id')->on('projects')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_finanziatore')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
