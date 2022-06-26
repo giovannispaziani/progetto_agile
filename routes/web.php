@@ -124,3 +124,7 @@ Route::get('/project-dashboard/{id}/remove/{ricercatore}',[modificaPartecipantiP
 Route::post('/cambio-data-fine-progetto', [projectDashboardController::class,'updateFine'])->name('update-project-date');
 Route::post('/elimina-progetto', [projectDashboardController::class,'deleteProject'])->name('elimina-progetto');
 Route::post('/modifica-progetto', [projectDashboardController::class,'updateProject'])->name('modifica-progetto');
+
+/* Pubblicazione scientifica ricercatore */
+Route::get('/aggiungiPubblicazione', 'App\Http\Controllers\PubblicazioniController@index')->name('aggiungiPubblicazione');
+Route::post('/aggiungiPubblicazione','App\Http\Controllers\PubblicazioniController@aggiungiPubblicazione')->name('aggiungiPubblicazione-post');
