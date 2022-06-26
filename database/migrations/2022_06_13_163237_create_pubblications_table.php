@@ -15,8 +15,8 @@ class CreatePubblicationsTable extends Migration
     {
         Schema::create('pubblications', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_autore')->nullable();
-            $table->unsignedBigInteger('id_progetto')->nullable();
+            $table->unsignedBigInteger('id_autore');
+            $table->unsignedBigInteger('id_progetto')->nullable('true');
             $table->string('titolo');
             $table->string('file_path');
             $table->date('date');
