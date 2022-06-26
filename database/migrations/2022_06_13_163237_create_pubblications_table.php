@@ -15,11 +15,12 @@ class CreatePubblicationsTable extends Migration
     {
         Schema::create('pubblications', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_autore');
-            $table->unsignedBigInteger('id_progetto');
+            $table->unsignedBigInteger('id_autore')->nullable();
+            $table->unsignedBigInteger('id_progetto')->nullable();
             $table->string('titolo');
             $table->string('file_path');
-            $table->timestamps();
+            $table->date('date');
+            $table->timestamps('');
         });
 
         Schema::table('pubblications', function (Blueprint $table) {

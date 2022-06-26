@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\modificaPartecipantiProgettoController;
 use App\Http\Controllers\projectDashboardController;
 use App\Http\Controllers\projectListController;
+use App\Http\Controllers\documentationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -106,3 +107,6 @@ Route::get('/project-list',[projectListController::class,'index'])->name('projec
 Route::get('/project-dashboard/{id_progetto}/add-ricercatore/{id_ricercatore}',[modificaPartecipantiProgettoController::class,'add'])->name('add-ricercatore');
 Route::get('/lista-ricercatore/{id_progetto}',[modificaPartecipantiProgettoController::class,'index'])->name('list-ricercatori');
 Route::get('/project-dashboard/{id}/remove/{ricercatore}',[modificaPartecipantiProgettoController::class,'remove'])->name('remove-ricercatore');
+
+/* gestione documentazione */
+Route::get('/project-dashboard/document-list/{id}',[documentationController::class, 'index'])->name('document-list')->middleware('auth');;
