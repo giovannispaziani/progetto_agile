@@ -6,88 +6,99 @@
   <div class="container-fluid">
 
         <div class="row">
-            
+
           <div class="card card-nav-tabs" style="display: grid !important; grid-template-columns: auto auto !important;">
 
             <div class="card-header card-header-primary text-center" style="grid-column: 1/3 !important"> INFORMAZIONI RICERCATORE </div>
-            
+
+                  <div class="card-body">
+                    <h4 class="card-title">Id utente:</h4>
+                    <p class="card-text" >{{ $data['id'] }}</p>
+                  </div>
+
                   <div class="card-body">
                     <h4 class="card-title">Nome:</h4>
-                    <p class="card-text" >{{ $data['nome_ricercatore'] }}</p>
+                    <p class="card-text" >{{ $data['name'] }}</p>
                   </div>
 
                   <div class="card-body">
                     <h4 class="card-title">Cognome:</h4>
-                    <p class="card-text" >{{ $data['cognome_ricercatore'] }}</p>
+                    <p class="card-text" >{{ $data['surname'] }}</p>
                   </div>
 
                   <div class="card-body">
                     <h4 class="card-title">Email:</h4>
-                    <p class="card-text" >{{ $data['email_ricercatore'] }}</p>
+                    <p class="card-text" >{{ $data['email'] }}</p>
                   </div>
-
       </div>
 
-      <!--I miei contributi-->
-  <div class="card card-collapse">
-    <div class="card-header" role="tab" id="headingTwo">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          I miei contributi
-          <i class="material-icons" style="margin-left: 85%">keyboard_arrow_down</i>
-        </a>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-      <div class="card-body" style="display: grid !important; grid-template-columns: auto auto !important;">
+<!--TABELLA PROGETTI-->
+<div class="card card-nav-tabs" style="grid-column: 1/3 !important">
+  <div class="card-header card-header-primary text-center" style="padding: 0.3em"> I MIEI CONTRIBUTI</div>
 
-            <div class="card-body">
-            <h4 class="card-title">Nome progetto:</h4>
-            <p class="card-text" >{{ $data['nome_progetto'] }}</p>
-            </div>
+  <table class="table" style="width: 90%; margin: 0 auto">
 
-            <div class="card-body">
-            <h4 class="card-title">Descrizione progetto:</h4>
-            <p class="card-text" >{{ $data['descrizione_progetto'] }}</p>
-            </div>
+    <thead>
+        <tr>
+            <th>Titolo</th>
+            <th>Progetto</th>
+            <th>Sorgente</th>
+        </tr>
+    </thead>
+    <tbody>
+      @forelse ($data['pubblicazioni_progetti'] as $pubblicazionepr)
+        <tr>
+            <td>{{ $pubblicazionepr['progetto'] }}</td>
+            <td>{{ $pubblicazionepr['titolopr'] }}</td>
+            <td>{{ $pubblicazionepr['fontepr'] }}</td> <!--DA SOSTITUIRE CON IL BOTTONE-->
+        </tr>
+      @empty
+        <tr>
+            <td class="text-center"><a href="#"></a></td>
+            <td>Nessun</td>
+            <td>contributo</td>
+        </tr>
+      @endforelse
+    </tbody>
 
+</table>
 
-      </div>
     </div>
   </div>
-  <!--Pubblicazioni esterne-->
-  <div class="card card-collapse">
-    <div class="card-header" role="tab" id="headingThree">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Pubblicazioni esterne
-          <i class="material-icons" style="margin-left: 81%">keyboard_arrow_down</i>
-        </a>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-      <div class="card-body" style="display: grid !important; grid-template-columns: auto auto !important;">
-        
-        <div class="card-body">
-            <h4 class="card-title">Titolo pubblicazione:</h4>
-            <p class="card-text" >{{ $data['titolo_pubblicazione'] }}</p>
-        </div>
-
-        <div class="card-body">
-            <h4 class="card-title">Fonte pubblicazione:</h4>
-            <p class="card-text" >{{ $data['fonte_pubblicazione'] }}</p>
-        </div>
- 
-      </div>
-    </div>
-  </div>
-
-    </div>
-
-    
 
 </div>
 
+<!--TABELLA PUBBLICAZIONI SCIENTIFICHE-->
+<div class="card card-nav-tabs" style="grid-column: 1/3 !important">
+    <div class="card-header card-header-primary text-center" style="padding: 0.3em"> PUBBLICAZIONI SCIENTIFICHE</div>
+
+    <table class="table" style="width: 90%; margin: 0 auto">
+
+      <thead>
+          <tr>
+              <th>Titolo</th>
+              <th>Fonte</th>
+          </tr>
+      </thead>
+      <tbody>
+        @forelse ($data['pubblicazioni_scientifiche'] as $pubblicazionesc)
+          <tr>
+              <td>{{ $pubblicazionesc['titolosc'] }}</td>
+              <td>{{ $pubblicazionesc['fontesc'] }}</td>
+          </tr>
+        @empty
+          <tr>
+              <td class="text-center"><a href="#"></a></td>
+              <td>Nessuna</td>
+              <td>pubblicazione</td>
+          </tr>
+        @endforelse
+      </tbody>
+
+  </table>
+
+      </div>
+    </div>
 
     </div>
   </div>

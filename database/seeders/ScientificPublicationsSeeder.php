@@ -22,6 +22,22 @@ class ScientificPublicationsSeeder extends Seeder
             'updated_at' => now()
         ]);
 
+        DB::table('scientific_publications')->insert([
+            'id_ricercatore' => 2,
+            'titolo' => 'unicef',
+            'fonte' => 'unicef.com',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('scientific_publications')->insert([
+            'id_ricercatore' => 2,
+            'titolo' => 'crocerossa',
+            'fonte' => 'crocerossa.com',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
         
     }
 }

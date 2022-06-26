@@ -56,7 +56,7 @@
 
     <h2> I miei progetti: </h2>
     <div id="accordion" role="tablist">
-  <!--Progetti attivi-->
+  <!--Progetto attivi-->
   <div class="card card-collapse">
     <div class="card-header" role="tab" id="headingOne">
       <h5 class="mb-0">
@@ -67,23 +67,13 @@
       </h5>
     </div>
 
-          <div class="card-body">
-          <h4 class="card-title">Nome:</h4>
-          <p class="card-text" >{{ $data['nome_progetto'] }}</p>
-          </div>
-
-          <div class="card-body">
-            <h4 class="card-title">Descrizione:</h4>
-            <p class="card-text" >{{ $data['descrizione_progetto'] }}</p>
-            </div>
-           
     <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
-        
+        Progetto #1
       </div>
     </div>
   </div>
-  <!--Progetti conclusi-->
+  <!--Progetto conclusi-->
   <div class="card card-collapse">
     <div class="card-header" role="tab" id="headingTwo">
       <h5 class="mb-0">
@@ -95,11 +85,11 @@
     </div>
     <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
-        
+        Progetto #2
       </div>
     </div>
   </div>
-  <!--Progetti eliminati-->
+  <!--Progetto eliminati-->
   <div class="card card-collapse">
     <div class="card-header" role="tab" id="headingThree">
       <h5 class="mb-0">
@@ -111,7 +101,7 @@
     </div>
     <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
-        
+        Progetto #3
       </div>
     </div>
   </div>
