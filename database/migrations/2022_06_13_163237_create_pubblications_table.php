@@ -20,7 +20,7 @@ class CreatePubblicationsTable extends Migration
             $table->string('titolo');
             $table->string('file_path');
             $table->date('date');
-            $table->timestamps('');
+            $table->timestamps();
         });
 
         Schema::table('pubblications', function (Blueprint $table) {
