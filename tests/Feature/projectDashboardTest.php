@@ -3,11 +3,8 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use Illuminate\Database\Seeder;
-use Database\Seeders\DatabaseSeeder;
-use Illuminate\Support\Facades\DB;
+use Database\Seeders\ProjectDashboardTestSeeder;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,9 +12,16 @@ class projectDashboardTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
+
+        $this->seed(ProjectDashboardTestSeeder::class);
+    }
+
     public function test_page_as_guest()
     {
-        $this->seed();
         $this->assertGuest();
 
         $response = $this->get('/project-dashboard/1');
@@ -27,7 +31,6 @@ class projectDashboardTest extends TestCase
 
     public function test_page_not_found_as_guest()
     {
-        $this->seed();
         $this->assertGuest();
 
         $response = $this->get('/project-dashboard/4');
@@ -37,7 +40,6 @@ class projectDashboardTest extends TestCase
 
     public function test_page_as_auth()
     {   
-        $this->seed();
 
         $user = User::factory()->create([
             'name' => 'Ricercatore',
@@ -58,7 +60,6 @@ class projectDashboardTest extends TestCase
 
     public function test_page_not_found_as_auth()
     {   
-        $this->seed();
 
         $user = User::factory()->create([
             'name' => 'Ricercatore',
@@ -79,7 +80,6 @@ class projectDashboardTest extends TestCase
 
     public function test_page_as_manager()
     {
-        $this->seed();
 
         $user = User::factory()->create([
             'name' => 'Manager',
@@ -100,7 +100,6 @@ class projectDashboardTest extends TestCase
 
     public function test_page_not_found_as_manager()
     {
-        $this->seed();
 
         $user = User::factory()->create([
             'name' => 'Manager',
@@ -121,7 +120,6 @@ class projectDashboardTest extends TestCase
 
     public function test_page_contains_data()
     {
-        $this->seed();
         $this->assertGuest();
 
         $response = $this->get('/project-dashboard/1');
@@ -166,7 +164,6 @@ class projectDashboardTest extends TestCase
 
     public function test_page_not_found_contains_data()
     {
-        $this->seed();
         $this->assertGuest();
 
         $response = $this->get('/project-dashboard/4');

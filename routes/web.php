@@ -71,7 +71,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profileManager', ['as' => 'manager.editManager', 'uses' => 'App\Http\Controllers\ProfileResearcherController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-	
+
 });
 
 
@@ -100,13 +100,33 @@ Route::post('/create-project', 'App\Http\Controllers\creazioneProgettoController
 /* Dashboard Progetto */
 Route::get('/project-dashboard/{id}',[projectDashboardController::class,'index'])->name('project-dashboard')->middleware();
 
+/* Pubblicazione scientifica ricercatore */
+Route::get('/pubblicazioniScientifiche', 'App\Http\Controllers\PubblicazioniScientificheController@index')->name('pubblicazioniScientifiche');
+Route::post('/pubblicazioniScientifiche','App\Http\Controllers\PubblicazioniScientificheController@aggiungiPubblicazioneScientifica')->name('pubblicazioniScientifiche-post');
+
+/* Budget Ricercatore */
+Route::get('/budgetRicercatore', 'App\Http\Controllers\BudgetRicercatoreController@index')->name('budgetRicercatore')->middleware();
+
 /* Lista Progetti */
 Route::get('/project-list',[projectListController::class,'index'])->name('project-list')->middleware();
+
+/*Profilo Ricercatore */
+Route::get('/users/{id_ricercatore}', 'App\Http\Controllers\ProfiloRicercatoreController@index')->name('profilo-Ricercatore');
+
+/* Dashboard Progetti Ricercatore */
+Route::get('/dashboardProgettiRicercatore', 'App\Http\Controllers\DashboardProgettiRicercatoreController@index')->name('dashboardProgettiRicercatore')->middleware();
 
 /* modifica partecipanti */
 Route::get('/project-dashboard/{id_progetto}/add-ricercatore/{id_ricercatore}',[modificaPartecipantiProgettoController::class,'add'])->name('add-ricercatore');
 Route::get('/lista-ricercatore/{id_progetto}',[modificaPartecipantiProgettoController::class,'index'])->name('list-ricercatori');
 Route::get('/project-dashboard/{id}/remove/{ricercatore}',[modificaPartecipantiProgettoController::class,'remove'])->name('remove-ricercatore');
 
+
 /* gestione documentazione */
 Route::get('/project-dashboard/document-list/{id}',[documentationController::class, 'index'])->name('document-list')->middleware('auth');;
+
+  /* Aggiorna dati progetto */
+Route::post('/cambio-data-fine-progetto', [projectDashboardController::class,'updateFine'])->name('update-project-date');
+Route::post('/elimina-progetto', [projectDashboardController::class,'deleteProject'])->name('elimina-progetto');
+Route::post('/modifica-progetto', [projectDashboardController::class,'updateProject'])->name('modifica-progetto');
+

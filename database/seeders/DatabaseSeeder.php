@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call([ResearchGroupTableSeeder::class]);
         $this->call([PubblicationTableSeeder::class]);
         $this->call([BudgetTableSeeder::class]);
+        $this->call([ScientificPublicationsSeeder::class]);
     }
 }

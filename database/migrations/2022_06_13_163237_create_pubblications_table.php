@@ -24,7 +24,7 @@ class CreatePubblicationsTable extends Migration
         });
 
         Schema::table('pubblications', function (Blueprint $table) {
-            $table->foreign('id_progetto')->references('id')->on('projects');
+            $table->foreign('id_progetto')->references('id')->on('projects')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('id_autore')->references('id')->on('users');
         });
     }

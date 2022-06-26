@@ -78,8 +78,6 @@ class RegisterTest extends TestCase
             'name' => 'NameTwo',
         ]);
 
-        
-
     }
 
 }

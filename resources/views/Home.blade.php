@@ -3,9 +3,6 @@
 @section('content')
 
 @switch(Auth::user()->type)
-  @case("Ricercatore")
-    @include('pages.dashboardRicercatore')
-    @break
   @case("Manager")
     @include('pages.dashboardManager')
     @break

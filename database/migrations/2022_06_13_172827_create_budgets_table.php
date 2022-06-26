@@ -22,7 +22,7 @@ class CreateBudgetsTable extends Migration
         });
 
         Schema::table('budgets', function (Blueprint $table) {
-            $table->foreign('id_progetto')->references('id')->on('projects');
+            $table->foreign('id_progetto')->references('id')->on('projects')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
