@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\creazioneProgettoController;
-
+use App\Http\Controllers\modificaPartecipantiProgettoController;
 use App\Http\Controllers\projectDashboardController;
 use App\Http\Controllers\projectListController;
 /*
@@ -115,3 +114,13 @@ Route::get('/users/{id_ricercatore}', 'App\Http\Controllers\ProfiloRicercatoreCo
 
 /* Dashboard Progetti Ricercatore */
 Route::get('/dashboardProgettiRicercatore', 'App\Http\Controllers\DashboardProgettiRicercatoreController@index')->name('dashboardProgettiRicercatore')->middleware();
+
+/* modifica partecipanti */
+Route::get('/project-dashboard/{id_progetto}/add-ricercatore/{id_ricercatore}',[modificaPartecipantiProgettoController::class,'add'])->name('add-ricercatore');
+Route::get('/lista-ricercatore/{id_progetto}',[modificaPartecipantiProgettoController::class,'index'])->name('list-ricercatori');
+Route::get('/project-dashboard/{id}/remove/{ricercatore}',[modificaPartecipantiProgettoController::class,'remove'])->name('remove-ricercatore');
+
+  /* Aggiorna dati progetto */
+Route::post('/cambio-data-fine-progetto', [projectDashboardController::class,'updateFine'])->name('update-project-date');
+Route::post('/elimina-progetto', [projectDashboardController::class,'deleteProject'])->name('elimina-progetto');
+Route::post('/modifica-progetto', [projectDashboardController::class,'updateProject'])->name('modifica-progetto');
