@@ -109,6 +109,12 @@ Route::get('/budgetRicercatore', 'App\Http\Controllers\BudgetRicercatoreControll
 /* Lista Progetti */
 Route::get('/project-list',[projectListController::class,'index'])->name('project-list')->middleware();
 
+/*Profilo Ricercatore */
+Route::get('/users/{id_ricercatore}', 'App\Http\Controllers\ProfiloRicercatoreController@index')->name('profilo-Ricercatore');
+
+/* Dashboard Progetti Ricercatore */
+Route::get('/dashboardProgettiRicercatore', 'App\Http\Controllers\DashboardProgettiRicercatoreController@index')->name('dashboardProgettiRicercatore')->middleware();
+
 /* modifica partecipanti */
 Route::get('/project-dashboard/{id_progetto}/add-ricercatore/{id_ricercatore}',[modificaPartecipantiProgettoController::class,'add'])->name('add-ricercatore');
 Route::get('/lista-ricercatore/{id_progetto}',[modificaPartecipantiProgettoController::class,'index'])->name('list-ricercatori');
