@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 class modificaPartecipantiProgettoController extends Controller
 {
     public function index($id_progetto){
+        $id_responsabile=DB::table("projects")->where("id",$id_progetto)->pluck("id_responsabile")->first();
+        if(Auth::user()->id != $id_responsabile){
+            abort(403);
+        }
         $ricercatori_table = DB::table("users")->orderBy('id')->where("type","Ricercatore")->get();
         $allricercatori=[];
         $cont=0;
@@ -23,11 +27,13 @@ class modificaPartecipantiProgettoController extends Controller
 
 
     public function add($id_progetto,$id_ricercatore){
+
         $ricercatore=DB::table("users")->where("id",$id_ricercatore)->pluck("type")->first();
-        
-        if($ricercatore != "Ricercatore"){
+        $id_responsabile=DB::table("projects")->where("id",$id_progetto)->pluck("id_responsabile")->first();
+        if(Auth::user()->id != $id_responsabile){
             abort(403);
-        }elseif(Auth::user()->type != "Manager"){
+        }
+        if($ricercatore != "Ricercatore"){
             abort(403);
         }
         elseif(DB::table("research_groups")->where("id_progetto",$id_progetto)->exists()){
@@ -50,7 +56,8 @@ class modificaPartecipantiProgettoController extends Controller
 
     public function remove($id,$ricercatore)
     {
-        if(Auth::user()->type != "Manager"){
+        $id_responsabile=DB::table("projects")->where("id",$id)->pluck("id_responsabile")->first();
+        if(Auth::user()->id != $id_responsabile){
             abort(403);
         }elseif(DB::table("research_groups")->where("id_progetto",$id)->exists()){
             $a=DB::table("research_groups")->where("id_progetto",$id)
