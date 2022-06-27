@@ -19,7 +19,6 @@ class CreatePubblicationsTable extends Migration
             $table->unsignedBigInteger('id_progetto')->nullable(true);
             $table->string('titolo');
             $table->string('file_path');
-            $table->date('date');
             $table->timestamps();
         });
 
