@@ -20,7 +20,6 @@ class PubblicationTableSeeder extends Seeder
             'id_autore' => 2,
             'titolo' => 'Prima pubblicazione 1',
             'file_path' => '/storage/test_pdf.pdf',
-            'date' => now(),
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -32,7 +31,6 @@ class PubblicationTableSeeder extends Seeder
             'id_autore' => 2,
             'titolo' => 'Prima pubblicazione 2',
             'file_path' => '/storage/test_pdf.pdf',
-            'date' => now(),
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -44,7 +42,6 @@ class PubblicationTableSeeder extends Seeder
             'id_autore' => 5,
             'titolo' => 'Prima pubblicazione 3',
             'file_path' => '/storage/test_pdf.pdf',
-            'date' => now(),
             'created_at' => now(),
             'updated_at' => now()
         ]);
