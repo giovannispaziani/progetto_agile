@@ -22,7 +22,6 @@
           <tr>
               <td>{{ $documento['titolo'] }}</td>
               <td>{{ $documento['autore'] }}</td> 
-              <td>{{ $documento['date'] }}</td> 
               <td><button type="button" class="btn btn-danger">Elimina</button></td>
           </tr>
         @empty
