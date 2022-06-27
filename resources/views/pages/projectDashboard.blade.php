@@ -105,9 +105,13 @@
                       <th></th>
                       <th>Nome</th>
                       <th>Cognome</th>  
+                      @auth
+                      @if(Auth::user()->id == $data['id_responsabile'])
                       <th>aggiungi <a href="/lista-ricercatore/{{$data['id_progetto']}}">
                         <i class="material-icons">co_present</i>
                       </a> </th>  
+                      @endif
+                      @endauth
                   </tr>
               </thead>
               <tbody>
@@ -116,7 +120,11 @@
                     <td class="text-center"><a href="../users/{{ $ricercatore['id'] }}">&#10150;</a></td>
                     <td>{{ $ricercatore['nome'] }}</td>
                     <td>{{ $ricercatore['cognome'] }}</td>
+                    @auth
+                    @if(Auth::user()->id == $data['id_responsabile'])
                     <td><a href="/project-dashboard/{{$data['id_progetto']}}/remove/{{$ricercatore['id']}}"><button>remove</button></a></td>
+                    @endif
+                    @endauth
                   </tr>
                 @empty
                   <tr>
