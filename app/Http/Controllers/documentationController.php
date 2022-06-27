@@ -23,7 +23,6 @@ class documentationController extends Controller
                     $data[$i]['autore']=$document->surname;
                     $data[$i]['progetto']=$document->nome;
                     $data[$i]['file_path']=$document->file_path;
-                    $data[$i]['date']=$document->date;
                     $i++;
                 }
                 return view('pages.documentList')->with("data",$data)->with("project",$project);
