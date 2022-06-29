@@ -122,7 +122,7 @@
                     <td>{{ $ricercatore['cognome'] }}</td>
                     @auth
                     @if(Auth::user()->id == $data['id_responsabile'])
-                    <td><a href="/project-dashboard/{{$data['id_progetto']}}/remove/{{$ricercatore['id']}}"><button>remove</button></a></td>
+                    <td><a href="/project-dashboard/{{$data['id_progetto']}}/remove/{{$ricercatore['id']}}"><button class="btn btn-danger">remove</button></a></td>
                     @endif
                     @endauth
                   </tr>

@@ -8,6 +8,7 @@ use App\Http\Controllers\modificaPartecipantiProgettoController;
 use App\Http\Controllers\projectDashboardController;
 use App\Http\Controllers\projectListController;
 use App\Http\Controllers\documentationController;
+use App\Http\Controllers\dashboardAcquistiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -130,3 +131,8 @@ Route::post('/cambio-data-fine-progetto', [projectDashboardController::class,'up
 Route::post('/elimina-progetto', [projectDashboardController::class,'deleteProject'])->name('elimina-progetto');
 Route::post('/modifica-progetto', [projectDashboardController::class,'updateProject'])->name('modifica-progetto');
 
+/*gestione richieste budget */
+Route::get('/project-list-responsabile',[dashboardAcquistiController::class,'getListProject'])->name('progect-list-responsabile');
+Route::get('/dashboard-budget/{id}',[dashboardAcquistiController::class,'index'])->name('dashboard-budget');
+Route::post('/accept-budget',[dashboardAcquistiController::class,'acceptBudget'])->name('accept-budget');
+Route::post('/refuse-budget',[dashboardAcquistiController::class,'refuseBudget'])->name('refuse-budget');
