@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pubblication;
+use App\Models\Budget;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class PubblicazioniController extends Controller
+class AggiungiVoceController extends Controller
 {
     public function index () {
 
@@ -38,7 +38,7 @@ class PubblicazioniController extends Controller
 
                     ];
 
-        return view('pages.aggiungiPubblicazione')->with("title", "Aggiungi Pubblicazione")->with("data",$data);
+        return view('pages.aggiungiVoce')->with("title", "Aggiungi Voce")->with("data",$data);
 
     }
 
@@ -47,16 +47,17 @@ class PubblicazioniController extends Controller
         $this->middleware('auth');
     }
 
-    public function aggiungiPubblicazione(Request $request) {
+    public function aggiungiVoce(Request $request) {
 
-        $pubblications = new Pubblication();
-        $pubblications->id_autore = Auth::user()->id;
-        $pubblications->id_progetto = $_POST['choices-button'];
-        $pubblications->titolo = $request['titolo'];
-        $pubblications->file_path = " ";
-        $pubblications->save();
+        $budgets = new Budget();
+        $budgets->id_progetto = $_POST['choices-button'];
+        $budgets->id_ricercatore = Auth::user()->id;
+        $budgets->scopo = $request['scopo'];
+        $budgets->budget = $request['budget'];
+        $budgets->stato = 'in attesa';
+        $budgets->save();
 
-        return view('pages.pubblicazioneSuccess')->with("message","Pubblicazione aggiunta");
+        return view('pages.vocespesaSuccess')->with("message","Voce spesa aggiunta");
 
     }
 

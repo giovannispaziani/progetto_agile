@@ -26,10 +26,8 @@ class PubblicazioniScientificheController extends Controller
 
     return view('/pages.pubblicazioniScientifiche');
 
-// Inserire label di conferma
 
     }
-
 
 
 }

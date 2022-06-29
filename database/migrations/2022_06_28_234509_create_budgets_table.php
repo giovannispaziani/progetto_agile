@@ -16,8 +16,10 @@ class CreateBudgetsTable extends Migration
         Schema::create('budgets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_progetto');
+            $table->unsignedBigInteger('id_ricercatore');
             $table->string('scopo');
             $table->decimal('budget');
+            $table->string('stato');
             $table->timestamps();
         });
 

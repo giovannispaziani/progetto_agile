@@ -125,6 +125,10 @@ Route::post('/cambio-data-fine-progetto', [projectDashboardController::class,'up
 Route::post('/elimina-progetto', [projectDashboardController::class,'deleteProject'])->name('elimina-progetto');
 Route::post('/modifica-progetto', [projectDashboardController::class,'updateProject'])->name('modifica-progetto');
 
-/* Pubblicazione scientifica ricercatore */
+/* Pubblicazione ricercatore */
 Route::get('/aggiungiPubblicazione', 'App\Http\Controllers\PubblicazioniController@index')->name('aggiungiPubblicazione');
 Route::post('/aggiungiPubblicazione','App\Http\Controllers\PubblicazioniController@aggiungiPubblicazione')->name('aggiungiPubblicazione-post');
+
+/* Aggiungi voce ricercatore */
+Route::get('/aggiungiVoce', 'App\Http\Controllers\AggiungiVoceController@index')->name('aggiungiVoce');
+Route::post('/aggiungiVoce','App\Http\Controllers\AggiungiVoceController@aggiungiVoce')->name('aggiungiVoce-post');

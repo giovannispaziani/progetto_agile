@@ -21,7 +21,7 @@
             </a>
           </li>
           <li class="nav-item{{ $activePage == 'Pubblicazioni' ? ' active' : '' }}">
-            <a class="nav-link" href="{{ route('home') }}">
+            <a class="nav-link" href="{{ route('aggiungiPubblicazione') }}">
               <i class="material-icons">library_books</i>
                 <p>{{ __('Pubblicazioni') }}</p>
             </a>
