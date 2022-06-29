@@ -26,6 +26,12 @@
             <p>{{ __('Richieste Budget') }}</p>
         </a>
       </li>
+      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('progect-list-responsabile') }}">
+          <i class="material-icons">monetization_on</i>
+            <p>{{ __('Dashboard budget') }}</p>
+        </a>
+      </li>
     </ul>
   </div>
   @break
@@ -60,6 +66,12 @@
         <a class="nav-link" href="{{ route('project-list') }}">
         <i class="material-icons">work</i>
           <p>{{ __('Lista progetti')}}</p>
+        </a>
+      </li>
+      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('progect-list-responsabile') }}">
+          <i class="material-icons">monetization_on</i>
+            <p>{{ __('Dashboard budget') }}</p>
         </a>
       </li>
     </ul>
