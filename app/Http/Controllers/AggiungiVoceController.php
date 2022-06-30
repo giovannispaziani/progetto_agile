@@ -50,9 +50,9 @@ class AggiungiVoceController extends Controller
     public function aggiungiVoce(Request $request) {
 
         $budgets = new Budget();
-        $budgets->id_progetto = $_POST['choices-button'];
+        $budgets->id_progetto = $request['check-progetto'];
         $budgets->id_ricercatore = Auth::user()->id;
-        $budgets->scopo = $request['scopo'];
+        $budgets->scopo = $request['check-scopo'];
         $budgets->budget = $request['budget'];
         $budgets->stato = 'in attesa';
         $budgets->save();

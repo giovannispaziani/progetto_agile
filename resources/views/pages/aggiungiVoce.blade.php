@@ -16,7 +16,7 @@
 
 <!--CHOICE BOX PROGETTO-->
 <label for="titolo">Seleziona progetto</label>
-<select class="form-control" name="choices-button" id="choices-button" placeholder="Departure" value="progetto">
+<select class="form-control" name="check-progetto" id="check-progetto" placeholder="Departure" value="progetto">
     @forelse ($data['progetti_attivi'] as $progettoattivo)
     <option value="{{ $progettoattivo['id'] }}">{{ $progettoattivo['nome'] }}</option>
     @empty
@@ -25,10 +25,16 @@
 </select>
 <!--FINE CHOICE BOX PROGETTO-->
 <br>
-                    <div class="form-group">
-                        <label for="scopo">Scopo</label>
-                        <input type="text" class="form-control" name="scopo" placeholder="Inserisci scopo">
-                      </div>
+<!--CHOICE BOX SCOPO-->
+<label for="titolo">Seleziona scopo</label>
+<select class="form-control" name="check-scopo" id="check-scopo" placeholder="Departure" value="scopo">
+    <option value="Pubblicazione">Pubblicazione</option>
+    <option value="Materiali">Materiali</option>
+    <option value="Materie prime">Divulgazione</option>
+    <option value="Materie prime">Materie prime</option>
+</select>
+<!--FINE CHOICE BOX SCOPO-->
+<br>
                       <div class="form-group">
                         <label for="budget">Budget</label>
                         <input type="text" class="form-control" name="budget" placeholder="Inserisci importo">
