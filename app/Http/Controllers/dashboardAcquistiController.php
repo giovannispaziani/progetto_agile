@@ -48,9 +48,32 @@ class dashboardAcquistiController extends Controller
             return view("pages.dashboardBudget")->with("title","dashboard spese")
                         ->with("data",$data)->with("id_progetto",$id);
         }else{
-            abort(403);
+            abort(404);
         }
         
+    }
+
+    public function storico($id){
+        if(DB::table("projects")->where("id",$id)->exists()){
+            $id_responsabile=DB::table("projects")->where("id",$id)->pluck("id_responsabile")->first();
+            if(Auth::user()->id != $id_responsabile){abort(403);}
+            $spese=DB::table('budgets')->where("stato","!=",null)->where("id_progetto",$id)->get();
+
+            $data=[];
+            foreach($spese as $spesa){
+                $arr=[
+                    "id_ricercatore"=>$spesa->id_ricercatore,
+                    "stato"=>$spesa->id_ricercatore,
+                    "scopo"=>$spesa->scopo,
+                    "budget"=>$spesa->budget
+                ];
+                array_push($data,$arr);
+            }
+            return view("pages.storicoBudget")->with("title","Storico spese")
+                        ->with("data",$data)->with("id_progetto",$id);
+        }else{
+            abort(404);
+        }
     }
 
     public function acceptBudget(Request $request){

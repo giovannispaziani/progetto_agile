@@ -142,27 +142,28 @@
 
          <!--TABELLA BUDGET-->
          <div class="card card-nav-tabs" style="width: 45%">
-             <div class="card-header card-header-primary text-center"> BUDGET (€) </div>
+             <div class="card-header card-header-primary text-center"> BUDGET  </div> 
 
              <table class="table" style="width: 90%">
 
               <thead>
                   <tr>
-                      <th></th>
+                      <th></th>  
                       <th>scopo</th>
-                      <th>ammontare</th>    
+                      <th>ammontare</th>  
                   </tr>
               </thead>
               <tbody>
                 @forelse ($data['budget'] as $budget)
                   <tr>
                       <td class="text-center"><a href="../budgets/{{ $budget['id'] }}">&#10150;</a></td>
-                      <td>{{ $budget['scopo'] }}</td>
-                      <td>{{ $budget['budget'] }}</td> 
+                      <td>   {{ $budget['scopo'] }}</td>
+                      <td>   {{ $budget['budget'] }}</td>  
+                      <td></td>
                   </tr>
                 @empty
                   <tr>
-                      <td class="text-center"><a href="#"></a></td>
+                      <td class="text-center"></td>
                       <td>nessun</td>
                       <td>budget</td> 
                   </tr>

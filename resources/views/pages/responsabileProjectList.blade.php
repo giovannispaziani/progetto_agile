@@ -16,6 +16,7 @@
               <th>Data inizio</th>
               <th>Data fine</th>
               <th>Dashboard budget</th>
+              <th>Storico voci spesa</th>
           </tr>
       </thead>
       <tbody>
@@ -26,6 +27,7 @@
               <td>{{ $progetto['data_inizio'] }}</td> 
               <td>{{ $progetto['data_fine'] }}</td>
               <td><a href="/dashboard-budget/{{ $progetto['id']}}"><button type="button" class="btn btn-primary">Budget</button></a></td>
+              <td><a href="/storico-budget/{{$progetto['id']}}"> <button type="button" class="btn btn-primary">Storico</button></td> 
           </tr>
         @empty
           <tr>
