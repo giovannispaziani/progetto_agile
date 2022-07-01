@@ -6,7 +6,7 @@
   <div class="container-fluid">
   <div class="row">
          <!--TABELLA BUDGET-->
-         <div class="card card-nav-tabs" style="width: 45%">
+         <div class="card card-nav-tabs" style="width: 90%">
              <div class="card-header card-header-primary text-center"> BUDGET (€) </div>
 
              <table class="table" style="width: 90%">

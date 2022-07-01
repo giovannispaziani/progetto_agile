@@ -61,11 +61,12 @@ class dashboardAcquistiController extends Controller
 
             $data=[];
             foreach($spese as $spesa){
+                $ricercatore=DB::table('users')->where("id",$spesa->id_ricercatore)->pluck("surname")->first();
                 $arr=[
-                    "id_ricercatore"=>$spesa->id_ricercatore,
-                    "stato"=>$spesa->id_ricercatore,
+                    "ricercatore"=>$ricercatore,
                     "scopo"=>$spesa->scopo,
-                    "budget"=>$spesa->budget
+                    "budget"=>$spesa->budget,
+                    "stato"=>$spesa->stato
                 ];
                 array_push($data,$arr);
             }

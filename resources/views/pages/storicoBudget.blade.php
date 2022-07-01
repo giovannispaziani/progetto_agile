@@ -6,10 +6,10 @@
   <div class="container-fluid">
   <div class="row">
          <!--TABELLA BUDGET-->
-         <div class="card card-nav-tabs" style="width: 45%">
-             <div class="card-header card-header-primary text-center"> BUDGET</div>
+         <div class="card card-nav-tabs" style="width: 90%">
+             <div class="card-header card-header-primary text-center">STORICO BUDGET</div>
 
-             <table class="table" style="width: 90%">
+             <table class="table" style="width: 100%">
 
               <thead>
                   <tr>
@@ -27,14 +27,17 @@
                     <td></td>
                     <td>{{ $budget['scopo'] }}</td>
                     <td>{{ $budget['budget'] }}</td> 
-                    <td>{{ $budget['stato']}}</td>
+                    <td>{{ $budget['ricercatore'] }}</td> 
+                    @if($budget['stato'])
+                    <td><label>Accettata</label></td>
+                    @else
+                    <td><label>Rifiutata</label></td>
+                    @endif
                     <td></td>
                   </tr>
                 @empty
                   <tr>
-                      <td class="text-center"><a href="/storico-budget/{{$id_progetto}}"></a></td>
-                      <td>nessun</td>
-                      <td>budget</td> 
+                  <td class="text-center"><a href="/project-list-responsabile">nessuna voce  trovata</a></td>
                   </tr>
                 @endforelse
               </tbody>  
