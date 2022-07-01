@@ -134,5 +134,6 @@ Route::post('/modifica-progetto', [projectDashboardController::class,'updateProj
 /*gestione richieste budget */
 Route::get('/project-list-responsabile',[dashboardAcquistiController::class,'getListProject'])->name('progect-list-responsabile');
 Route::get('/dashboard-budget/{id}',[dashboardAcquistiController::class,'index'])->name('dashboard-budget');
+Route::get('/storico-budget/{id}',[dashboardAcquistiController::class, 'storico'])->name('storico-budget');
 Route::post('/accept-budget',[dashboardAcquistiController::class,'acceptBudget'])->name('accept-budget');
 Route::post('/refuse-budget',[dashboardAcquistiController::class,'refuseBudget'])->name('refuse-budget');
