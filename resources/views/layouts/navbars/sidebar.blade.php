@@ -32,6 +32,12 @@
             <p>{{ __('Dashboard budget') }}</p>
         </a>
       </li>
+      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('project-list') }}">
+        <i class="material-icons">work</i>
+          <p>{{ __('Lista progetti')}}</p>
+        </a>
+      </li>
     </ul>
   </div>
   @break

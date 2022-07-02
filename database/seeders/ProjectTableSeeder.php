@@ -28,7 +28,7 @@ class ProjectTableSeeder extends Seeder
 
         DB::table('projects')->insert([
             'id' => 2,
-            'id_responsabile' => 1,
+            'id_responsabile' => 2,
             'nome' => 'Secondo Progetto',
             'descrizione' => 'Un secondo progetto a caso',
             'data_inizio' => "2022-01-01",
