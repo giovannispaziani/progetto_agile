@@ -4,7 +4,7 @@
 
 @switch(Auth::user()->type)
   @case("Manager")
-    @include('pages.dashboardManager')
+    @include('pages.projectList')
     @break
   @case("Finanziatore")
     @include('pages.dashboardRicercatore')

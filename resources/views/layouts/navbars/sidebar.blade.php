@@ -43,13 +43,13 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">    
-    <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('home') }}">
-        <i class="material-icons">dashboard</i>
-          <p>{{ __('Dashboard Manager') }}</p>
+      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('project-list') }}">
+        <i class="material-icons">work</i>
+          <p>{{ __('Lista progetti')}}</p>
         </a>
       </li>
-    <li class="nav-item{{ $activePage == 'registerFin' ? ' active' : '' }}">
+    <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('registerFin') }}">
         <i class="material-icons">face</i>
           <p>{{ __('Registrazione Finanziatore') }}</p>
@@ -60,12 +60,6 @@
         <a class="nav-link" href="{{ route('project-create') }}">
         <i class="material-icons">work</i>
           <p>{{ __('Creazione progetto ')}}</p>
-        </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('project-list') }}">
-        <i class="material-icons">work</i>
-          <p>{{ __('Lista progetti')}}</p>
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
