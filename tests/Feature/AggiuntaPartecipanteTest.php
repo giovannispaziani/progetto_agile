@@ -15,9 +15,51 @@ class AggiuntaPartecipanteTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_aggiunta_partecipante_ricercatore(){
+    public function test_aggiunta_partecipante_manager()
+    {
         $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
+        $ricercatore = User::factory()->create([
+            'name' => 'ricercatore',
+            'surname' => 'Ricercatore',
+            'email' => 'ricerca@ric.com',
+            'email_verified_at' => now(),
+            'type' => 'Ricercatore',
+            'password' => Hash::make('secret'),
+            'studi' => 'Scienze delle Comunicazioni',
+            'occupazione' => 'PR',
+            'linkedin' => 'https://it.linkedin.com/in/melania-d-alessandro-7a168b120?trk=public_profile_browsemap',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        $manager = User::factory()->create([
+            'name' => 'manager',
+            'surname' => 'Manager',
+            'email' => 'rmanaget@ric.com',
+            'email_verified_at' => now(),
+            'type' => 'Manager',
+            'password' => Hash::make('secret'),
+            'studi' => 'Storia Moderna',
+            'occupazione' => 'Ricercatore Storia Moderna',
+            'linkedin' => 'https://it.linkedin.com/in/veronica-totaro-a9352a71?trk=public_profile_browsemap',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        $project = Project::factory()->create([
+            'nome' => "nomeTest3",
+            'descrizione' => "sdvfzdbdfkjfdk",
+            'data_inizio' => "2022-01-01",
+            'data_fine' => "2024-01-01"
+        ]);
+
+        $response = $this->actingAs($manager)
+        ->get("/project-dashboard/$project->id/add-ricercatore/$ricercatore->id");
+
+        $response->assertSee("/project-dashboard/$project->id");
+    }
+
+    public function test_aggiunta_partecipante_ricercatore(){
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
         $ricercatore = User::factory()->create([
             'name' => 'ricercatore2',
             'surname' => 'Ricercatore2',
@@ -25,37 +67,22 @@ class AggiuntaPartecipanteTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make('secret'),
+            'studi' => 'Giurisprudenza',
+            'occupazione' => 'Notaio',
+            'linkedin' => 'https://it.linkedin.com/in/marco-meloni-bbb60342?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
+        $project = Project::factory()->create([
+            'nome' => "nomeTest4",
+            'descrizione' => "sdvfzdbdfkjfdker",
+            'data_inizio' => "2022-01-11",
+            'data_fine' => "2023-01-01"
+        ]);
 
         $response = $this->actingAs($ricercatore)
-        ->get("/project-dashboard/2/add-ricercatore/$ricercatore->id");
+        ->get("/project-dashboard/$project->id/add-ricercatore/$ricercatore->id");
         $response->assertStatus(403);
-    }
-
-    public function test_aggiunta_as_responsabile(){
-
-        $this->seed();
-
-        $user = User::factory()->create([
-            'name' => 'ricercatore2',
-            'surname' => 'Ricercatore2',
-            'email' => 'ricerca3@ric.com',
-            'email_verified_at' => now(),
-            'type' => 'Ricercatore',
-            'password' => Hash::make('secret'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        $id_responsabile=DB::table("projects")->where("id",1)->pluck("id_responsabile");
-        $responsabile=User::where("id",1)->first();
-        $response=$this->actingAs($responsabile)->get("/project-dashboard/1/add-ricercatore/$user->id");
-        $this->assertDatabaseHas('research_groups',[
-            'id_progetto'=> 1,
-            'id_ricercatore' => $user->id,
-        ]);
     }
 }
