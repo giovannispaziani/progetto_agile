@@ -29,7 +29,7 @@ class PubblicazioniScientificheController extends Controller
         $scientific_publications->fonte = $request['fonte'];
         $scientific_publications->save();
 
-    return view('/users/' . Auth::user()->id);
+    return view('pages.pubblicazioneSuccess')->with("message","Pubblicazione aggiunta");
 
 
     }

@@ -4,7 +4,8 @@
   <div class="content">
     <div class="container-fluid">
     
-    
+      <a href="../users/{{ auth()->user()->id }}" class="btn btn-primary btn-round" role="button" aria-disabled="true">Vai al profilo</a>
+
     <form class="form" method="POST" action="{{ route('aggiungiPubblicazione-post') }}">
         @csrf
 

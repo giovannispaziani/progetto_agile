@@ -72,16 +72,14 @@ class ProfiloRicercatoreTest extends TestCase
             'ricercatore@prova.com',
             '1',
             'Prima pubblicazione 1',
-            '/storage/test_pdf.pdf',
             '1',
             'Prima pubblicazione 2',
-            '/storage/test_pdf.pdf',
-           'nasa',
-           'nasa.com',
-           'unicef',
-           'unicef.com',
-           'crocerossa',
-           'crocerossa.com'
+            'nasa',
+            'nasa.com',
+            'unicef',
+            'unicef.com',
+            'crocerossa',
+            'crocerossa.com'
         ]);
     }
 

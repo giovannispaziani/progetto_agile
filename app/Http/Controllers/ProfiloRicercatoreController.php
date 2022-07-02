@@ -26,6 +26,8 @@ $pubblicazionisc = [];
 foreach ($scientifiche as $pubblicazionesc) {
 
     $pubblicazionisc[$i]['titolosc'] = $pubblicazionesc->titolo;
+    $pubblicazionisc[$i]['descrizionesc'] = $pubblicazionesc->descrizione;
+    $pubblicazionisc[$i]['testosc'] = $pubblicazionesc->testo;
     $pubblicazionisc[$i]['fontesc'] = $pubblicazionesc->fonte;
     $i++;
 
@@ -36,8 +38,9 @@ $pubblicazionipr = [];
 foreach ($pubblicazioni as $pubblicazionepr) {
 
     $pubblicazionipr[$i]['titolopr'] = $pubblicazionepr->titolo;
-    $pubblicazionipr[$i]['progetto'] = $pubblicazionepr->id_progetto;
-    $pubblicazionipr[$i]['fontepr'] = $pubblicazionepr->file_path;
+    $pubblicazionipr[$i]['progettopr'] = $pubblicazionepr->id_progetto;
+    $pubblicazionipr[$i]['descrizionepr'] = $pubblicazionepr->descrizione;
+    $pubblicazionipr[$i]['testopr'] = $pubblicazionepr->testo;
     $i++;
 
 }

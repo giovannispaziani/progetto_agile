@@ -53,15 +53,17 @@
         <tr>
             <th>Titolo</th>
             <th>Progetto</th>
-            <th>Sorgente</th>
+            <th>Descrizione</th>
+            <th>Testo</th>
         </tr>
     </thead>
     <tbody>
       @forelse ($data['pubblicazioni_progetti'] as $pubblicazionepr)
         <tr>
-            <td>{{ $pubblicazionepr['progetto'] }}</td>
+            <td>{{ $pubblicazionepr['progettopr'] }}</td>
             <td>{{ $pubblicazionepr['titolopr'] }}</td>
-            <td>{{ $pubblicazionepr['fontepr'] }}</td> <!--DA SOSTITUIRE CON IL BOTTONE-->
+            <td>{{ $pubblicazionepr['descrizionepr'] }}</td>
+            <td>{{ $pubblicazionepr['testopr'] }}</td>
         </tr>
       @empty
         <tr>
@@ -88,6 +90,8 @@
       <thead>
           <tr>
               <th>Titolo</th>
+              <th>Descrizione</th>
+              <th>Testo</th>
               <th>Fonte</th>
           </tr>
       </thead>
@@ -95,6 +99,8 @@
         @forelse ($data['pubblicazioni_scientifiche'] as $pubblicazionesc)
           <tr>
               <td>{{ $pubblicazionesc['titolosc'] }}</td>
+              <td>{{ $pubblicazionesc['descrizionesc'] }}</td>
+              <td>{{ $pubblicazionesc['testosc'] }}</td>
               <td>{{ $pubblicazionesc['fontesc'] }}</td>
           </tr>
         @empty
