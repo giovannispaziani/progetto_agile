@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\modificaPartecipantiProgettoController;
 use App\Http\Controllers\projectDashboardController;
 use App\Http\Controllers\projectListController;
+use App\Http\Controllers\documentationController;
+use App\Http\Controllers\dashboardAcquistiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -110,7 +112,7 @@ Route::get('/budgetRicercatore', 'App\Http\Controllers\BudgetRicercatoreControll
 Route::get('/project-list',[projectListController::class,'index'])->name('project-list')->middleware();
 
 /*Profilo Ricercatore */
-Route::get('/users/{id}', 'App\Http\Controllers\ProfiloRicercatoreController@index')->name('profilo-Ricercatore');
+Route::get('/users/{id_ricercatore}', 'App\Http\Controllers\ProfiloRicercatoreController@index')->name('profilo-Ricercatore');
 
 /* Dashboard Progetti Ricercatore */
 Route::get('/dashboardProgettiRicercatore', 'App\Http\Controllers\DashboardProgettiRicercatoreController@index')->name('dashboardProgettiRicercatore')->middleware();
@@ -120,15 +122,18 @@ Route::get('/project-dashboard/{id_progetto}/add-ricercatore/{id_ricercatore}',[
 Route::get('/lista-ricercatore/{id_progetto}',[modificaPartecipantiProgettoController::class,'index'])->name('list-ricercatori');
 Route::get('/project-dashboard/{id}/remove/{ricercatore}',[modificaPartecipantiProgettoController::class,'remove'])->name('remove-ricercatore');
 
+
+/* gestione documentazione */
+Route::get('/project-dashboard/document-list/{id}',[documentationController::class, 'index'])->name('document-list')->middleware('auth');;
+
   /* Aggiorna dati progetto */
 Route::post('/cambio-data-fine-progetto', [projectDashboardController::class,'updateFine'])->name('update-project-date');
 Route::post('/elimina-progetto', [projectDashboardController::class,'deleteProject'])->name('elimina-progetto');
 Route::post('/modifica-progetto', [projectDashboardController::class,'updateProject'])->name('modifica-progetto');
 
-/* Pubblicazione ricercatore */
-Route::get('/aggiungiPubblicazione', 'App\Http\Controllers\PubblicazioniController@index')->name('aggiungiPubblicazione');
-Route::post('/aggiungiPubblicazione','App\Http\Controllers\PubblicazioniController@aggiungiPubblicazione')->name('aggiungiPubblicazione-post');
-
-/* Aggiungi voce ricercatore */
-Route::get('/aggiungiVoce', 'App\Http\Controllers\AggiungiVoceController@index')->name('aggiungiVoce');
-Route::post('/aggiungiVoce','App\Http\Controllers\AggiungiVoceController@aggiungiVoce')->name('aggiungiVoce-post');
+/*gestione richieste budget */
+Route::get('/project-list-responsabile',[dashboardAcquistiController::class,'getListProject'])->name('progect-list-responsabile');
+Route::get('/dashboard-budget/{id}',[dashboardAcquistiController::class,'index'])->name('dashboard-budget');
+Route::get('/storico-budget/{id}',[dashboardAcquistiController::class, 'storico'])->name('storico-budget');
+Route::post('/accept-budget',[dashboardAcquistiController::class,'acceptBudget'])->name('accept-budget');
+Route::post('/refuse-budget',[dashboardAcquistiController::class,'refuseBudget'])->name('refuse-budget');
