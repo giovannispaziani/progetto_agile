@@ -9,12 +9,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
-class PubblicazioniScientificheTest extends TestCase
+class PubblicazioniTest extends TestCase
 {
 
     use RefreshDatabase;
 
-    public function test_scientific_publication_page_get()
+    public function test_publication_page_get()
     {
         $this->seed();
 
@@ -25,40 +25,44 @@ class PubblicazioniScientificheTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make('secret'),
-            'studi' => 'Storia Moderna',
-            'occupazione' => 'Ricercatore Storia Moderna',
-            'linkedin' => 'https://it.linkedin.com/in/veronica-totaro-a9352a71?trk=public_profile_browsemap',
+            'studi' => 'Scienze delle Comunicazioni',
+            'occupazione' => 'PR',
+            'linkedin' => 'https://it.linkedin.com/in/melania-d-alessandro-7a168b120?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         $response = $this->actingAs($user)
-                         ->get('/pubblicazioniScientifiche');
+                         ->get('/aggiungiPubblicazione');
 
         $response->assertStatus(200);
 
     }
 
-    public function test_scientific_publication_post()
+    public function test_publication_post()
     {
+
         $this->seed();
         $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
         $user = User::where('id', 2)->first();
 
-        DB::table('scientific_publications')->where("titolo","Pubblicazione Scientifica Test")->delete();
-
-        $response = $this->actingAs($user)->post('/pubblicazioniScientifiche',[
-                            'titolo' => "Pubblicazione Scientifica Test",
+        DB::table('pubblications')->where("titolo","Pubblicazione Test")->delete();
+        
+        $response = $this->actingAs($user)
+                        ->post('/aggiungiPubblicazione',[
+                            'choices-button' => 1,
+                            'titolo' => "Pubblicazione Test",
                             'descrizione' => "Descrizione Test",
                             'testo' => "Test",
-                            'fonte' => "Fonte Test"
+                            'file_path' => "test_pdf.pdf"
                          ]);
 
-                         $this->assertDatabaseHas('scientific_publications', [
-                            'titolo' => 'Pubblicazione Scientifica Test',
-                        ]);
+        $response->assertSee("Pubblicazione aggiunta");
 
-}
+                         $this->assertDatabaseHas('pubblications',[
+                            'titolo' => "Pubblicazione Test",
+                        ]);
+    }
 
 }

@@ -21,6 +21,9 @@ class CrazioneProgettoTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Manager',
             'password' => Hash::make('secret'),
+            'studi' => 'Biotecnologie',
+            'occupazione' => 'Ricercatore Biotecnologie',
+            'linkedin' => 'https://it.linkedin.com/in/martina-agostinelli-293b4b172?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -42,6 +45,9 @@ class CrazioneProgettoTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Manager',
             'password' => Hash::make('secret'),
+            'studi' => 'Informatica',
+            'occupazione' => 'Sviluppatore Web',
+            'linkedin' => 'https://it.linkedin.com/in/andrea-cibelli-ab058319a?trk=people-guest_people_search-card',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -72,7 +78,10 @@ class CrazioneProgettoTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make('secret'),
-            'created_at' => now(),
+            'studi' => 'Ingegneria Ambientale',
+            'occupazione' => 'Ingegnere',
+            'linkedin' => 'https://it.linkedin.com/in/domenico-mori-36587041?trk=public_profile_browsemap',
+                     'created_at' => now(),
             'updated_at' => now()
         ]);
 
@@ -102,7 +111,10 @@ class CrazioneProgettoTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Finanziatore',
             'password' => Hash::make('secret'),
-            'created_at' => now(),
+            'studi' => 'Fisica',
+            'occupazione' => 'Fisico Nucleare',
+            'linkedin' => 'https://it.linkedin.com/in/antorossi',
+                     'created_at' => now(),
             'updated_at' => now()
         ]);
 

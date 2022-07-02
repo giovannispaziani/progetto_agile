@@ -95,7 +95,20 @@
                 </div>
               @endif
             </div>
-             
+            
+            <div class="form-group">
+                <label for="fonte">Titolo di studio</label>
+                <input type="text" class="form-control" name="studi" placeholder="Inserisci titolo di studio">
+              </div>
+              <div class="form-group">
+                <label for="fonte">Occupazione</label>
+                <input type="text" class="form-control" name="occupazione" placeholder="Inserisci mansione">
+              </div>
+              <div class="form-group">
+                <label for="fonte">Linkedin</label>
+                <input type="text" class="form-control" name="linkedin" placeholder="Inserisci profilo LinkedIn">
+              </div>
+
             <div class="form-check mr-auto ml-3 mt-3">
               <label class="form-check-label" style="margin-top:10%">
                 <input class="form-check-input" type="checkbox" id="policy" name="policy" {{ old('policy', 1) ? 'checked' : '' }} >

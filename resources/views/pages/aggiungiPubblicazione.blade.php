@@ -1,20 +1,31 @@
-@extends('layouts.app', ['activePage' => 'pubblicazioniScientifiche', 'titlePage' => __('Pubblicazioni Scientifiche')])
+@extends('layouts.app', ['activePage' => 'aggiungiPubblicazione', 'titlePage' => __('Aggiungi Pubblicazione')])
 
 @section('content')
   <div class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('pubblicazioniScientifiche-post') }}" autocomplete="off" class="form-horizontal">
+          <form method="post" name="aggiungipubb" action="{{ route('aggiungiPubblicazione-post') }}" autocomplete="off" class="form-horizontal">
             @csrf
             <div class="card ">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">{{ __('Aggiungi pubblicazione scientifica') }}</h4>
-                  <p class="card-category">{{ __('Inserisci una nuova pubblicazione scientifica al tuo profilo') }}</p>
+                  <h4 class="card-title">{{ __('Aggiungi pubblicazione') }}</h4>
+                  <p class="card-category">{{ __('Pubblica un contributo sul progetto specificato') }}</p>
                 </div>
                 <div class="card-body ">
 
-                      <div class="form-group">
+                    <!--CHOICE BOX PROGETTO-->
+                    <label for="titolo">Seleziona progetto</label>
+                    <select class="form-control" name="choices-button" id="choices-button" placeholder="Departure" value="progetto">
+                        @forelse ($data['progetti_attivi'] as $progettoattivo)
+                        <option value="{{ $progettoattivo['id'] }}">{{ $progettoattivo['nome'] }}</option>
+                        @empty
+                        <td class="text-center" colspan="6">Nessun progetto</td>
+                        @endforelse
+                    </select>
+                    <!--FINE CHOICE BOX PROGETTO-->
+                    <br>
+                    <div class="form-group">
                         <label for="titolo">Titolo</label>
                         <input type="text" class="form-control" name="titolo" placeholder="Inserisci titolo pubblicazione">
                       </div>
@@ -29,11 +40,6 @@
                         <input type="text" class="form-control" name="testo" placeholder="Inserisci testo pubblicazione">
                       </div>
 
-                      <div class="form-group">
-                        <label for="fonte">Fonte</label>
-                        <input type="text" class="form-control" name="fonte" placeholder="Inserisci link pubblicazione">
-                      </div>
-                </div>
               <div class="card-footer ml-auto mr-auto">
                 <button type="submit" class="btn btn-primary">{{ __('Aggiungi') }}</button>
               </div>

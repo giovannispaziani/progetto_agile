@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'register', 'title' => __('Material Dashboard')])
+@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'register', 'title' => __('Registrazione')])
 
 @section('content')
 <div class="container" style="height: auto;">
@@ -9,7 +9,7 @@
 
         <div class="card card-login card-hidden mb-3">
           <div class="card-header card-header-primary text-center">
-            <h4 class="card-title"><strong>{{ __('Register') }}</strong></h4>
+            <h4 class="card-title"><strong>{{ __('Registrati') }}</strong></h4>
             <div class="social-line"></div>
           </div>
           <div class="card-body ">
@@ -94,18 +94,69 @@
                 </div>
               @endif
             </div>
-            
+
+<!--Occupazioni-->
+<div class="bmd-form-group{{ $errors->has('occupazione') ? ' has-danger' : '' }}" style="margin-top: 5%">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+            <i class="material-icons">badge</i>
+        </span>
+      </div>
+      <input type="text" name="occupazione" class="form-control" placeholder="{{ __('Occupazione') }}" value="{{ old('occupazione') }}" required>
+    </div>
+    @if ($errors->has('occupazione'))
+      <div id="name-error" class="error text-danger pl-3" for="occupazione" style="display: block;">
+        <strong>{{ $errors->first('occupazione') }}</strong>
+      </div>
+    @endif
+  </div>
+
+  <!--Studi-->
+  <div class="bmd-form-group{{ $errors->has('studi') ? ' has-danger' : '' }}" style="margin-top: 5%">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+            <i class="material-icons">school</i>
+        </span>
+      </div>
+      <input type="text" name="studi" class="form-control" placeholder="{{ __('Studi') }}" value="{{ old('studi') }}" required>
+    </div>
+    @if ($errors->has('studi'))
+      <div id="name-error" class="error text-danger pl-3" for="studi" style="display: block;">
+        <strong>{{ $errors->first('studi') }}</strong>
+      </div>
+    @endif
+  </div>
+
+  <!--Linkedin-->
+  <div class="bmd-form-group{{ $errors->has('linkedin') ? ' has-danger' : '' }}" style="margin-top: 5%">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+            <i class="material-icons">person</i>
+        </span>
+      </div>
+      <input type="text" name="linkedin" class="form-control" placeholder="{{ __('Profilo LinkedIn') }}" value="{{ old('linkedin') }}" required>
+    </div>
+    @if ($errors->has('linkedin'))
+      <div id="name-error" class="error text-danger pl-3" for="linkedin" style="display: block;">
+        <strong>{{ $errors->first('linkedin') }}</strong>
+      </div>
+    @endif
+  </div>
+
               <!-- type of user -->
-              
+
               <div class="form-check form-check-radio" style="margin-left: 5% ; margin-top: 10%">
                 <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="type" id="exampleRadios1" value="Ricercatore" checked>
+                <input class="form-check-input" type="radio" name="type" id="exampleRadios1" value="Ricercatore">
                 Ricercatore
                 <span class="circle">
                   <span class="check"></span>
                 </span>
                 </label>
-              
+
                 <label class="form-check-label" style="margin-left:20px">
                 <input class="form-check-input" type="radio" name="type" id="exampleRadios2" value="Manager">
                   Manager
@@ -114,7 +165,7 @@
                 </span>
                   </label>
               </div>
-             
+
             <div class="form-check mr-auto ml-3 mt-3">
               <label class="form-check-label" style="margin-top:10%">
                 <input class="form-check-input" type="checkbox" id="policy" name="policy" {{ old('policy', 1) ? 'checked' : '' }} >
