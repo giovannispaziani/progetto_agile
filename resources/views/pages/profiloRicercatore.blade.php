@@ -12,11 +12,6 @@
             <div class="card-header card-header-primary text-center" style="grid-column: 1/3 !important"> INFORMAZIONI RICERCATORE </div>
 
                   <div class="card-body">
-                    <h4 class="card-title">Id utente:</h4>
-                    <p class="card-text" >{{ $data['id'] }}</p>
-                  </div>
-
-                  <div class="card-body">
                     <h4 class="card-title">Nome:</h4>
                     <p class="card-text" >{{ $data['name'] }}</p>
                   </div>
@@ -27,9 +22,25 @@
                   </div>
 
                   <div class="card-body">
+                    <h4 class="card-title">Titolo di Studio:</h4>
+                    <p class="card-text" >{{ $data['studi'] }}</p>
+                  </div>
+
+                  <div class="card-body">
+                    <h4 class="card-title">Occupazione:</h4>
+                    <p class="card-text" >{{ $data['occupazione'] }}</p>
+                  </div>
+
+                  <div class="card-body">
                     <h4 class="card-title">Email:</h4>
                     <p class="card-text" >{{ $data['email'] }}</p>
                   </div>
+
+                  <div class="card-body">
+                    <h4 class="card-title">LinkedIn:</h4>
+                  <a href="{{ $data['linkedin'] }}" class='fa fa-linkedin' role="button" aria-disabled="true"></a>
+                </div>
+
       </div>
 
 <!--TABELLA PROGETTI-->

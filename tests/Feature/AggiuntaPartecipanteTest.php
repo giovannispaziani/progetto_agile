@@ -26,6 +26,9 @@ class AggiuntaPartecipanteTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make('secret'),
+            'studi' => 'Scienze delle Comunicazioni',
+            'occupazione' => 'PR',
+            'linkedin' => 'https://it.linkedin.com/in/melania-d-alessandro-7a168b120?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -36,6 +39,9 @@ class AggiuntaPartecipanteTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Manager',
             'password' => Hash::make('secret'),
+            'studi' => 'Storia Moderna',
+            'occupazione' => 'Ricercatore Storia Moderna',
+            'linkedin' => 'https://it.linkedin.com/in/veronica-totaro-a9352a71?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -61,6 +67,9 @@ class AggiuntaPartecipanteTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make('secret'),
+            'studi' => 'Giurisprudenza',
+            'occupazione' => 'Notaio',
+            'linkedin' => 'https://it.linkedin.com/in/marco-meloni-bbb60342?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);

@@ -6,7 +6,7 @@
 
     <div class="container-fluid">
           <div class="row">
-            <a href="/aggiungiVoce" class="btn btn-primary btn-lg" role="button" aria-disabled="true">NUOVA RICHIESTA</a>
+            <a href="/aggiungiVoce" class="btn btn-primary btn-round" role="button" aria-disabled="true">Nuova richiesta</a>
             <div class="card card-nav-tabs" style="display: grid !important; grid-template-columns: auto auto !important;">
 
   <!--TABELLA VOCI SPESE-->

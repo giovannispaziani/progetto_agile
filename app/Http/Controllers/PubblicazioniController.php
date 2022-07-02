@@ -51,8 +51,10 @@ class PubblicazioniController extends Controller
 
         $pubblications = new Pubblication();
         $pubblications->id_autore = Auth::user()->id;
-        $pubblications->id_progetto = $_POST['choices-button'];
+        $pubblications->id_progetto = $request['choices-button'];
         $pubblications->titolo = $request['titolo'];
+        $pubblications->descrizione = $request['descrizione'];
+        $pubblications->testo = $request['testo'];
         $pubblications->file_path = " ";
         $pubblications->save();
 

@@ -3,8 +3,10 @@
 @section('content')
   <div class="content">
     <div class="container-fluid">
-    
-    
+
+        <a href="/aggiungiVoce" class="btn btn-primary btn-round" role="button" aria-disabled="true">Torna alla lista</a>
+        <a href="/aggiungiVoce" class="btn btn-primary btn-round" role="button" aria-disabled="true">Nuova richiesta</a>
+
     <form class="form" method="POST" action="{{ route('aggiungiPubblicazione-post') }}">
         @csrf
 

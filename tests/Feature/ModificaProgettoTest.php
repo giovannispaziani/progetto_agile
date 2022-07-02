@@ -35,6 +35,9 @@ class ModificaProgettoTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make("password1"),
+            'studi' => 'Biotecnologie',
+            'occupazione' => 'Ricercatore Biotecnologie',
+            'linkedin' => 'https://it.linkedin.com/in/martina-agostinelli-293b4b172?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -45,6 +48,9 @@ class ModificaProgettoTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Manager',
             'password' => Hash::make("password3"),
+            'studi' => 'Informatica',
+            'occupazione' => 'Sviluppatore Web',
+            'linkedin' => 'https://it.linkedin.com/in/andrea-cibelli-ab058319a?trk=people-guest_people_search-card',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -55,6 +61,9 @@ class ModificaProgettoTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make("password4"),
+            'studi' => 'Biotecnologie',
+            'occupazione' => 'Ricercatore Biotecnologie',
+            'linkedin' => 'https://it.linkedin.com/in/martina-agostinelli-293b4b172?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -65,6 +74,9 @@ class ModificaProgettoTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make("password2"),
+            'studi' => 'Giurisprudenza',
+            'occupazione' => 'Notaio',
+            'linkedin' => 'https://it.linkedin.com/in/marco-meloni-bbb60342?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -123,7 +135,7 @@ class ModificaProgettoTest extends TestCase
 
     public function test_update_ending_date_as_unauthorized_user()
     {
-        
+
         $this->actingAs($this->unauthorizedUser)
                          ->post('/cambio-data-fine-progetto',[
                             'id_progetto' => 7,
@@ -194,7 +206,7 @@ class ModificaProgettoTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee("ERRORE");
-                 
+
 
         $this->assertDatabaseHas('projects', [
             'id' => 7

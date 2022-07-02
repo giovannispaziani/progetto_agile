@@ -24,6 +24,9 @@ class BudgetRicercatoreTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make('secret'),
+            'studi' => 'Giurisprudenza',
+            'occupazione' => 'Notaio',
+            'linkedin' => 'https://it.linkedin.com/in/marco-meloni-bbb60342?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -61,8 +64,8 @@ class BudgetRicercatoreTest extends TestCase
         $response->assertStatus(200); //si assicura che venga fornita correttamente la pagina
         $response->assertSee([  //si assicura che la pagina carichi i dati
             '1',
-            'Materie Prime',
-            '10.00'
+            'Materiali',
+            '1000.00'
         ]);
     }
 
@@ -76,15 +79,15 @@ class BudgetRicercatoreTest extends TestCase
 
         $response = $this->actingAs($user)
                         ->post('/aggiungiVoce',[
-                            'id_progetto' => 1,
-                            'scopo' => "Pubblicazione",
+                            'check-progetto' => 1,
+                            'check-scopo' => "Pubblicazione",
                             'budget' => "30.00",
                             'stato' => "in attesa"
                          ]);
 
         $response->assertSee("Voce spesa aggiunta");
 
-                         $this->assertDatabaseHas('budget',[
+                         $this->assertDatabaseHas('budgets',[
                             'id_progetto' => 1,
                             'scopo' => "Pubblicazione",
                             'budget' => "30.00",

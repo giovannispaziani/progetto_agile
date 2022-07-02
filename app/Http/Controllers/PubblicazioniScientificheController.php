@@ -18,13 +18,18 @@ class PubblicazioniScientificheController extends Controller
     }
 
     public function aggiungiPubblicazioneScientifica(Request $request) {
+
+        $id_ricercatore =  Auth::user()->id;
+
         $scientific_publications = new ScientificPublication();
-        $scientific_publications->id_ricercatore = Auth::user()->id;
+        $scientific_publications->id_ricercatore = $id_ricercatore;
         $scientific_publications->titolo = $request['titolo'];
+        $scientific_publications->descrizione = $request['descrizione'];
+        $scientific_publications->testo = $request['testo'];
         $scientific_publications->fonte = $request['fonte'];
         $scientific_publications->save();
 
-    return view('/pages.pubblicazioniScientifiche');
+    return view('/users/' . Auth::user()->id);
 
 
     }

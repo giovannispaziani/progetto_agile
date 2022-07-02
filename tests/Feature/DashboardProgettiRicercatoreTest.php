@@ -31,13 +31,16 @@ class DashboardProgettiRicercatoreTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make('secret'),
+            'studi' => 'Fisica',
+            'occupazione' => 'Fisico Nucleare',
+            'linkedin' => 'https://it.linkedin.com/in/antorossi',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         $response = $this->actingAs($user)->get("/dashboardProgettiRicercatore"); //controlla se passa il parametro (id) alla rotta
 
-        $response->assertStatus(200); //si assicura che venga fornita correttamente la pagina
+        $response->assertStatus(200); //si assicura che venga fornita la pagina
 
     }
 
@@ -48,7 +51,7 @@ class DashboardProgettiRicercatoreTest extends TestCase
         $user = User::where('id', 2)->first();
 
         $response = $this->actingAs($user)->get("/dashboardProgettiRicercatore"); //controlla se passa il parametro (id) alla rotta
-        $response->assertStatus(200); //si assicura che venga fornita correttamente la pagina
+        $response->assertStatus(200); //si assicura che venga fornita la pagina
 
         $response->assertSee([  //si assicura che la pagina carichi i dati
             'Primo Progetto',

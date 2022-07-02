@@ -25,6 +25,9 @@ class PubblicazioniTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make('secret'),
+            'studi' => 'Scienze delle Comunicazioni',
+            'occupazione' => 'PR',
+            'linkedin' => 'https://it.linkedin.com/in/melania-d-alessandro-7a168b120?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -38,18 +41,20 @@ class PubblicazioniTest extends TestCase
 
     public function test_publication_post()
     {
-        $this->withoutExceptionHandling();
+
         $this->seed();
         $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
         $user = User::where('id', 2)->first();
 
         DB::table('pubblications')->where("titolo","Pubblicazione Test")->delete();
-
+        
         $response = $this->actingAs($user)
                         ->post('/aggiungiPubblicazione',[
-                            'id_progetto' => "1",
+                            'choices-button' => 1,
                             'titolo' => "Pubblicazione Test",
+                            'descrizione' => "Descrizione Test",
+                            'testo' => "Test",
                             'file_path' => "test_pdf.pdf"
                          ]);
 

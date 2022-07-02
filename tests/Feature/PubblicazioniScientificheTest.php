@@ -25,6 +25,9 @@ class PubblicazioniScientificheTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make('secret'),
+            'studi' => 'Storia Moderna',
+            'occupazione' => 'Ricercatore Storia Moderna',
+            'linkedin' => 'https://it.linkedin.com/in/veronica-totaro-a9352a71?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -47,6 +50,8 @@ class PubblicazioniScientificheTest extends TestCase
 
         $response = $this->actingAs($user)->post('/pubblicazioniScientifiche',[
                             'titolo' => "Pubblicazione Scientifica Test",
+                            'descrizione' => "Descrizione Test",
+                            'testo' => "Test",
                             'fonte' => "Fonte Test"
                          ]);
 

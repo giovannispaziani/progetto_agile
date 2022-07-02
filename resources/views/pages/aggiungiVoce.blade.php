@@ -27,14 +27,16 @@
 <br>
 <!--CHOICE BOX SCOPO-->
 <label for="titolo">Seleziona scopo</label>
-<select class="form-control" name="check-scopo" id="check-scopo" placeholder="Departure" value="scopo">
+<select class="form-control" name="check-scopo" id="check-scopo" placeholder="Seleziona" value="scopo">
     <option value="Pubblicazione">Pubblicazione</option>
     <option value="Materiali">Materiali</option>
-    <option value="Materie prime">Divulgazione</option>
-    <option value="Materie prime">Materie prime</option>
+    <option value="Divulgazione">Divulgazione</option>
+    <option value="Altro">Altro</option>
 </select>
 <!--FINE CHOICE BOX SCOPO-->
+
 <br>
+
                       <div class="form-group">
                         <label for="budget">Budget</label>
                         <input type="text" class="form-control" name="budget" placeholder="Inserisci importo">
