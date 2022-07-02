@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Pubblication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -158,5 +159,28 @@ class projectDashboardController extends Controller
         }
 
         return redirect()->route('project-list');   //riporto alla lista dei progetti
+    }
+
+    public function deletePublicationFromProject(Request $request)
+    {
+        try {
+
+            $id_progetto = $request['id_progetto'];
+            $progetto = Project::where('id', $id_progetto)->first();   //progetto in questione
+            $userId = Auth::user()->id;                                //id dell'utente
+    
+            if($userId == $progetto->id_responsabile){   //se è il responsabile a fare questa richiesta
+                $pubblicazione = Pubblication::where('id', $request['id_pubblicazione'])->where('id_progetto', $id_progetto)->first();
+                $pubblicazione->id_progetto = null;
+                $pubblicazione->save();
+            }
+            else{                                        //se NON è il responsabile a fare questa richiesta response status 403
+                return response('Utente non autorizzato', 403);
+            }
+        } catch (\Throwable $th) {
+            return response('Si è verificato un errore', 500);
+        }
+
+        return redirect()->route('project-dashboard', [$id_progetto]);   //riporto alla pagina del progetto
     }
 }

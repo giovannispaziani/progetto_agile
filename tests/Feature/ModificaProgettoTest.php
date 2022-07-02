@@ -22,6 +22,9 @@ class ModificaProgettoTest extends TestCase
     private $edit;
     private $expectedEdit;
     private $projectData;
+    private $publicationData1;
+    private $publicationData2;
+    private $publicationData3;
 
     protected function setUp(): void
     {
@@ -78,6 +81,36 @@ class ModificaProgettoTest extends TestCase
             'stato' => 'concluso'
         ];
         DB::table('projects')->insert($this->projectData);
+        $this->publicationData1 = [
+            'id' => 342,
+            'id_progetto' => 7,
+            'id_autore' => $this->unauthorizedUser->id,
+            'titolo' => 'Pubblicazione 1',
+            'file_path' => '/storage/test_pdf.pdf',
+            'created_at' => now(),
+            'updated_at' => now()
+        ];
+        $this->publicationData2 = [
+            'id' => 343,
+            'id_progetto' => 7,
+            'id_autore' => $this->unauthorizedUser->id,
+            'titolo' => 'Pubblicazione 2',
+            'file_path' => '/storage/test_pdf.pdf',
+            'created_at' => now(),
+            'updated_at' => now()
+        ];
+        $this->publicationData3 = [
+            'id' => 344,
+            'id_progetto' => 7,
+            'id_autore' => $this->unauthorizedUser->id,
+            'titolo' => 'Pubblicazione 3',
+            'file_path' => '/storage/test_pdf.pdf',
+            'created_at' => now(),
+            'updated_at' => now()
+        ];
+        DB::table('pubblications')->insert($this->publicationData1);
+        DB::table('pubblications')->insert($this->publicationData2);
+        DB::table('pubblications')->insert($this->publicationData3);
 
         $this->edit = [
             'id_progetto' => 7,
@@ -145,7 +178,7 @@ class ModificaProgettoTest extends TestCase
     {
         $getResponse = $this->actingAs($this->authorizedUserManager)->get('/project-dashboard/7');
         $getResponse->assertStatus(200);
-        $getResponse->assertSee("Elimina");
+        $getResponse->assertSee('Elimina progetto');
 
         $response = $this->actingAs($this->authorizedUserManager)
                          ->post('/elimina-progetto',[
@@ -166,7 +199,7 @@ class ModificaProgettoTest extends TestCase
 
         $getResponse = $this->actingAs($this->authorizedUserResponsabile)->get('/project-dashboard/7');
         $getResponse->assertStatus(200);
-        $getResponse->assertDontSee("Elimina");
+        $getResponse->assertDontSee('Elimina progetto');
 
         $response = $this->actingAs($this->authorizedUserResponsabile)
                          ->post('/elimina-progetto',[
@@ -185,7 +218,7 @@ class ModificaProgettoTest extends TestCase
     {
         $getResponse = $this->actingAs($this->unauthorizedUser)->get('/project-dashboard/7');
         $getResponse->assertStatus(200);
-        $getResponse->assertDontSee("Elimina");
+        $getResponse->assertDontSee('Elimina progetto');
 
         $response = $this->actingAs($this->unauthorizedUser)
                          ->post('/elimina-progetto',[
@@ -246,5 +279,65 @@ class ModificaProgettoTest extends TestCase
 
         $this->assertDatabaseMissing('projects', $this->expectedEdit);
         $this->assertDatabaseHas('projects', $this->projectData);
+    }
+
+    public function test_delete_pubblication_as_authorized_user()
+    {
+        $getResponse = $this->actingAs($this->authorizedUserResponsabile)->get('/project-dashboard/7');
+        $getResponse->assertStatus(200);
+        $getResponse->assertSee('<button type="submit" class="btn btn-danger del-pubblicazione">Elimina</button>',false);
+
+        $response = $this->actingAs($this->authorizedUserResponsabile)
+                         ->post('/elimina-pubblicazione',[
+                            'id_progetto' => 7,
+                            'id_pubblicazione' => 343
+                         ]);
+
+        $response->assertStatus(302); //redirect to project dashboard
+
+        $this->assertDatabaseHas('pubblications',$this->publicationData1);
+        $this->assertDatabaseMissing('pubblications',$this->publicationData2);
+        $publicationData2_without_project_id = $this->publicationData2;
+        $publicationData2_without_project_id['id_progetto'] = null;
+        $this->assertDatabaseHas('pubblications',$publicationData2_without_project_id);
+        $this->assertDatabaseHas('pubblications',$this->publicationData3);
+    }
+
+    public function test_delete_pubblication_as_unauthorized_manager()
+    {
+        $getResponse = $this->actingAs($this->authorizedUserManager)->get('/project-dashboard/7');
+        $getResponse->assertStatus(200);
+        $getResponse->assertDontSee('<button type="submit" class="btn btn-danger del-pubblicazione">Elimina</button>',false);
+
+        $response = $this->actingAs($this->authorizedUserManager)
+                         ->post('/elimina-pubblicazione',[
+                            'id_progetto' => 7,
+                            'id_pubblicazione' => 343
+                         ]);
+
+        $response->assertStatus(403); // Forbitten
+
+        $this->assertDatabaseHas('pubblications',$this->publicationData1);
+        $this->assertDatabaseHas('pubblications',$this->publicationData2);
+        $this->assertDatabaseHas('pubblications',$this->publicationData3);
+    }
+
+    public function test_delete_pubblication_as_unauthorized_user()
+    {
+        $getResponse = $this->actingAs($this->unauthorizedUser)->get('/project-dashboard/7');
+        $getResponse->assertStatus(200);
+        $getResponse->assertDontSee('<button type="submit" class="btn btn-danger del-pubblicazione">Elimina</button>',false);
+
+        $response = $this->actingAs($this->unauthorizedUser)
+                         ->post('/elimina-pubblicazione',[
+                            'id_progetto' => 7,
+                            'id_pubblicazione' => 343
+                         ]);
+
+        $response->assertStatus(403); // Forbitten
+
+        $this->assertDatabaseHas('pubblications',$this->publicationData1);
+        $this->assertDatabaseHas('pubblications',$this->publicationData2);
+        $this->assertDatabaseHas('pubblications',$this->publicationData3);
     }
 }
