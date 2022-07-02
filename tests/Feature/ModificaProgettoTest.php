@@ -285,7 +285,7 @@ class ModificaProgettoTest extends TestCase
     {
         $getResponse = $this->actingAs($this->authorizedUserResponsabile)->get('/project-dashboard/7');
         $getResponse->assertStatus(200);
-        $getResponse->assertSee('<button type="submit" class="btn btn-danger del-pubblicazione">Elimina</button>');
+        $getResponse->assertSee('<button type="submit" class="btn btn-danger del-pubblicazione">Elimina</button>',false);
 
         $response = $this->actingAs($this->authorizedUserResponsabile)
                          ->post('/elimina-pubblicazione',[
@@ -307,7 +307,7 @@ class ModificaProgettoTest extends TestCase
     {
         $getResponse = $this->actingAs($this->authorizedUserManager)->get('/project-dashboard/7');
         $getResponse->assertStatus(200);
-        $getResponse->assertDontSee('<button type="submit" class="btn btn-danger del-pubblicazione">Elimina</button>');
+        $getResponse->assertDontSee('<button type="submit" class="btn btn-danger del-pubblicazione">Elimina</button>',false);
 
         $response = $this->actingAs($this->authorizedUserManager)
                          ->post('/elimina-pubblicazione',[
@@ -326,7 +326,7 @@ class ModificaProgettoTest extends TestCase
     {
         $getResponse = $this->actingAs($this->unauthorizedUser)->get('/project-dashboard/7');
         $getResponse->assertStatus(200);
-        $getResponse->assertDontSee('<button type="submit" class="btn btn-danger del-pubblicazione">Elimina</button>');
+        $getResponse->assertDontSee('<button type="submit" class="btn btn-danger del-pubblicazione">Elimina</button>',false);
 
         $response = $this->actingAs($this->unauthorizedUser)
                          ->post('/elimina-pubblicazione',[
