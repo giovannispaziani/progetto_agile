@@ -126,10 +126,11 @@ Route::get('/project-dashboard/{id}/remove/{ricercatore}',[modificaPartecipantiP
 /* gestione documentazione */
 Route::get('/project-dashboard/document-list/{id}',[documentationController::class, 'index'])->name('document-list')->middleware('auth');;
 
-  /* Aggiorna dati progetto */
+/* Aggiorna dati progetto */
 Route::post('/cambio-data-fine-progetto', [projectDashboardController::class,'updateFine'])->name('update-project-date');
 Route::post('/elimina-progetto', [projectDashboardController::class,'deleteProject'])->name('elimina-progetto');
 Route::post('/modifica-progetto', [projectDashboardController::class,'updateProject'])->name('modifica-progetto');
+Route::post('/elimina-pubblicazione', [projectDashboardController::class,'deletePublicationFromProject'])->name('elimina-pubblicazione-da-progetto');
 
 /*gestione richieste budget */
 Route::get('/project-list-responsabile',[dashboardAcquistiController::class,'getListProject'])->name('progect-list-responsabile');
