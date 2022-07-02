@@ -17,8 +17,6 @@ class CreateScientificPublicationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_ricercatore');
             $table->string('titolo');
-            $table->string('descrizione')->nullable(true);
-            $table->string('testo')->nullable(true);
             $table->string('fonte');
             $table->timestamps();
         });

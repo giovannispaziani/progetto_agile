@@ -22,9 +22,6 @@ class RegisterFinTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Manager',
             'password' => Hash::make('secret'),
-            'studi' => 'Storia Moderna',
-            'occupazione' => 'Ricercatore Storia Moderna',
-            'linkedin' => 'https://it.linkedin.com/in/veronica-totaro-a9352a71?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -43,9 +40,6 @@ class RegisterFinTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Finanziatore',
             'password' => Hash::make('secret'),
-            'studi' => '',
-            'occupazione' => '',
-            'linkedin' => '',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -57,7 +51,7 @@ class RegisterFinTest extends TestCase
      /** @test */
     public function register_by_manager(){
         $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
-
+       
         $manager = User::factory()->create([
             'name' => 'manager',
             'surname' => 'Manager',
@@ -65,10 +59,7 @@ class RegisterFinTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Manager',
             'password' => Hash::make('secret'),
-            'studi' => 'Scienze delle Comunicazioni',
-            'occupazione' => 'PR',
-            'linkedin' => 'https://it.linkedin.com/in/melania-d-alessandro-7a168b120?trk=public_profile_browsemap',
-             'created_at' => now(),
+            'created_at' => now(),
             'updated_at' => now()
         ]);
         $response = $this->actingAs($manager)
@@ -76,11 +67,7 @@ class RegisterFinTest extends TestCase
            'name' => "matteo",
            'surname' => "test",
            'email' => "agvvdgha@hoil.com",
-           'password' => "bhvgsbdvj",
-           'studi' => 'Storia Moderna',
-           'occupazione' => 'Ricercatore Storia Moderna',
-           'linkedin' => 'https://it.linkedin.com/in/veronica-totaro-a9352a71?trk=public_profile_browsemap'
-
+           'password' => "bhvgsbdvj"
         ]);
 
         $this->assertDatabaseHas('users',[
@@ -89,11 +76,11 @@ class RegisterFinTest extends TestCase
            'type' => "Finanziatore",
            'email' => "agvvdgha@hoil.com"
         ]);
-
+        
     }
      /** @test */
     public function register_by_other(){
-
+       
         $ricercatore = User::factory()->create([
             'name' => 'ric',
             'surname' => 'snjr',
@@ -101,9 +88,6 @@ class RegisterFinTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make('secret'),
-            'studi' => '',
-            'occupazione' => '',
-            'linkedin' => '',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -121,6 +105,6 @@ class RegisterFinTest extends TestCase
            'type' => "Finanziatore",
            'email' => "agvvdgha@hoil.com"
         ]);
-
+        
     }
 }

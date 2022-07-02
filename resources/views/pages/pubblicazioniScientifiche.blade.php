@@ -14,26 +14,15 @@
                 </div>
                 <div class="card-body ">
 
-                      <div class="form-group">
+                    <div class="form-group">
                         <label for="titolo">Titolo</label>
                         <input type="text" class="form-control" name="titolo" placeholder="Inserisci titolo pubblicazione">
                       </div>
-
-                      <div class="form-group">
-                        <label for="descrizione">Descrizione</label>
-                        <input type="text" class="form-control" name="descrizione" placeholder="Inserisci descrizione pubblicazione">
-                      </div>
-
-                      <div class="form-group">
-                        <label for="testo">Testo</label>
-                        <input type="text" class="form-control" name="testo" placeholder="Inserisci testo pubblicazione">
-                      </div>
-
                       <div class="form-group">
                         <label for="fonte">Fonte</label>
                         <input type="text" class="form-control" name="fonte" placeholder="Inserisci link pubblicazione">
                       </div>
-                </div>
+
               <div class="card-footer ml-auto mr-auto">
                 <button type="submit" class="btn btn-primary">{{ __('Aggiungi') }}</button>
               </div>

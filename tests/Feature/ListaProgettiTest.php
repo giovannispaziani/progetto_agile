@@ -30,7 +30,7 @@ class ListaProgettiTest extends TestCase
 
     public function test_page_get_data()
     {
-        //aggiungi manager da usare come responsabile
+        //aggiungi menager da usare come responsabile
         DB::table('users')->insert([
             'id' => 1,
             'name' => 'cccc',
@@ -39,14 +39,11 @@ class ListaProgettiTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Manager',
             'password' => Hash::make('secret'),
-            'studi' => 'Fisica',
-            'occupazione' => 'Fisico Nucleare',
-            'linkedin' => 'https://it.linkedin.com/in/antorossi',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
-        //aggiungi manager da usare come responsabile
+        //aggiungi menager da usare come responsabile
         DB::table('users')->insert([
             'id' => 2,
             'name' => 'aaaa',
@@ -55,13 +52,10 @@ class ListaProgettiTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Manager',
             'password' => Hash::make('secret'),
-            'studi' => 'Biotecnologie',
-            'occupazione' => 'Ricercatore Biotecnologie',
-            'linkedin' => 'https://it.linkedin.com/in/martina-agostinelli-293b4b172?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);
-
+        
         //aggiunta progetto da visualizzare
         DB::table('projects')->insert([
             'id_responsabile' => 2,

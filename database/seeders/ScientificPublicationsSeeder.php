@@ -17,8 +17,6 @@ class ScientificPublicationsSeeder extends Seeder
         DB::table('scientific_publications')->insert([
             'id_ricercatore' => 2,
             'titolo' => 'nasa',
-            'descrizione' => '',
-            'testo' => '',
             'fonte' => 'nasa.com',
             'created_at' => now(),
             'updated_at' => now()
@@ -27,8 +25,6 @@ class ScientificPublicationsSeeder extends Seeder
         DB::table('scientific_publications')->insert([
             'id_ricercatore' => 2,
             'titolo' => 'unicef',
-            'descrizione' => '',
-            'testo' => '',
             'fonte' => 'unicef.com',
             'created_at' => now(),
             'updated_at' => now()
@@ -37,13 +33,11 @@ class ScientificPublicationsSeeder extends Seeder
         DB::table('scientific_publications')->insert([
             'id_ricercatore' => 2,
             'titolo' => 'crocerossa',
-            'descrizione' => '',
-            'testo' => '',
             'fonte' => 'crocerossa.com',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
-
+        
     }
 }

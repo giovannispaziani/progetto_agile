@@ -15,9 +15,7 @@ class ProfileResearcherController extends Controller
      */
     public function edit()
     {
-
         return view('users.index');
-
     }
 
     /**

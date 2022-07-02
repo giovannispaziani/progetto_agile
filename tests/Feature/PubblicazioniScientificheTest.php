@@ -19,15 +19,12 @@ class PubblicazioniScientificheTest extends TestCase
         $this->seed();
 
         $user = User::factory()->create([
-            'name' => 'Ricercatore',
-            'surname' => 'Di Prova',
-            'email' => 'ricercatore@prova.com',
+            'name' => 'Mario',
+            'surname' => 'Langi',
+            'email' => 'langimario68@gmail.com',
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
-            'password' => Hash::make('secret'),
-            'studi' => 'Storia Moderna',
-            'occupazione' => 'Ricercatore Storia Moderna',
-            'linkedin' => 'https://it.linkedin.com/in/veronica-totaro-a9352a71?trk=public_profile_browsemap',
+            'password' => Hash::make('Mogol'),
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -44,21 +41,27 @@ class PubblicazioniScientificheTest extends TestCase
         $this->seed();
         $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
-        $user = User::where('id', 2)->first();
+        $user = User::factory()->create([
+            'name' => 'Mario',
+            'surname' => 'Langi',
+            'email' => 'langimario68@gmail.com',
+            'email_verified_at' => now(),
+            'type' => 'Ricercatore',
+            'password' => Hash::make('Mogol'),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
 
-        DB::table('scientific_publications')->where("titolo","Pubblicazione Scientifica Test")->delete();
+        DB::table('scientific_publications')->where("titolo","TitoloTest")->delete();
 
-        $response = $this->actingAs($user)->post('/pubblicazioniScientifiche',[
-                            'titolo' => "Pubblicazione Scientifica Test",
-                            'descrizione' => "Descrizione Test",
-                            'testo' => "Test",
+        $response = $this->actingAs($user)
+                         ->post('/pubblicazioneScientifiche',[
+                            'titolo' => "TitoloTest",
                             'fonte' => "Fonte Test"
                          ]);
 
-                         $this->assertDatabaseHas('scientific_publications', [
-                            'titolo' => 'Pubblicazione Scientifica Test',
-                        ]);
+                         $this->assertTrue(!DB::table('scientific_publications')->where("titolo","Titolo Test")->exists(),"Project was created without proper permission (user is not a Manager)");
 
-}
+    }
 
 }

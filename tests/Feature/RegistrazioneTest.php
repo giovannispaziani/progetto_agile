@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Tests\TestCase;
 
-class RegistrazioneTest extends TestCase
+class RegisterTest extends TestCase
 {
 
     use RefreshDatabase;
@@ -31,14 +31,11 @@ class RegistrazioneTest extends TestCase
             'email_verified_at' => now(),
             'type'=>'Ricercatore',
             'password' => 'password',
-            'password_confirmation' => 'password',
-            'studi' => 'Informatica',
-            'occupazione' => 'Studente',
-            'linkedin' => 'linkedin.com'
+            'password_confirmation' => 'password'
         ];
 
         $response = $this->post('/register', $user);
-
+   
         $this->assertDatabaseHas('users', [
             'email' => 'register@gmail.com',
         ]);
@@ -55,9 +52,6 @@ class RegistrazioneTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make('password'),
-            'studi' => 'Storia Moderna',
-            'occupazione' => 'Ricercatore Storia Moderna',
-            'linkedin' => 'https://it.linkedin.com/in/veronica-totaro-a9352a71?trk=public_profile_browsemap',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -69,15 +63,11 @@ class RegistrazioneTest extends TestCase
             'email_verified_at' => now(),
             'type'=>'Ricercatore',
             'password' => 'password',
-            'password_confirmation' => 'password',
-            'studi' => 'Storia Moderna',
-            'occupazione' => 'Ricercatore Storia Moderna',
-            'linkedin' => 'https://it.linkedin.com/in/veronica-totaro-a9352a71?trk=public_profile_browsemap'
-
+            'password_confirmation' => 'password'
         ];
 
         $response = $this->post('/register', $user);  //equivalente tasto submit
-
+        
         $this->assertDatabaseHas('users', [      //Affermare che una tabella nel database contiene record che corrispondono
             'email' => 'register@gmail.com',
             'name' => 'Name',
