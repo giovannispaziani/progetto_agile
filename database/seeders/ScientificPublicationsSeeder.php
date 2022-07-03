@@ -37,8 +37,8 @@ class ScientificPublicationsSeeder extends Seeder
         DB::table('scientific_publications')->insert([
             'id_ricercatore' => 2,
             'titolo' => 'crocerossa',
-            'descrizione' => '',
-            'testo' => '',
+            'descrizione' => 'croce',
+            'testo' => 'rossa',
             'fonte' => 'crocerossa.com',
             'created_at' => now(),
             'updated_at' => now()

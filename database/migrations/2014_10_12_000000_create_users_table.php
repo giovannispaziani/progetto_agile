@@ -21,6 +21,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('type',['Ricercatore','Manager','Finanziatore']);
             $table->string('password');
+            $table->string('studi')->nullable(true);
+            $table->string('occupazione')->nullable(true);
+            $table->string('linkedin')->nullable(true);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -114,6 +114,9 @@ Route::get('/project-list',[projectListController::class,'index'])->name('projec
 /*Profilo Ricercatore */
 Route::get('/users/{id_ricercatore}', 'App\Http\Controllers\ProfiloRicercatoreController@index')->name('profilo-Ricercatore');
 
+/*Profilo Manager*/
+Route::get('/manager/{id_manager}', 'App\Http\Controllers\ProfiloManagerController@index')->name('profilo-Manager');
+
 /* Dashboard Progetti Ricercatore */
 Route::get('/dashboardProgettiRicercatore', 'App\Http\Controllers\DashboardProgettiRicercatoreController@index')->name('dashboardProgettiRicercatore')->middleware();
 
