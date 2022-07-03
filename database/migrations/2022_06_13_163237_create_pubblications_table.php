@@ -18,6 +18,8 @@ class CreatePubblicationsTable extends Migration
             $table->unsignedBigInteger('id_autore');
             $table->unsignedBigInteger('id_progetto')->nullable(true);
             $table->string('titolo');
+            $table->string('descrizione')->nullable(true);
+            $table->string('testo')->nullable(true);
             $table->string('file_path');
             $table->timestamps();
         });

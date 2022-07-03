@@ -137,3 +137,7 @@ Route::get('/dashboard-budget/{id}',[dashboardAcquistiController::class,'index']
 Route::get('/storico-budget/{id}',[dashboardAcquistiController::class, 'storico'])->name('storico-budget');
 Route::post('/accept-budget',[dashboardAcquistiController::class,'acceptBudget'])->name('accept-budget');
 Route::post('/refuse-budget',[dashboardAcquistiController::class,'refuseBudget'])->name('refuse-budget');
+
+/* Pubblicazione ricercatore */
+Route::get('/aggiungiPubblicazione', 'App\Http\Controllers\PubblicazioniController@index')->name('aggiungiPubblicazione');
+Route::post('/aggiungiPubblicazione','App\Http\Controllers\PubblicazioniController@aggiungiPubblicazione')->name('aggiungiPubblicazione-post');
