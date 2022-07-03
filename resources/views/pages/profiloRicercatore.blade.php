@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'dashboard', 'titlePage' => __('Profilo Ricercatore')])
+@extends('layouts.app', ['activePage' => 'dashboard', 'titlePage' => __('Profilo')])
 
 @section('content')
 <div class="content">
@@ -9,12 +9,7 @@
 
           <div class="card card-nav-tabs" style="display: grid !important; grid-template-columns: auto auto !important;">
 
-            <div class="card-header card-header-primary text-center" style="grid-column: 1/3 !important"> INFORMAZIONI RICERCATORE </div>
-
-                  <div class="card-body">
-                    <h4 class="card-title">Id utente:</h4>
-                    <p class="card-text" >{{ $data['id'] }}</p>
-                  </div>
+            <div class="card-header card-header-primary text-center" style="grid-column: 1/3 !important"> INFORMAZIONI </div>
 
                   <div class="card-body">
                     <h4 class="card-title">Nome:</h4>
@@ -27,9 +22,25 @@
                   </div>
 
                   <div class="card-body">
+                    <h4 class="card-title">Titolo di Studio:</h4>
+                    <p class="card-text" >{{ $data['studi'] }}</p>
+                  </div>
+
+                  <div class="card-body">
+                    <h4 class="card-title">Occupazione:</h4>
+                    <p class="card-text" >{{ $data['occupazione'] }}</p>
+                  </div>
+
+                  <div class="card-body">
                     <h4 class="card-title">Email:</h4>
                     <p class="card-text" >{{ $data['email'] }}</p>
                   </div>
+
+                  <div class="card-body">
+                    <h4 class="card-title">LinkedIn:</h4>
+                  <a href="{{ $data['linkedin'] }}" class='fa fa-linkedin' role="button" aria-disabled="true"></a>
+                </div>
+
       </div>
 
 <!--TABELLA PROGETTI-->
@@ -42,15 +53,17 @@
         <tr>
             <th>Titolo</th>
             <th>Progetto</th>
-            <th>Sorgente</th>
+            <th>Descrizione</th>
+            <th>Testo</th>
         </tr>
     </thead>
     <tbody>
       @forelse ($data['pubblicazioni_progetti'] as $pubblicazionepr)
         <tr>
-            <td>{{ $pubblicazionepr['progetto'] }}</td>
+            <td>{{ $pubblicazionepr['progettopr'] }}</td>
             <td>{{ $pubblicazionepr['titolopr'] }}</td>
-            <td>{{ $pubblicazionepr['fontepr'] }}</td> <!--DA SOSTITUIRE CON IL BOTTONE-->
+            <td>{{ $pubblicazionepr['descrizionepr'] }}</td>
+            <td>{{ $pubblicazionepr['testopr'] }}</td>
         </tr>
       @empty
         <tr>
@@ -77,6 +90,8 @@
       <thead>
           <tr>
               <th>Titolo</th>
+              <th>Descrizione</th>
+              <th>Testo</th>
               <th>Fonte</th>
           </tr>
       </thead>
@@ -84,6 +99,8 @@
         @forelse ($data['pubblicazioni_scientifiche'] as $pubblicazionesc)
           <tr>
               <td>{{ $pubblicazionesc['titolosc'] }}</td>
+              <td>{{ $pubblicazionesc['descrizionesc'] }}</td>
+              <td>{{ $pubblicazionesc['testosc'] }}</td>
               <td>{{ $pubblicazionesc['fontesc'] }}</td>
           </tr>
         @empty

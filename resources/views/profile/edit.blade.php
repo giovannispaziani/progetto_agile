@@ -5,6 +5,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
+            <a href="../users/{{ auth()->user()->id }}" class="btn btn-primary btn-round" role="button" aria-disabled="true">Profilo pubblico</a>
           <form method="post" action="{{ route('profile.update') }}" autocomplete="off" class="form-horizontal">
             @csrf
             @method('put')
