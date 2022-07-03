@@ -19,17 +19,21 @@ class PubblicationTableSeeder extends Seeder
             'id_progetto' => 1,
             'id_autore' => 2,
             'titolo' => 'Prima pubblicazione 1',
+            'descrizione' => '',
+            'testo' => '',
             'file_path' => '/storage/test_pdf.pdf',
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        
+
 
         DB::table('pubblications')->insert([
             'id' => 2,
             'id_progetto' => 1,
             'id_autore' => 2,
             'titolo' => 'Prima pubblicazione 2',
+            'descrizione' => '',
+            'testo' => '',
             'file_path' => '/storage/test_pdf.pdf',
             'created_at' => now(),
             'updated_at' => now()
@@ -41,39 +45,8 @@ class PubblicationTableSeeder extends Seeder
             'id_progetto' => 1,
             'id_autore' => 5,
             'titolo' => 'Prima pubblicazione 3',
-            'file_path' => '/storage/test_pdf.pdf',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-       
-        
-        DB::table('pubblications')->insert([
-            'id' => 4,
-            'id_progetto' => 2,
-            'id_autore' => 2,
-            'titolo' => 'Prima pubblicazione 1',
-            'file_path' => '/storage/test_pdf.pdf',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-        
-
-        DB::table('pubblications')->insert([
-            'id' => 5,
-            'id_progetto' => 2,
-            'id_autore' => 2,
-            'titolo' => 'Prima pubblicazione 2',
-            'file_path' => '/storage/test_pdf.pdf',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-
-        DB::table('pubblications')->insert([
-            'id' => 6,
-            'id_progetto' => 2,
-            'id_autore' => 5,
-            'titolo' => 'Prima pubblicazione 3',
+            'descrizione' => '',
+            'testo' => '',
             'file_path' => '/storage/test_pdf.pdf',
             'created_at' => now(),
             'updated_at' => now()

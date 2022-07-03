@@ -4,10 +4,14 @@
   <div class="content">
     <div class="container-fluid">
 
-    <form class="form" method="POST" action="{{ route('pubblicazioniScientifiche-post') }}">
+      <a href="../users/{{ auth()->user()->id }}" class="btn btn-primary btn-round" role="button" aria-disabled="true">Vai al profilo</a>
+
+    <form class="form" method="POST" action="{{ route('aggiungiPubblicazione-post') }}">
         @csrf
 
         <div class="card card-login card-hidden mb-3">
+
+
 
           <div class="card-header card-header-primary text-center">
             <h3 class="card-title"><strong>Nuova pubblicazione</strong></h3>
