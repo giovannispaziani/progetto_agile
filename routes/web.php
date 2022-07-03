@@ -122,7 +122,6 @@ Route::get('/project-dashboard/{id_progetto}/add-ricercatore/{id_ricercatore}',[
 Route::get('/lista-ricercatore/{id_progetto}',[modificaPartecipantiProgettoController::class,'index'])->name('list-ricercatori');
 Route::get('/project-dashboard/{id}/remove/{ricercatore}',[modificaPartecipantiProgettoController::class,'remove'])->name('remove-ricercatore');
 
-
 /* gestione documentazione */
 Route::get('/project-dashboard/document-list/{id}',[documentationController::class, 'index'])->name('document-list')->middleware('auth');;
 
