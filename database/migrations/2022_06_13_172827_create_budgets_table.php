@@ -16,16 +16,15 @@ class CreateBudgetsTable extends Migration
         Schema::create('budgets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_progetto');
-            $table->unsignedBigInteger('id_ricercatore')->nullable();
-            $table->boolean('stato')->nullable()->default(null);
+            $table->unsignedBigInteger('id_ricercatore');
             $table->string('scopo');
             $table->decimal('budget');
+            $table->string('stato');
             $table->timestamps();
         });
 
         Schema::table('budgets', function (Blueprint $table) {
             $table->foreign('id_progetto')->references('id')->on('projects')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('id_ricercatore')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

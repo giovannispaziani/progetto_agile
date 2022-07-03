@@ -82,7 +82,7 @@ class projectDashboardController extends Controller
                     $data['users'] = DB::table("users")->select(['id','name','surname'])->whereRaw("type = 'Manager' OR type = 'Ricercatore' ")->get();
                 }
             }
-            
+
             return view('pages.projectDashboard')->with("title", "Creazione Progetto")->with("data",$data);
         }
         else{
@@ -97,7 +97,7 @@ class projectDashboardController extends Controller
             $id_progetto = $request['id_progetto'];
             $progetto = Project::where('id', $id_progetto)->first();   //progetto in questione
             $userId = Auth::user()->id;                                //id dell'utente
-    
+
             if($userId == $progetto->id_responsabile){   //se è il responsabile a fare questa richiesta
                 $progetto->data_fine = $request['fine'];     //cambio la data di fine
                 $progetto->save();                           //salvo nel db
@@ -118,7 +118,7 @@ class projectDashboardController extends Controller
 
             $id_progetto = $request['id_progetto'];
             $progetto = Project::where('id', $id_progetto)->first();   //progetto in questione
-    
+
             if(Auth::user()->type == "Manager"){                     //se è un manager a fare questa richiesta
 
                 // modifico i dati del progetto
@@ -127,7 +127,7 @@ class projectDashboardController extends Controller
                 $progetto->data_inizio = $request['inizio'];
                 $progetto->data_fine = $request['fine'];
                 $progetto->stato = $request['stato'];
-                $progetto->id_responsabile = (int)$request['resbonsabile'];
+                $progetto->id_responsabile = (int)$request['responsabile'];
                 $progetto->save();                           //salvo nel db
             }
             else{                                        //se NON è il responsabile a fare questa richiesta do errore
@@ -146,7 +146,7 @@ class projectDashboardController extends Controller
 
             $id_progetto = $request['id_progetto'];
             $progetto = Project::where('id', $id_progetto)->first();   //progetto in questione
-    
+
             if(Auth::user()->type == "Manager"){                     //se è un manager a fare questa richiesta
 
                 $progetto->delete();
@@ -168,7 +168,7 @@ class projectDashboardController extends Controller
             $id_progetto = $request['id_progetto'];
             $progetto = Project::where('id', $id_progetto)->first();   //progetto in questione
             $userId = Auth::user()->id;                                //id dell'utente
-    
+
             if($userId == $progetto->id_responsabile){   //se è il responsabile a fare questa richiesta
                 $pubblicazione = Pubblication::where('id', $request['id_pubblicazione'])->where('id_progetto', $id_progetto)->first();
                 $pubblicazione->id_progetto = null;
