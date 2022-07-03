@@ -65,8 +65,9 @@ class DashboardAcquistiTest extends TestCase
         $spesa= Budget::factory()->create([
             'id_progetto'=>1,
             'id_ricercatore'=>$ricercatore->id,
-            'scopo'=>"boh",
-            'budget'=>100
+            'scopo'=>"Divulgazione",
+            'budget'=>100,
+            'stato'=>"in corso"
         ]);
 
         $response = $this->actingAs($ricercatore)->post("accept-budget" ,[
@@ -96,18 +97,21 @@ class DashboardAcquistiTest extends TestCase
         $spesa= Budget::factory()->create([
             'id_progetto'=>1,
             'id_ricercatore'=>1,
-            'scopo'=>"boh",
-            'budget'=>100
+            'scopo'=>"Altro",
+            'budget'=>100,
+            'stato'=>"in corso"
         ]);
 
-        $response = $this->actingAs($user)->post("accept-budget" ,[
+        $response = $this->actingAs($user)->post("aggiungiVoce" ,[
             "progetto" => 1,
             "budget" => $spesa->id,
         ]);
         $this->assertDatabaseHas( 'budgets',[
             "id" => $spesa->id,
             "id_progetto" => 1,
-            "stato"=>1
+            'scopo'=>"Altro",
+            'budget'=>100,
+            'stato'=>"in corso"
         ]);
     }
 
@@ -119,18 +123,21 @@ class DashboardAcquistiTest extends TestCase
         $spesa= Budget::factory()->create([
             'id_progetto'=>1,
             'id_ricercatore'=>1,
-            'scopo'=>"boh",
-            'budget'=>100
+            'scopo'=>"Materiali",
+            'budget'=>100,
+            'stato'=>"in corso"
         ]);
 
-        $response = $this->actingAs($user)->post("refuse-budget" ,[
+        $response = $this->actingAs($user)->post("aggiungiVoce" ,[
             "progetto" => 1,
             "budget" => $spesa->id,
         ]);
         $this->assertDatabaseHas( 'budgets',[
             "id" => $spesa->id,
             "id_progetto" => 1,
-            "stato"=>0
+            'scopo'=>"Materiali",
+            'budget'=>100,
+            'stato'=>"in corso"
         ]);
 
     }

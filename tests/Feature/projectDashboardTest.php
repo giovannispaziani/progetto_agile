@@ -22,6 +22,7 @@ class projectDashboardTest extends TestCase
 
     public function test_page_as_guest()
     {
+
         $this->assertGuest();
 
         $response = $this->get('/project-dashboard/1');
@@ -39,7 +40,7 @@ class projectDashboardTest extends TestCase
     }
 
     public function test_page_as_auth()
-    {   
+    {
 
         $user = User::factory()->create([
             'name' => 'Ricercatore',
@@ -59,7 +60,7 @@ class projectDashboardTest extends TestCase
     }
 
     public function test_page_not_found_as_auth()
-    {   
+    {
 
         $user = User::factory()->create([
             'name' => 'Ricercatore',
@@ -205,4 +206,5 @@ class projectDashboardTest extends TestCase
             'Ricercatore3'
         ],false);
     }
+
 }

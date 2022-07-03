@@ -165,6 +165,8 @@ class ProjectDashboardTestSeeder extends Seeder
             'id_progetto' => 1,
             'id_autore' => 2,
             'titolo' => 'Prima pubblicazione 1',
+            'descrizione' => 'Descrizione 1',
+            'testo' => 'Testo 1',
             'file_path' => '/storage/test_pdf.pdf',
             'created_at' => now(),
             'updated_at' => now()
@@ -174,6 +176,8 @@ class ProjectDashboardTestSeeder extends Seeder
             'id_progetto' => 1,
             'id_autore' => 2,
             'titolo' => 'Prima pubblicazione 2',
+            'descrizione' => 'Descrizione 2',
+            'testo' => 'Testo 2',
             'file_path' => '/storage/test_pdf.pdf',
             'created_at' => now(),
             'updated_at' => now()
@@ -183,6 +187,8 @@ class ProjectDashboardTestSeeder extends Seeder
             'id_progetto' => 1,
             'id_autore' => 5,
             'titolo' => 'Prima pubblicazione 3',
+            'descrizione' => 'Descrizione 3',
+            'testo' => 'Testo 3',
             'file_path' => '/storage/test_pdf.pdf',
             'created_at' => now(),
             'updated_at' => now()
@@ -191,24 +197,30 @@ class ProjectDashboardTestSeeder extends Seeder
         DB::table('budgets')->insert([
             'id' => 1,
             'id_progetto' => 1,
-            'scopo' => 'Materie prime',
+            'id_ricercatore' => 6,
+            'scopo' => 'Materiali',
             'budget' => 10.00,
+            'stato' => 'rifiutato',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('budgets')->insert([
             'id' => 2,
             'id_progetto' => 1,
-            'scopo' => 'Attrezzature',
+            'id_ricercatore' => 5,
+            'scopo' => 'Divulgazione',
             'budget' => 20.22,
+            'stato' => 'in attesa',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('budgets')->insert([
             'id' => 3,
             'id_progetto' => 1,
-            'scopo' => 'Stipendi',
+            'id_ricercatore' => 2,
+            'scopo' => 'Altro',
             'budget' => 33.03,
+            'stato' => 'approvato',
             'created_at' => now(),
             'updated_at' => now()
         ]);
