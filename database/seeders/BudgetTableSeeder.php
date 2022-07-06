@@ -28,17 +28,6 @@ class BudgetTableSeeder extends Seeder
         DB::table('budgets')->insert([
             'id' => 2,
             'id_progetto' => 1,
-            'id_ricercatore' => 2,
-            'scopo' => 'Divulgazione',
-            'budget' => 1000.00,
-            'stato' => 'in attesa',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('budgets')->insert([
-            'id' => 3,
-            'id_progetto' => 1,
             'id_ricercatore' => 5,
             'scopo' => 'Divulgazione',
             'budget' => 250.00,
@@ -48,7 +37,7 @@ class BudgetTableSeeder extends Seeder
         ]);
 
         DB::table('budgets')->insert([
-            'id' => 4,
+            'id' => 3,
             'id_progetto' => 1,
             'id_ricercatore' => 6,
             'scopo' => 'Pubblicazione',
