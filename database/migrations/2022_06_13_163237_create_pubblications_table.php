@@ -20,7 +20,7 @@ class CreatePubblicationsTable extends Migration
             $table->string('titolo');
             $table->string('descrizione')->nullable(true);
             $table->string('testo')->nullable(true);
-            $table->string('file_path');
+            $table->string('file_path')->nullable();
             $table->timestamps();
         });
 

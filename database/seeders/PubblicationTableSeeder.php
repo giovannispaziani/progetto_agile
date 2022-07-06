@@ -19,8 +19,8 @@ class PubblicationTableSeeder extends Seeder
             'id_progetto' => 1,
             'id_autore' => 2,
             'titolo' => 'Prima pubblicazione 1',
-            'descrizione' => '',
-            'testo' => '',
+            'descrizione' => 'Prima descrizione 1',
+            'testo' => 'Primo testo 1',
             'file_path' => '/storage/test_pdf.pdf',
             'created_at' => now(),
             'updated_at' => now()
