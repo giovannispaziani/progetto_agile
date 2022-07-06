@@ -33,7 +33,7 @@ class dashboardAcquistiController extends Controller
         if(DB::table("projects")->where("id",$id)->exists()){
             $id_responsabile=DB::table("projects")->where("id",$id)->pluck("id_responsabile")->first();
             if(Auth::user()->type!="Manager" || Auth::user()->id != $id_responsabile){abort(403);}
-            $spese=DB::table('budgets')->where("stato",null)->where("id_progetto",$id)->get();
+            $spese=DB::table('budgets')->where("stato","in attesa")->where("id_progetto",$id)->get();
 
             $data=[];
             foreach($spese as $spesa){
@@ -57,7 +57,7 @@ class dashboardAcquistiController extends Controller
         if(DB::table("projects")->where("id",$id)->exists()){
             $id_responsabile=DB::table("projects")->where("id",$id)->pluck("id_responsabile")->first();
             if(Auth::user()->type!="Manager" || Auth::user()->id != $id_responsabile){abort(403);}
-            $spese=DB::table('budgets')->where("stato","!=",null)->where("id_progetto",$id)->get();
+            $spese=DB::table('budgets')->where("stato","!=","in attesa")->where("id_progetto",$id)->get();
 
             $data=[];
             foreach($spese as $spesa){
@@ -84,7 +84,7 @@ class dashboardAcquistiController extends Controller
         if(Auth::user()->type!="Manager" || Auth::user()->id != $id_responsabile){abort(403);}
         if(DB::table("projects")->where("id",$id_progetto)->exists()){
            
-            DB::table('budgets')->where("id",$id_budget)->update(["stato"=>1]);
+            DB::table('budgets')->where("id",$id_budget)->update(["stato"=>"approvato"]);
             return redirect("/dashboard-budget/$id_progetto");
         }
 
@@ -96,7 +96,7 @@ class dashboardAcquistiController extends Controller
         if(DB::table("projects")->where("id",$id_progetto)->exists()){
             $id_responsabile=DB::table("projects")->where("id",$id_progetto)->pluck("id_responsabile")->first();
             if(Auth::user()->type!="Manager" || Auth::user()->id != $id_responsabile){abort(403);}
-            DB::table('budgets')->where("id",$id_budget)->update(["stato" => 0]);
+            DB::table('budgets')->where("id",$id_budget)->update(["stato" => 'rifiutato']);
             return redirect("/dashboard-budget/$id_progetto");
         }
     }
