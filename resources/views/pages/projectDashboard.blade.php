@@ -440,7 +440,7 @@
             </select>
 
             <label for="responsabile">Responsabile</label>
-            <select class="form-control" name="resbonsabile" id="resbonsabile">
+            <select class="form-control" name="responsabile" id="responsabile">
               @foreach ($data['users'] as $user)
               @if($data['id_responsabile'] == $user->id)
               <option value={{ $user->id }} default>{{ $user->name." ".$user->surname }}</option>
