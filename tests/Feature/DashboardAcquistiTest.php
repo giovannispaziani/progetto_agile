@@ -47,7 +47,7 @@ class DashboardAcquistiTest extends TestCase
         $response->assertStatus(403);
     }
 
-    public function test_post_not_responsabile()
+    public function test_post_ricercatore_not_responsabile()
     {
         $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
         $this->seed();
