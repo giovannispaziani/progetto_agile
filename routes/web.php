@@ -9,6 +9,7 @@ use App\Http\Controllers\projectDashboardController;
 use App\Http\Controllers\projectListController;
 use App\Http\Controllers\documentationController;
 use App\Http\Controllers\dashboardAcquistiController;
+use App\Http\Controllers\FileUploadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -148,3 +149,13 @@ Route::post('/aggiungiPubblicazione','App\Http\Controllers\PubblicazioniControll
 /* Aggiungi voce ricercatore */
 Route::get('/aggiungiVoce', 'App\Http\Controllers\AggiungiVoceController@index')->name('aggiungiVoce');
 Route::post('/aggiungiVoce','App\Http\Controllers\AggiungiVoceController@aggiungiVoce')->name('aggiungiVoce-post');
+
+
+Route::get('file-upload', [ FileUploadController::class, 'getFileUploadForm' ])->name('get.fileupload');
+Route::post('file-upload', [ FileUploadController::class, 'store' ])->name('store.file');
+
+/*Dashboard Finanziatore*/
+Route::get('/dashboardFinanziatore', 'App\Http\Controllers\DashboardFinanziatoreController@index')->name('dashboardFinanziatore')->middleware();
+
+/*Budget Finanziatore*/
+Route::get('/budgetFinanziatore/{id_progetto}','App\Http\Controllers\BudgetFinanziatoreController@index')->name('budgetFinanziatore')->middleware();

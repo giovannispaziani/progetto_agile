@@ -37,7 +37,7 @@ class DashboardProgettiRicercatoreTest extends TestCase
 
         $response = $this->actingAs($user)->get("/dashboardProgettiRicercatore"); //controlla se passa il parametro (id) alla rotta
 
-        $response->assertStatus(200); //si assicura che venga fornita correttamente la pagina
+        $response->assertStatus(200); //si assicura che venga fornita la pagina
 
     }
 
