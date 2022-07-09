@@ -119,6 +119,28 @@ class HomeController extends Controller
         
         return view('pages.projectList')->with("title", "Creazione Progetto")->with("data",$data);
 
+        }else  if($userType == "Finanziatore") {
+
+            $id_finanziatore = Auth::user()->id;
+
+            $progetti = DB::table("finanziatore")->get ("*");
+
+            $data = [];
+
+            foreach ($progetti as $progetto) {
+                    
+                $finanziati = DB::table("finanziatore")->where("id_finanziatore",$progetto->id_finanziatore)->first();
+    
+                $a = [
+                    "id_progetto" => $progetto->id_progetto,
+                    "fondo" => $progetto->fondo
+                ];
+    
+                array_push($data,$a);
+            }
+
+                return view('pages.dashboardFinanziatore')->with("title", "Dashboard Finanziatore")->with("data",$data);
+
         } else {
             return view('Home');
         }

@@ -7,7 +7,7 @@
     @include('pages.projectList')
     @break
   @case("Finanziatore")
-    @include('pages.dashboardRicercatore')
+    @include('pages.dashboardFinanziatore')
     @break
 @endswitch
 
