@@ -159,3 +159,4 @@ Route::get('/dashboardFinanziatore', 'App\Http\Controllers\DashboardFinanziatore
 
 /*Budget Finanziatore*/
 Route::get('/budgetFinanziatore/{id_progetto}','App\Http\Controllers\BudgetFinanziatoreController@index')->name('budgetFinanziatore')->middleware();
+

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pubblication;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PubblicazioniController extends Controller
 {
@@ -47,6 +48,11 @@ class PubblicazioniController extends Controller
         $this->middleware('auth');
     }
 
+    public function getFileUploadForm()
+    {
+        return view('file-upload2');
+    }
+
     public function aggiungiPubblicazione(Request $request) {
 
         $pubblications = new Pubblication();
@@ -55,7 +61,20 @@ class PubblicazioniController extends Controller
         $pubblications->titolo = $request['titolo'];
         $pubblications->descrizione = $request['descrizione'];
         $pubblications->testo = $request['testo'];
-        $pubblications->file_path = " ";
+        
+        $request->validate([
+            'file' => 'required|mimes:pdf,xlxs,xlx,docx,doc,csv,txt,png,gif,jpg,jpeg|max:2048',
+        ]);
+ 
+        $fileName = $request->file->getClientOriginalName();
+        $file_path = 'uploads/' . $fileName;
+ 
+        $path = Storage::disk('public')->put($file_path, file_get_contents($request->file));
+        $path = Storage::disk('public')->url($path);
+ 
+        // Perform the database operation here
+        $pubblications->file_path = $file_path;
+
         $pubblications->save();
 
         return view('pages.pubblicazioneSuccess')->with("message","Pubblicazione aggiunta");

@@ -14,19 +14,25 @@
                 <p>{{ __('Dashboard') }}</p>
             </a>
           </li>
-          <li class="nav-item{{ $activePage == 'Richieste Budget' ? ' active' : '' }}">
+          <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+            <a class="nav-link" href="../users/{{ auth()->user()->id }}">
+            <i class="material-icons">face</i>
+              <p>{{ __('Profilo pubblico')}}</p>
+            </a>
+          </li>
+          <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('budgetRicercatore') }}">
               <i class="material-icons">monetization_on</i>
                 <p>{{ __('Richieste Budget') }}</p>
             </a>
           </li>
-          <li class="nav-item{{ $activePage == 'Pubblicazioni' ? ' active' : '' }}">
+          <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('aggiungiPubblicazione') }}">
               <i class="material-icons">library_books</i>
                 <p>{{ __('Pubblicazioni') }}</p>
             </a>
           </li>
-          <li class="nav-item{{ $activePage == 'Dashboard' ? ' active' : '' }}">
+          <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('pubblicazioniScientifiche') }}">
               <i class="material-icons">library_books</i>
                 <p>{{ __('Pubblicazioni scientifiche') }}</p>
@@ -42,6 +48,12 @@
   <div class="sidebar-wrapper">
     <ul class="nav">
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+        <a class="nav-link" href="../users/{{ auth()->user()->id }}">
+        <i class="material-icons">face</i>
+          <p>{{ __('Profilo pubblico')}}</p>
+        </a>
+      </li>
+      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('project-list') }}">
         <i class="material-icons">work</i>
           <p>{{ __('Lista progetti')}}</p>
@@ -56,19 +68,13 @@
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('project-create') }}">
         <i class="material-icons">work</i>
-          <p>{{ __('Creazione progetto ')}}</p>
+          <p>{{ __('Creazione progetto')}}</p>
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('progect-list-responsabile') }}">
           <i class="material-icons">monetization_on</i>
             <p>{{ __('Dashboard budget') }}</p>
-        </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-        <a class="nav-link" href="../users/{{ auth()->user()->id }}">
-        <i class="material-icons">face</i>
-          <p>{{ __('Profilo pubblico ')}}</p>
         </a>
       </li>
     </ul>
