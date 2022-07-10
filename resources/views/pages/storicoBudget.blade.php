@@ -28,12 +28,7 @@
                     <td>{{ $budget['scopo'] }}</td>
                     <td>{{ $budget['budget'] }}</td> 
                     <td>{{ $budget['ricercatore'] }}</td> 
-                    @if($budget['stato'])
-                    <td><label>Accettata</label></td>
-                    @else
-                    <td><label>Rifiutata</label></td>
-                    @endif
-                    <td></td>
+                    <td><label>{{$budget['stato']}}</label></td>
                   </tr>
                 @empty
                   <tr>

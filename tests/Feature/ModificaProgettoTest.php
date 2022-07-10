@@ -119,7 +119,7 @@ class ModificaProgettoTest extends TestCase
             'inizio' => "2030-01-01",
             'fine' => "2033-02-02",
             'stato' => "concluso",
-            'resbonsabile' => $this->newResponsabile->id
+            'responsabile' => $this->newResponsabile->id
         ];
         $this->expectedEdit = [
             'id' => 7,
@@ -239,13 +239,13 @@ class ModificaProgettoTest extends TestCase
         $getResponse = $this->actingAs($this->authorizedUserManager)->get('/project-dashboard/7');
         $getResponse->assertStatus(200);
 
-        //$getResponse->assertSee("Modifica");
-        //$response = $this->actingAs($this->authorizedUserManager)->post('/modifica-progetto',$this->edit);
+        $getResponse->assertSee("Modifica");
+        $response = $this->actingAs($this->authorizedUserManager)->post('/modifica-progetto',$this->edit);
 
-        //$response->assertStatus(302);
+        $response->assertStatus(302);
 
-        //$this->assertDatabaseHas('projects', $this->expectedEdit);
-        //$this->assertDatabaseMissing('projects', $this->projectData);
+        $this->assertDatabaseHas('projects', $this->expectedEdit);
+        $this->assertDatabaseMissing('projects', $this->projectData);
 
     }
 

@@ -153,3 +153,10 @@ Route::post('/aggiungiVoce','App\Http\Controllers\AggiungiVoceController@aggiung
 
 Route::get('file-upload', [ FileUploadController::class, 'getFileUploadForm' ])->name('get.fileupload');
 Route::post('file-upload', [ FileUploadController::class, 'store' ])->name('store.file');
+
+/*Dashboard Finanziatore*/
+Route::get('/dashboardFinanziatore', 'App\Http\Controllers\DashboardFinanziatoreController@index')->name('dashboardFinanziatore')->middleware();
+
+/*Budget Finanziatore*/
+Route::get('/budgetFinanziatore/{id_progetto}','App\Http\Controllers\BudgetFinanziatoreController@index')->name('budgetFinanziatore')->middleware();
+
