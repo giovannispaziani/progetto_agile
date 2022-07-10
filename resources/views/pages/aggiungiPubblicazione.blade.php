@@ -40,10 +40,34 @@
                         <input type="text" class="form-control" name="testo" placeholder="Inserisci testo pubblicazione">
                       </div>
 
+                      <form action="{{ route('aggiungiPubblicazione') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                           <div class="col-md-6">
+                              <input type="file" name="file" class="form-control"/>
+                           </div>
+                           <div class="col-md-6">
+                              <button type="submit" class="btn btn-success">Upload File...</button>
+                           </div>
+                        </div>
+                     </form>
+
               <div class="card-footer ml-auto mr-auto">
                 <button type="submit" class="btn btn-primary">{{ __('Aggiungi') }}</button>
               </div>
           </form>
+
+          <form action="{{ route('aggiungiPubblicazione') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+               <div class="col-md-6">
+                  <input type="file" name="file" class="form-control"/>
+               </div>
+               <div class="col-md-6">
+                  <button type="submit" class="btn btn-success">Upload File...</button>
+               </div>
+            </div>
+         </form>
         </div>
       </div>
     </div>
