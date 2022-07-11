@@ -49,7 +49,6 @@ class PubblicazioniTest extends TestCase
         DB::table('pubblications')->where("titolo","Pubblicazione Test")->delete();
 
         $file = UploadedFile::fake()->create('test.pdf');
-            //->storeAs('uploads/', test.pdf);
 
         $response = $this->actingAs($user)
                         ->post('/aggiungiPubblicazione',[
