@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" name="aggiungipubb" action="{{ route('aggiungiPubblicazione-post') }}" autocomplete="off" class="form-horizontal">
+          <form method="post" name="aggiungipubb" action="{{ route('aggiungiPubblicazione-post') }}" class="form-horizontal" enctype="multipart/form-data" >
             @csrf
             <div class="card ">
                 <div class="card-header card-header-primary">
@@ -16,7 +16,7 @@
 
                     <!--CHOICE BOX PROGETTO-->
                     <label for="titolo">Seleziona progetto</label>
-                    <select class="form-control" name="choices-button" id="choices-button" placeholder="Departure" value="progetto">
+                    <select class="form-control" name="id_progetto" id="choices-button" placeholder="Departure" value="progetto">
                         @forelse ($data['progetti_attivi'] as $progettoattivo)
                         <option value="{{ $progettoattivo['id'] }}">{{ $progettoattivo['nome'] }}</option>
                         @empty
@@ -25,6 +25,7 @@
                     </select>
                     <!--FINE CHOICE BOX PROGETTO-->
                     <br>
+
                     <div class="form-group">
                         <label for="titolo">Titolo</label>
                         <input type="text" class="form-control" name="titolo" placeholder="Inserisci titolo pubblicazione">
@@ -39,35 +40,16 @@
                         <label for="testo">Testo</label>
                         <input type="text" class="form-control" name="testo" placeholder="Inserisci testo pubblicazione">
                       </div>
-
-                      <form action="{{ route('aggiungiPubblicazione') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="row">
-                           <div class="col-md-6">
-                              <input type="file" name="file" class="form-control"/>
-                           </div>
-                           <div class="col-md-6">
-                              <button type="submit" class="btn btn-success">Upload File...</button>
-                           </div>
-                        </div>
-                     </form>
+                      <div class="row">
+                     <div class="col-md-6">
+                        <input type="file" name="file" class="form-control"/>
+                     </div>
+                </form>
 
               <div class="card-footer ml-auto mr-auto">
                 <button type="submit" class="btn btn-primary">{{ __('Aggiungi') }}</button>
               </div>
           </form>
-
-          <form action="{{ route('aggiungiPubblicazione') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="row">
-               <div class="col-md-6">
-                  <input type="file" name="file" class="form-control"/>
-               </div>
-               <div class="col-md-6">
-                  <button type="submit" class="btn btn-success">Upload File...</button>
-               </div>
-            </div>
-         </form>
         </div>
       </div>
     </div>

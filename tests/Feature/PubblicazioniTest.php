@@ -8,6 +8,7 @@ use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\UploadedFile;
 
 class PubblicazioniTest extends TestCase
 {
@@ -47,16 +48,19 @@ class PubblicazioniTest extends TestCase
 
         DB::table('pubblications')->where("titolo","Pubblicazione Test")->delete();
 
+        $file = UploadedFile::fake()->create('test.pdf');
+            //->storeAs('uploads/', test.pdf);
+
         $response = $this->actingAs($user)
                         ->post('/aggiungiPubblicazione',[
-                            'choices-button' => 1,
+                            'file' => $file,
+                            'id_progetto' => 1,
                             'titolo' => "Pubblicazione Test",
                             'descrizione' => "Descrizione Test",
                             'testo' => "Test",
-                            'file_path' => "test_pdf.pdf"
+                            'file_path' => "uploads/test.pdf"
                          ]);
 
-        $response->assertSee("Pubblicazione aggiunta");
 
                          $this->assertDatabaseHas('pubblications',[
                             'titolo' => "Pubblicazione Test",

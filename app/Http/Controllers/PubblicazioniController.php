@@ -7,6 +7,7 @@ use App\Models\Pubblication;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PubblicazioniController extends Controller
 {
@@ -48,32 +49,33 @@ class PubblicazioniController extends Controller
         $this->middleware('auth');
     }
 
-    public function getFileUploadForm()
-    {
-        return view('file-upload2');
-    }
 
     public function aggiungiPubblicazione(Request $request) {
 
+        
+        $request->validate([
+                    'file' => 'required|mimes:pdf,xlxs,xlx,docx,doc,csv,txt|max:6024',
+                ]);
+
+
         $pubblications = new Pubblication();
         $pubblications->id_autore = Auth::user()->id;
-        $pubblications->id_progetto = $request['choices-button'];
+        $pubblications->id_progetto = $request['id_progetto'];
         $pubblications->titolo = $request['titolo'];
         $pubblications->descrizione = $request['descrizione'];
         $pubblications->testo = $request['testo'];
         
-        $request->validate([
-            'file' => 'required|mimes:pdf,xlxs,xlx,docx,doc,csv,txt,png,gif,jpg,jpeg|max:2048',
-        ]);
+        
+        
  
-        $fileName = $request->file->getClientOriginalName();
-        $file_path = 'uploads/' . $fileName;
+        $fileName = Str::random(25);
+        $file_path = "uploads/$fileName";
  
         $path = Storage::disk('public')->put($file_path, file_get_contents($request->file));
         $path = Storage::disk('public')->url($path);
- 
+        
         // Perform the database operation here
-        $pubblications->file_path = $file_path;
+        $pubblications->file_path =$file_path;
 
         $pubblications->save();
 
