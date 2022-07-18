@@ -160,3 +160,16 @@ Route::get('/dashboardFinanziatore', 'App\Http\Controllers\DashboardFinanziatore
 /*Budget Finanziatore*/
 Route::get('/budgetFinanziatore/{id_progetto}','App\Http\Controllers\BudgetFinanziatoreController@index')->name('budgetFinanziatore')->middleware();
 
+/* Creazione sottoprogetto  */
+Route::get('/aggiungiSottoprogetto/{id_progetto}', 'App\Http\Controllers\SottoProgettoController@index')->name('aggiungiSottoprogetto');
+Route::post('/aggiungiSottoprogetto', 'App\Http\Controllers\SottoProgettoController@create')->name('aggiungiSottoprogetto-post');
+
+/* Lista sottoprogetti */
+Route::get('/sottoProgettiList/{id_progetto}', 'App\Http\Controllers\ListaSottoProgettiController@index')->name('sottoProgetti-List')->middleware();
+
+/* Creazione milestone  */
+Route::get('/aggiungiMilestone/{id_sottoprogetto}', 'App\Http\Controllers\MilestoneController@index')->name('aggiungiMilestone');
+Route::post('/aggiungiMilestone', 'App\Http\Controllers\MilestoneController@create')->name('aggiungiMilestone-post');
+
+/* Lista milestone */
+Route::get('/milestoneList/{id_sottoprogetto}', 'App\Http\Controllers\ListaMilestoneController@index')->name('milestone-List')->middleware();

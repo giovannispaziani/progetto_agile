@@ -44,6 +44,9 @@
       </div>
 
 <!--TABELLA PROGETTI-->
+
+@if (!empty($data['pubblicazioni_progetti']))
+
 <div class="card card-nav-tabs" style="grid-column: 1/3 !important">
   <div class="card-header card-header-primary text-center" style="padding: 0.3em"> I MIEI CONTRIBUTI</div>
 
@@ -80,8 +83,15 @@
   </div>
 
 </div>
-
+@else
+<div class="alert alert-primary" role="alert">
+    Nessun contributo a progetti della piattaforma..
+</div>
+@endif
+</div>
 <!--TABELLA PUBBLICAZIONI SCIENTIFICHE-->
+
+@if (!empty($data['pubblicazioni_scientifiche']))
 <div class="card card-nav-tabs" style="grid-column: 1/3 !important">
     <div class="card-header card-header-primary text-center" style="padding: 0.3em"> PUBBLICAZIONI SCIENTIFICHE</div>
 
@@ -104,19 +114,18 @@
               <td>{{ $pubblicazionesc['fontesc'] }}</td>
           </tr>
         @empty
-          <tr>
-              <td class="text-center"><a href="#"></a></td>
-              <td>Nessuna</td>
-              <td>pubblicazione</td>
-          </tr>
         @endforelse
       </tbody>
 
   </table>
 
       </div>
+      @else
+    <div class="alert alert-primary" role="alert">
+        Nessuna pubblicazione esterna..
     </div>
-
+    @endif
+    </div>
     </div>
   </div>
   @endsection
