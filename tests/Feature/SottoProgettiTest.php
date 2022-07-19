@@ -80,7 +80,7 @@ class SottoProgettiTest extends TestCase
                             'id_progetto' => 1,
                             'titolo' => "Sottoprogetto Test 1",
                             'descrizione' => "Descrizione sottoprogetto Test",
-                            'fine' => "2022-06-15"
+                            'data_fine' => "2022-06-15"
                          ]);
 
                          $this->assertDatabaseHas('subprojects', [
