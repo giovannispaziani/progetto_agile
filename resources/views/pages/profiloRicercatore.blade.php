@@ -69,26 +69,18 @@
             <td>{{ $pubblicazionepr['testopr'] }}</td>
         </tr>
       @empty
-        <tr>
-            <td class="text-center"><a href="#"></a></td>
-            <td>Nessun</td>
-            <td>contributo</td>
-        </tr>
       @endforelse
     </tbody>
-
-</table>
-
-    </div>
-  </div>
+  </table>
 
 </div>
 @else
-<div class="alert alert-primary" role="alert">
-    Nessun contributo a progetti della piattaforma..
+<div class="alert alert-primary" role="alert" style="width: 95%; margin-left: auto; margin-right: auto; text-align: center">
+    NESSUN CONTRIBUTO A PROGETTI DELLA PIATTAFORMA
 </div>
 @endif
-</div>
+
+
 <!--TABELLA PUBBLICAZIONI SCIENTIFICHE-->
 
 @if (!empty($data['pubblicazioni_scientifiche']))
@@ -121,8 +113,8 @@
 
       </div>
       @else
-    <div class="alert alert-primary" role="alert">
-        Nessuna pubblicazione esterna..
+    <div class="alert alert-primary" role="alert" style="width: 95%; margin-left: auto; margin-right: auto; text-align: center">
+        NESSUNA PUBBLICAZIONE ESTERNA
     </div>
     @endif
     </div>

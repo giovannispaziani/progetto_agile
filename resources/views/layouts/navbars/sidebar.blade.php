@@ -88,10 +88,16 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
+        <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('home') }}">
+            <i class="material-icons">dashboard</i>
+              <p>{{ __('Dashboard')}}</p>
+            </a>
+          </li>
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="../users/{{ auth()->user()->id }}">
-        <i class="material-icons">face</i>
-          <p>{{ __('Profilo pubblico ')}}</p>
+            <i class="material-icons">face</i>
+              <p>{{ __('Profilo pubblico')}}</p>
         </a>
       </li>
     </ul>
