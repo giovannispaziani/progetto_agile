@@ -173,3 +173,6 @@ Route::post('/aggiungiMilestone', 'App\Http\Controllers\MilestoneController@crea
 
 /* Lista milestone */
 Route::get('/milestoneList/{id_sottoprogetto}', 'App\Http\Controllers\ListaMilestoneController@index')->name('milestone-List')->middleware();
+
+/* Stato Avanzamento Lavori */
+Route::get('/statoAvanzamentoLavori/{id_progetto}', 'App\Http\Controllers\StatoAvanzamentoLavoriController@index')->name('statoAvanzamentoLavori')->middleware();
