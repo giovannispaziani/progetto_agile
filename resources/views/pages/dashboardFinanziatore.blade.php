@@ -15,6 +15,7 @@
                   <th></th>
                   <th>Id progetto</th>
                   <th>Fondo (€)</th>
+                  <th>Stato Avanzamento Lavori</th>
               </tr>
           </thead>
           <tbody>
@@ -23,6 +24,7 @@
                   <td class="text-center"><a href="../budgetFinanziatore/{{ $progetto['id_progetto'] }}">&#10150;</a></td>
                   <td>{{ $progetto['id_progetto'] }}</td>
                   <td>{{ $progetto['fondo'] }}</td>
+                  <td><a href="../statoAvanzamentoLavori/{{ $progetto['id_progetto'] }}"><button class="btn btn-primary">SAL</button></a></td>
               </tr>
             @empty
             @endforelse
