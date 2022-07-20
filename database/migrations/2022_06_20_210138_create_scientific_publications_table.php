@@ -36,6 +36,6 @@ class CreateScientificPublicationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scientific_publication');
+        Schema::dropIfExists('scientific_publications');
     }
 }

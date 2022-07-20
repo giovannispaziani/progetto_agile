@@ -16,7 +16,7 @@ class CreateSottoprogettiTable extends Migration
         Schema::create('subprojects', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_responsabile');
-            $table->unsignedBigInteger('id_progetto');
+            $table->unsignedBigInteger('id_progetto')->constrained('projects')->onDelete('cascade');
             $table->string('titolo');
             $table->string('descrizione');
             $table->date('data_fine');
@@ -35,6 +35,6 @@ class CreateSottoprogettiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sottoprogetti');
+        Schema::dropIfExists('subprojects');
     }
 }

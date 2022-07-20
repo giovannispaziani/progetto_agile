@@ -73,18 +73,18 @@ class SottoProgettiTest extends TestCase
     {
         $this->seed();
 
-        $user = User::where('id', 3)->first();
+        $user = User::where('id', 1)->first();
 
         $response = $this->actingAs($user)->post('/aggiungiSottoprogetto',[
-                            'responsabile' => 1,
+                            'responsabile' => 3,
                             'id_progetto' => 1,
                             'titolo' => "Sottoprogetto Test 1",
                             'descrizione' => "Descrizione sottoprogetto Test",
-                            'data_fine' => "2022-06-15"
+                            'fine' => "2022-08-15"
                          ]);
 
                          $this->assertDatabaseHas('subprojects', [
-                            'titolo' => 'Sottoprogetto Test 1',
+                            'titolo' => 'Sottoprogetto Test 1'
                         ]);
 
         $response->assertStatus(302);
