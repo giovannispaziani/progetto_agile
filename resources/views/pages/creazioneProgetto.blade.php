@@ -3,8 +3,8 @@
 @section('content')
   <div class="content">
     <div class="container-fluid">
-    
-    
+
+
     <form class="form" method="POST" action="{{ route('project-create-post') }}">
         @csrf
 

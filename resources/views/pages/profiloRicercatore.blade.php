@@ -44,6 +44,9 @@
       </div>
 
 <!--TABELLA PROGETTI-->
+
+@if (!empty($data['pubblicazioni_progetti']))
+
 <div class="card card-nav-tabs" style="grid-column: 1/3 !important">
   <div class="card-header card-header-primary text-center" style="padding: 0.3em"> I MIEI CONTRIBUTI</div>
 
@@ -66,22 +69,21 @@
             <td>{{ $pubblicazionepr['testopr'] }}</td>
         </tr>
       @empty
-        <tr>
-            <td class="text-center"><a href="#"></a></td>
-            <td>Nessun</td>
-            <td>contributo</td>
-        </tr>
       @endforelse
     </tbody>
-
-</table>
-
-    </div>
-  </div>
+  </table>
 
 </div>
+@else
+<div class="alert alert-primary" role="alert" style="width: 95%; margin-left: auto; margin-right: auto; text-align: center">
+    NESSUN CONTRIBUTO A PROGETTI DELLA PIATTAFORMA
+</div>
+@endif
+
 
 <!--TABELLA PUBBLICAZIONI SCIENTIFICHE-->
+
+@if (!empty($data['pubblicazioni_scientifiche']))
 <div class="card card-nav-tabs" style="grid-column: 1/3 !important">
     <div class="card-header card-header-primary text-center" style="padding: 0.3em"> PUBBLICAZIONI SCIENTIFICHE</div>
 
@@ -104,19 +106,18 @@
               <td>{{ $pubblicazionesc['fontesc'] }}</td>
           </tr>
         @empty
-          <tr>
-              <td class="text-center"><a href="#"></a></td>
-              <td>Nessuna</td>
-              <td>pubblicazione</td>
-          </tr>
         @endforelse
       </tbody>
 
   </table>
 
       </div>
+      @else
+    <div class="alert alert-primary" role="alert" style="width: 95%; margin-left: auto; margin-right: auto; text-align: center">
+        NESSUNA PUBBLICAZIONE ESTERNA
     </div>
-
+    @endif
+    </div>
     </div>
   </div>
   @endsection

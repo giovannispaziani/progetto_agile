@@ -19,7 +19,7 @@
 
     <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
-        
+
         <table class="table">
           <thead>
               <tr class="card-header card-header-primary">
@@ -43,7 +43,7 @@
               </tr>
             @endforelse
           </tbody>
-    
+
         </table>
 
       </div>
@@ -60,7 +60,7 @@
     </div>
     <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
-        
+
         <table class="table">
           <thead>
               <tr class="card-header card-header-primary">
@@ -84,7 +84,7 @@
               </tr>
             @endforelse
           </tbody>
-  
+
         </table>
 
       </div>
@@ -101,7 +101,7 @@
     </div>
     <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
-        
+
         <table class="table">
           <thead>
               <tr class="card-header card-header-primary">
@@ -125,14 +125,14 @@
               </tr>
             @endforelse
           </tbody>
-  
+
         </table>
 
       </div>
     </div>
   </div>
 </div>
-<!--FINE COLLAPSE-->    
+<!--FINE COLLAPSE-->
 </div>
 @endsection
 

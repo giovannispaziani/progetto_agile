@@ -13,6 +13,8 @@
         data-target="#deleteDialog">Elimina progetto</button>
       <button type="button" class="btn btn-default btn-round btn-sm" data-toggle="modal"
         data-target="#editDialog">Modifica</button>
+        <a href="../sottoProgettiList/{{ $data['id_progetto'] }}" class="btn btn-primary btn-round" role="button" aria-disabled="true">Lista sottoprogetti</a>
+        <a href="../aggiungiSottoprogetto/{{ $data['id_progetto'] }}" class="btn btn-primary btn-round" role="button" aria-disabled="true">Aggiungi sottoprogetto</a>
     </div>
 
     @endif
@@ -202,7 +204,7 @@
               <tr>
                 <td class="text-center"><a href="../pubblicazioni/{{ $pubblicazione['id'] }}">&#10150;</a></td>
                 <td>{{ $pubblicazione['titolo'] }}</td>
-                <td>{{ $pubblicazione['autore'] }}</td>              
+                <td>{{ $pubblicazione['autore'] }}</td>
                 @auth
                   @if(Auth::user()->id == $data['id_responsabile'])
                     <td>
@@ -236,20 +238,20 @@
             <tr>
               <th class="text-center">#</th>
               <th>Nome</th>
-              <th>Cognome</th>    
+              <th>Cognome</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td class="text-center">1</td>
               <td>Andrew Mike</td>
-              <td>Develop</td> 
+              <td>Develop</td>
             </tr>
             <tr>
               <td class="text-center">2</td>
               <td>John Doe</td>
-              <td>Design</td>   
-            </tr>   
+              <td>Design</td>
+            </tr>
           </tbody>
         </table>
       </div> -->
@@ -263,20 +265,20 @@
             <tr>
               <th class="text-center">#</th>
               <th>Nome</th>
-              <th>Cognome</th>    
+              <th>Cognome</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td class="text-center">1</td>
               <td>Andrew Mike</td>
-              <td>Develop</td> 
+              <td>Develop</td>
             </tr>
             <tr>
               <td class="text-center">2</td>
               <td>John Doe</td>
-              <td>Design</td>   
-            </tr>   
+              <td>Design</td>
+            </tr>
           </tbody>
         </table>
       </div> -->

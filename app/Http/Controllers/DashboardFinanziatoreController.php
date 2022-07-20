@@ -8,30 +8,29 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardFinanziatoreController extends Controller
 {
-    
+
     public function index()
     {
-        if (Auth::user()->type == "Finanziatore") { $id_finanziatore = Auth::user()->id; }
+        if (Auth::user()->type == "Finanziatore") {
 
         $id_finanziatore = Auth::user()->id;
 
-        $progetti = DB::table("finanziatore")->get ("*");
+        $progetti = DB::table("finanziatore")->where("id_finanziatore", $id_finanziatore)->get();
 
         $data = [];
 
         foreach ($progetti as $progetto) {
-                
-            $finanziati = DB::table("finanziatore")->where("id_finanziatore",$progetto->id_finanziatore)->first();
 
             $a = [
-                "id_progetto" => $progetto->id_progetto,
-                "fondo" => $progetto->fondo
-            ];
+           "id_progetto" => $progetto->id_progetto,
+           "fondo" => $progetto->fondo,
+           ];
 
-            array_push($data,$a);
+            array_push($data, $a);
         }
-                
+
+
                 return view('pages.dashboardFinanziatore')->with("title", "Dashboard Finanziatore")->with("data",$data);
-        
+        }
     }
 }
