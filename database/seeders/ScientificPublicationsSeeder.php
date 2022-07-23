@@ -15,6 +15,7 @@ class ScientificPublicationsSeeder extends Seeder
     public function run()
     {
         DB::table('scientific_publications')->insert([
+            'id' => 1,
             'id_ricercatore' => 2,
             'titolo' => 'nasa',
             'descrizione' => 'pubblicazione nasa',
@@ -25,6 +26,7 @@ class ScientificPublicationsSeeder extends Seeder
         ]);
 
         DB::table('scientific_publications')->insert([
+            'id' => 2,
             'id_ricercatore' => 2,
             'titolo' => 'unicef',
             'descrizione' => 'pubblicazione unicef',
@@ -35,6 +37,7 @@ class ScientificPublicationsSeeder extends Seeder
         ]);
 
         DB::table('scientific_publications')->insert([
+            'id' => 3,
             'id_ricercatore' => 2,
             'titolo' => 'crocerossa',
             'descrizione' => 'pubblicazione crocerossa',

@@ -12,13 +12,18 @@ use Illuminate\Http\UploadedFile;
 
 class PubblicazioniTest extends TestCase
 {
-
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
+
+        $this->seed();
+    }
 
     public function test_publication_page_get()
     {
-
-        $this->seed();
 
         $user = User::where('id', 2)->first();
 
@@ -31,9 +36,6 @@ class PubblicazioniTest extends TestCase
 
     public function test_publication_post()
     {
-
-        $this->seed();
-        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
         $user = User::where('id', 2)->first();
 
@@ -55,6 +57,33 @@ class PubblicazioniTest extends TestCase
                          $this->assertDatabaseHas('pubblications',[
                             'titolo' => "Pubblicazione Test",
                         ]);
+    }
+
+
+    public function test_publication_delete_as_author()
+    {
+        $user = User::where('id', 2)->first();
+
+        $response = $this->actingAs($user)->get('/eliminaPubblicazione/2');
+
+        $response->assertStatus(302);
+
+        $this->assertDatabaseMissing('pubblications',[
+            'id' => 2,
+        ]);
+    }
+
+    public function test_publication_delete_as_unauthorized()
+    {
+        $user = User::where('id', 5)->first();
+
+        $response = $this->actingAs($user)->get('/eliminaPubblicazione/2');
+
+        $response->assertForbidden();
+
+        $this->assertDatabaseHas('pubblications',[
+            'id' => 2,
+        ]);
     }
 
 }
