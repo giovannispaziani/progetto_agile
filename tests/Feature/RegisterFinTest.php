@@ -40,6 +40,9 @@ class RegisterFinTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Finanziatore',
             'password' => Hash::make('secret'),
+            'studi' => 'superiori',
+            'occupazione' => 'fisico',
+            'linkedin' => 'https://it.linkedin.com/',
             'created_at' => now(),
             'updated_at' => now()
         ]);

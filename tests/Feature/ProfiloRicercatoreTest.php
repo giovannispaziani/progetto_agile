@@ -63,11 +63,8 @@ class ProfiloRicercatoreTest extends TestCase
             '1',
             'Prima pubblicazione 2',
             'nasa',
-            'nasa.com',
             'unicef',
-            'unicef.com',
             'crocerossa',
-            'crocerossa.com'
         ]);
     }
 
