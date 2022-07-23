@@ -10,6 +10,8 @@ use App\Http\Controllers\projectListController;
 use App\Http\Controllers\documentationController;
 use App\Http\Controllers\dashboardAcquistiController;
 use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\PubblicazioniController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -145,6 +147,7 @@ Route::post('/refuse-budget',[dashboardAcquistiController::class,'refuseBudget']
 /* Pubblicazione ricercatore */
 Route::get('/aggiungiPubblicazione', 'App\Http\Controllers\PubblicazioniController@index')->name('aggiungiPubblicazione');
 Route::post('/aggiungiPubblicazione','App\Http\Controllers\PubblicazioniController@aggiungiPubblicazione')->name('aggiungiPubblicazione-post');
+Route::get('/eliminaPubblicazione/{id}',[PubblicazioniController::class,'eliminaPubblicazione']);
 
 /* Download file pubblicazione */
 Route::get('/scarica{fileName}', 'App\Http\Controllers\ProfiloRicercatoreController@download')->name('pubblicazionefile.scarica');

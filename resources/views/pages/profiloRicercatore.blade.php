@@ -59,6 +59,8 @@
             <th>Descrizione</th>
             <th>Testo</th>
             <th>Allegato</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -69,6 +71,12 @@
             <td>{{ $pubblicazionepr['descrizionepr'] }}</td>
             <td>{{ $pubblicazionepr['testopr'] }}</td>
             <td><a href="{{route("pubblicazionefile.scarica", $pubblicazionepr['fileName'])}}"><i class="material-icons">file_download</i></a></td>
+            @auth
+              @if(Auth::user()->id == $data['id'])
+                <td><a href="/eliminaPubblicazione/{{$pubblicazionepr['idpr']}}"><button class="btn btn-danger">Elimina</button></a></td>
+                <td><button class="btn btn-default">Modifica</button></td>
+              @endif
+            @endauth
         </tr>
       @empty
       @endforelse

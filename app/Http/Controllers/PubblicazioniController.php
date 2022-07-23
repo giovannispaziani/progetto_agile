@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pubblication;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -84,6 +85,26 @@ class PubblicazioniController extends Controller
 
         return view('pages.pubblicazioneSuccess')->with("message","Pubblicazione aggiunta");
 
+    }
+
+    public function eliminaPubblicazione($id)
+    {
+        
+        try {
+
+            $pubblicazione = Pubblication::where('id', $id)->first();   //pubblicazione in questione
+
+            if(Auth::user()->id == $pubblicazione->id_autore){                     //se è l'autore a fare questa richiesta
+                $pubblicazione->delete();
+            }
+            else{                                        //se NON è l'autore a fare questa richiesta do errore
+                return view('pages.error')->with("title", "errore")->with("description","ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
+            }
+        } catch (\Throwable $th) {
+            return view('pages.error')->with("title", "errore")->with("description","Si è verificato un errore :-(");
+        }
+
+        return redirect('users/'.(Auth::user()->id));   //riporto alla pagina del profilo
     }
 
 }
