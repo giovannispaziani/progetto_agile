@@ -17,19 +17,10 @@ class PubblicazioniTest extends TestCase
 
     public function test_publication_page_get()
     {
-        
+
         $this->seed();
 
-        $user = User::factory()->create([
-            'name' => 'Ricercatore',
-            'surname' => 'Di Prova',
-            'email' => 'ricercatore@prova.com',
-            'email_verified_at' => now(),
-            'type' => 'Ricercatore',
-            'password' => Hash::make('secret'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        $user = User::where('id', 2)->first();
 
         $response = $this->actingAs($user)
                          ->get('/aggiungiPubblicazione');

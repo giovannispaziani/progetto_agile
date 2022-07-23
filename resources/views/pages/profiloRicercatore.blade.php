@@ -58,6 +58,7 @@
             <th>Progetto</th>
             <th>Descrizione</th>
             <th>Testo</th>
+            <th>Allegato</th>
         </tr>
     </thead>
     <tbody>
@@ -67,6 +68,7 @@
             <td>{{ $pubblicazionepr['titolopr'] }}</td>
             <td>{{ $pubblicazionepr['descrizionepr'] }}</td>
             <td>{{ $pubblicazionepr['testopr'] }}</td>
+            <td><a href="{{route("pubblicazionefile.scarica", $pubblicazionepr['fileName'])}}"><i class="material-icons">file_download</i></a></td>
         </tr>
       @empty
       @endforelse
@@ -103,7 +105,7 @@
               <td>{{ $pubblicazionesc['titolosc'] }}</td>
               <td>{{ $pubblicazionesc['descrizionesc'] }}</td>
               <td>{{ $pubblicazionesc['testosc'] }}</td>
-              <td>{{ $pubblicazionesc['fontesc'] }}</td>
+              <td><a href="{{ $pubblicazionesc['fontesc'] }}"><i class="material-icons">link</i></a></td>
           </tr>
         @empty
         @endforelse

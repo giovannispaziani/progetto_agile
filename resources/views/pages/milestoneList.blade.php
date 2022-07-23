@@ -6,7 +6,9 @@
 
     <div class="container-fluid">
           <div class="row">
+            @if(auth()->user()->type == 'Manager')
             <a href="/aggiungiMilestone/{{ $data['id_sottoprogetto'] }}" class="btn btn-primary btn-round" role="button" aria-disabled="true">Aggiungi milestone</a>
+            @endif
             <div class="card card-nav-tabs" style="display: grid !important; grid-template-columns: auto auto !important;">
 
                 <div class="card card-nav-tabs" style="grid-column: 1/3 !important">

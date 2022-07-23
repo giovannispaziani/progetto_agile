@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'table', 'titlePage' => __('Budget Ricercatore')])
+@extends('layouts.app', ['activePage' => 'dashboard', 'titlePage' => __('Budget Ricercatore')])
 
 @section('content')
 
@@ -7,10 +7,11 @@
     <div class="container-fluid">
           <div class="row">
             <a href="/aggiungiVoce" class="btn btn-primary btn-round" role="button" aria-disabled="true">Nuova richiesta</a>
-            <div class="card card-nav-tabs" style="display: grid !important; grid-template-columns: auto auto !important;">
+            
 
   <!--TABELLA VOCI SPESE-->
   <div class="card card-nav-tabs" style="grid-column: 1/3 !important">
+    <br>
     <div class="card-header card-header-primary text-center" style="padding: 0.3em"> VOCI SPESA</div>
 
     <table class="table" style="width: 90%; margin: 0 auto">
@@ -44,7 +45,6 @@
   </table>
 
       </div>
-    </div>
     </div>
         </div>
       </div>

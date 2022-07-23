@@ -146,6 +146,9 @@ Route::post('/refuse-budget',[dashboardAcquistiController::class,'refuseBudget']
 Route::get('/aggiungiPubblicazione', 'App\Http\Controllers\PubblicazioniController@index')->name('aggiungiPubblicazione');
 Route::post('/aggiungiPubblicazione','App\Http\Controllers\PubblicazioniController@aggiungiPubblicazione')->name('aggiungiPubblicazione-post');
 
+/* Download file pubblicazione */
+Route::get('/scarica{fileName}', 'App\Http\Controllers\ProfiloRicercatoreController@download')->name('pubblicazionefile.scarica');
+
 /* Aggiungi voce ricercatore */
 Route::get('/aggiungiVoce', 'App\Http\Controllers\AggiungiVoceController@index')->name('aggiungiVoce');
 Route::post('/aggiungiVoce','App\Http\Controllers\AggiungiVoceController@aggiungiVoce')->name('aggiungiVoce-post');

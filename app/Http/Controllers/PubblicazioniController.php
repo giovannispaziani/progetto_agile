@@ -18,6 +18,7 @@ class PubblicazioniController extends Controller
         $lista_progetti = DB::table("research_groups")->where("id_ricercatore",$id_ricercatore);
 
         $lista_progetti_attivi = DB::table('projects')
+        ->select('projects.id','projects.nome')
         ->join('research_groups', 'research_groups.id_progetto', '=', 'projects.id')
         ->where('id_ricercatore',$id_ricercatore)->where("stato","in corso")
         ->get();
@@ -68,11 +69,13 @@ class PubblicazioniController extends Controller
         
         
  
-        $fileName = Str::random(25);
-        $file_path = "uploads/$fileName";
+        //$fileName = Str::random(25);
+        //$fileName = $file->name;
+        $fileName = $request->file->getClientOriginalName();
+        $file_path = $fileName;
  
-        $path = Storage::disk('public')->put($file_path, file_get_contents($request->file));
-        $path = Storage::disk('public')->url($path);
+        $path = Storage::disk('local')->put($file_path, file_get_contents($request->file));
+        $path = Storage::disk('local')->url($path);
         
         // Perform the database operation here
         $pubblications->file_path =$file_path;

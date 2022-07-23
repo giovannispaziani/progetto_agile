@@ -17,19 +17,7 @@ class BudgetFinanziatoreTest extends TestCase
     {
         $this->seed();
 
-        $user = User::factory()->create([
-            'name' => 'Finanziatore',
-            'surname' => 'Di Prova',
-            'email' => 'finanziatore@prova.com',
-            'email_verified_at' => now(),
-            'type' => 'Finanziatore',
-            'password' => Hash::make('secret'),
-            'studi' => 'Informatica',
-            'occupazione' => 'Sviluppatore Web',
-            'linkedin' => 'https://it.linkedin.com/in/andrea-cibelli-ab058319a?trk=people-guest_people_search-card',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        $user = User::where('id', 4)->first();
 
         $response = $this->actingAs($user)->get("/dashboardFinanziatore");
 

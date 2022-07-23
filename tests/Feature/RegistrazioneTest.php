@@ -31,11 +31,14 @@ class RegisterTest extends TestCase
             'email_verified_at' => now(),
             'type'=>'Ricercatore',
             'password' => 'password',
-            'password_confirmation' => 'password'
+            'password_confirmation' => 'password',
+            'studi' => 'Laurea Triennale in Biotecnologie',
+            'occupazione' => 'Ricercatore scientifico',
+            'linkedin' => 'www.linkedin.com'
         ];
 
         $response = $this->post('/register', $user);
-   
+
         $this->assertDatabaseHas('users', [
             'email' => 'register@gmail.com',
         ]);
@@ -52,6 +55,9 @@ class RegisterTest extends TestCase
             'email_verified_at' => now(),
             'type' => 'Ricercatore',
             'password' => Hash::make('password'),
+            'studi' => 'Laurea Triennale in Biotecnologie',
+            'occupazione' => 'Ricercatore scientifico',
+            'linkedin' => 'www.linkedin.com',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -63,11 +69,14 @@ class RegisterTest extends TestCase
             'email_verified_at' => now(),
             'type'=>'Ricercatore',
             'password' => 'password',
-            'password_confirmation' => 'password'
+            'password_confirmation' => 'password',
+            'studi' => 'Laurea Triennale in Biotecnologie',
+            'occupazione' => 'Ricercatore scientifico',
+            'linkedin' => 'www.linkedin.com'
         ];
 
         $response = $this->post('/register', $user);  //equivalente tasto submit
-        
+
         $this->assertDatabaseHas('users', [      //Affermare che una tabella nel database contiene record che corrispondono
             'email' => 'register@gmail.com',
             'name' => 'Name',
