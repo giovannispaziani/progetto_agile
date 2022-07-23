@@ -11,6 +11,7 @@ use App\Http\Controllers\documentationController;
 use App\Http\Controllers\dashboardAcquistiController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\PubblicazioniController;
+use App\Http\Controllers\PubblicazioniScientificheController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,6 +108,7 @@ Route::get('/project-dashboard/{id}',[projectDashboardController::class,'index']
 /* Pubblicazione scientifica ricercatore */
 Route::get('/pubblicazioniScientifiche', 'App\Http\Controllers\PubblicazioniScientificheController@index')->name('pubblicazioniScientifiche');
 Route::post('/pubblicazioniScientifiche','App\Http\Controllers\PubblicazioniScientificheController@aggiungiPubblicazioneScientifica')->name('pubblicazioniScientifiche-post');
+Route::get('/eliminaPubblicazioneScientifica/{id}',[PubblicazioniScientificheController::class,'eliminaPubblicazione']);
 
 /* Budget Ricercatore */
 Route::get('/budgetRicercatore', 'App\Http\Controllers\BudgetRicercatoreController@index')->name('budgetRicercatore')->middleware();

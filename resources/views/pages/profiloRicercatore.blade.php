@@ -105,6 +105,8 @@
               <th>Descrizione</th>
               <th>Testo</th>
               <th>Fonte</th>
+              <th></th>
+              <th></th>
           </tr>
       </thead>
       <tbody>
@@ -114,6 +116,12 @@
               <td>{{ $pubblicazionesc['descrizionesc'] }}</td>
               <td>{{ $pubblicazionesc['testosc'] }}</td>
               <td><a href="{{ $pubblicazionesc['fontesc'] }}"><i class="material-icons">link</i></a></td>
+              @auth
+                @if(Auth::user()->id == $data['id'])
+                  <td><a href="/eliminaPubblicazioneScientifica/{{$pubblicazionesc['idsc']}}"><button class="btn btn-danger">Elimina</button></a></td>
+                  <td><button class="btn btn-default">Modifica</button></td>
+                @endif
+              @endauth
           </tr>
         @empty
         @endforelse

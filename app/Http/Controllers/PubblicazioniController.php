@@ -98,7 +98,7 @@ class PubblicazioniController extends Controller
                 $pubblicazione->delete();
             }
             else{                                        //se NON è l'autore a fare questa richiesta do errore
-                return view('pages.error')->with("title", "errore")->with("description","ERRORE DI AUTENTICAZIONE: Utente non autorizzato");
+                return response('',403);
             }
         } catch (\Throwable $th) {
             return view('pages.error')->with("title", "errore")->with("description","Si è verificato un errore :-(");

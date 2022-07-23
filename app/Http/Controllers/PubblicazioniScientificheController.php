@@ -35,4 +35,25 @@ class PubblicazioniScientificheController extends Controller
     }
 
 
+    public function eliminaPubblicazione($id)
+    {
+        
+        try {
+
+            $pubblicazione = ScientificPublication::where('id', $id)->first();   //pubblicazione in questione
+
+            if(Auth::user()->id == $pubblicazione->id_ricercatore){                     //se è l'autore a fare questa richiesta
+                $pubblicazione->delete();
+            }
+            else{                                        //se NON è l'autore a fare questa richiesta do errore
+                return response('',403);
+            }
+        } catch (\Throwable $th) {
+            return view('pages.error')->with("title", "errore")->with("description","Si è verificato un errore :-(");
+        }
+
+        return redirect('users/'.(Auth::user()->id));   //riporto alla pagina del profilo
+    }
+
+
 }
