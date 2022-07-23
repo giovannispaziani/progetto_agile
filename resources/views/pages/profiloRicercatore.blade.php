@@ -64,8 +64,8 @@
     <tbody>
       @forelse ($data['pubblicazioni_progetti'] as $pubblicazionepr)
         <tr>
-            <td>{{ $pubblicazionepr['progettopr'] }}</td>
-            <td>{{ $pubblicazionepr['titolopr'] }}</td>
+          <td>{{ $pubblicazionepr['titolopr'] }}</td>
+          <td><a href="/project-dashboard/{{ $pubblicazionepr['id_progettopr'] }}">{{ $pubblicazionepr['progettopr'] }}</a></td>
             <td>{{ $pubblicazionepr['descrizionepr'] }}</td>
             <td>{{ $pubblicazionepr['testopr'] }}</td>
             <td><a href="{{route("pubblicazionefile.scarica", $pubblicazionepr['fileName'])}}"><i class="material-icons">file_download</i></a></td>

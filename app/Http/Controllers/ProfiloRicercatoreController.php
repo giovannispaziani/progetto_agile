@@ -28,6 +28,7 @@ class ProfiloRicercatoreController extends Controller
                 $pubblicazionisc = [];
                 foreach ($scientifiche as $pubblicazionesc) {
 
+                    $pubblicazionisc[$i]['idsc'] = $pubblicazionesc->id;
                     $pubblicazionisc[$i]['titolosc'] = $pubblicazionesc->titolo;
                     $pubblicazionisc[$i]['descrizionesc'] = $pubblicazionesc->descrizione;
                     $pubblicazionisc[$i]['testosc'] = $pubblicazionesc->testo;
@@ -39,8 +40,12 @@ class ProfiloRicercatoreController extends Controller
                 $pubblicazionipr = [];
                 foreach ($pubblicazioni as $pubblicazionepr) {
 
+                    $progetto = DB::table("projects")->where("id", $pubblicazionepr->id_progetto)->first();
+
+                    $pubblicazionipr[$i]['idpr'] = $pubblicazionepr->id;
                     $pubblicazionipr[$i]['titolopr'] = $pubblicazionepr->titolo;
-                    $pubblicazionipr[$i]['progettopr'] = $pubblicazionepr->id_progetto;
+                    $pubblicazionipr[$i]['id_progettopr'] = $pubblicazionepr->id_progetto;
+                    $pubblicazionipr[$i]['progettopr'] = $progetto->nome;
                     $pubblicazionipr[$i]['descrizionepr'] = $pubblicazionepr->descrizione;
                     $pubblicazionipr[$i]['testopr'] = $pubblicazionepr->testo;
                     $pubblicazionipr[$i]['fileName'] = $pubblicazionepr->file_path;
