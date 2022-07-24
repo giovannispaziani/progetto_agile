@@ -87,4 +87,60 @@ class PubblicazioniScientificheTest extends TestCase
             'id' => 2,
         ]);
     }
+
+    public function test_scientific_publication_edit_as_author()
+    {
+        $user = User::where('id', 2)->first();
+
+        $response = $this->actingAs($user)
+            ->post('/modificaPubblicazioneScientifica',[
+                'id' => 2,
+                'titolo' => "ex unicef",
+                'descrizione' => "ex pubblicazione unicef",
+                'testo' => "ex prima pubblicazione unicef",
+                'fonte' => "https://www.unicef.it/missione-e-storia/"
+            ]);
+
+        $response->assertStatus(302);
+
+        $this->assertDatabaseHas('scientific_publications',[
+            'id' => 2,
+            'titolo' => "ex unicef",
+            'descrizione' => "ex pubblicazione unicef",
+            'testo' => "ex prima pubblicazione unicef",
+            'fonte' => "https://www.unicef.it/missione-e-storia/"
+        ]);
+    }
+
+    public function test_scientific_publication_edit_as_unauthorized()
+    {
+        $user = User::where('id', 5)->first();
+
+        $response = $this->actingAs($user)
+            ->post('/modificaPubblicazioneScientifica',[
+                'id' => 2,
+                'titolo' => "ex unicef",
+                'descrizione' => "ex pubblicazione unicef",
+                'testo' => "ex prima pubblicazione unicef",
+                'fonte' => "https://www.unicef.it/missione-e-storia/"
+            ]);
+
+        $response->assertForbidden();
+
+        $this->assertDatabaseMissing('scientific_publications',[
+            'id' => 2,
+            'titolo' => "ex unicef",
+            'descrizione' => "ex pubblicazione unicef",
+            'testo' => "ex prima pubblicazione unicef",
+            'fonte' => "https://www.unicef.it/missione-e-storia/"
+        ]);
+
+        $this->assertDatabaseHas('scientific_publications',[
+            'id' => 2,
+            'titolo' => "unicef",
+            'descrizione' => "pubblicazione unicef",
+            'testo' => "prima pubblicazione unicef",
+            'fonte' => "https://www.unicef.it/"
+        ]);
+    }
 }
