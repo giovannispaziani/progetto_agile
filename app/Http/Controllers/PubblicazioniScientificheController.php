@@ -29,9 +29,32 @@ class PubblicazioniScientificheController extends Controller
         $scientific_publications->fonte = $request['fonte'];
         $scientific_publications->save();
 
-    return view('pages.pubblicazioneSuccess')->with("message","Pubblicazione aggiunta");
+        return view('pages.pubblicazioneSuccess')->with("message","Pubblicazione aggiunta");
 
+    }
 
+    public function modificaPubblicazione(Request $request)
+    {
+        try {
+            $pubblication = ScientificPublication::where('id', $request->id)->first();   //prendo la pubblicazione in questione
+    
+            if (Auth::user()->id != $pubblication->id_ricercatore) {        //mi assicuro che la richiesta provenga del autore
+                return response('',403);
+            }
+    
+            //applico le modifiche richieste
+            $pubblication->fonte = $request['fonte'];
+            $pubblication->titolo = $request['titolo'];
+            $pubblication->descrizione = $request['descrizione'];
+            $pubblication->testo = $request['testo'];
+
+            $pubblication->save();
+
+            return redirect('users/' . (Auth::user()->id));   //riporto alla pagina del profilo
+
+        } catch (\Throwable $th) {
+            return view('pages.error')->with("title", "errore")->with("description", "Si è verificato un errore :-(");
+        }
     }
 
 

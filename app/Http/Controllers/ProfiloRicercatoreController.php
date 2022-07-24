@@ -24,6 +24,12 @@ class ProfiloRicercatoreController extends Controller
 
                 $pubblicazioni = DB::table("pubblications")->where("id_autore", $id)->get();
 
+                $lista_progetti_attivi = DB::table('projects')
+                    ->select('projects.id', 'projects.nome')
+                    ->join('research_groups', 'research_groups.id_progetto', '=', 'projects.id')
+                    ->where('id_ricercatore', $ricercatore->id)->where("stato", "in corso")
+                    ->get();
+
                 $i = 0;
                 $pubblicazionisc = [];
                 foreach ($scientifiche as $pubblicazionesc) {
@@ -52,6 +58,15 @@ class ProfiloRicercatoreController extends Controller
                     $i++;
                 }
 
+                $i = 0;
+                $progetti_attivi = [];
+                foreach ($lista_progetti_attivi as $progettoattivo) {
+                    $progetti_attivi[$i]['id'] = $progettoattivo->id;
+                    $progetti_attivi[$i]['nome'] = $progettoattivo->nome;
+                    $i++;
+                }
+
+
                 $data = [
 
                     "id" => $id,
@@ -62,7 +77,8 @@ class ProfiloRicercatoreController extends Controller
                     "email" => $ricercatore->email,
                     "linkedin" => $ricercatore->linkedin,
                     "pubblicazioni_scientifiche" => $pubblicazionisc,
-                    "pubblicazioni_progetti" => $pubblicazionipr
+                    "pubblicazioni_progetti" => $pubblicazionipr,
+                    "progetti_attivi" => $progetti_attivi
 
                 ];
 

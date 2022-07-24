@@ -109,6 +109,7 @@ Route::get('/project-dashboard/{id}',[projectDashboardController::class,'index']
 Route::get('/pubblicazioniScientifiche', 'App\Http\Controllers\PubblicazioniScientificheController@index')->name('pubblicazioniScientifiche');
 Route::post('/pubblicazioniScientifiche','App\Http\Controllers\PubblicazioniScientificheController@aggiungiPubblicazioneScientifica')->name('pubblicazioniScientifiche-post');
 Route::get('/eliminaPubblicazioneScientifica/{id}',[PubblicazioniScientificheController::class,'eliminaPubblicazione']);
+Route::post('/modificaPubblicazioneScientifica','App\Http\Controllers\PubblicazioniScientificheController@modificaPubblicazione')->name('modificaPubblicazioneScientifica');
 
 /* Budget Ricercatore */
 Route::get('/budgetRicercatore', 'App\Http\Controllers\BudgetRicercatoreController@index')->name('budgetRicercatore')->middleware();
@@ -150,6 +151,7 @@ Route::post('/refuse-budget',[dashboardAcquistiController::class,'refuseBudget']
 Route::get('/aggiungiPubblicazione', 'App\Http\Controllers\PubblicazioniController@index')->name('aggiungiPubblicazione');
 Route::post('/aggiungiPubblicazione','App\Http\Controllers\PubblicazioniController@aggiungiPubblicazione')->name('aggiungiPubblicazione-post');
 Route::get('/eliminaPubblicazione/{id}',[PubblicazioniController::class,'eliminaPubblicazione']);
+Route::post('/modificaPubblicazione','App\Http\Controllers\PubblicazioniController@modificaPubblicazione')->name('modificaPubblicazione');
 
 /* Download file pubblicazione */
 Route::get('/scarica{fileName}', 'App\Http\Controllers\ProfiloRicercatoreController@download')->name('pubblicazionefile.scarica');
