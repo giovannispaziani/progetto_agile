@@ -456,7 +456,7 @@
         </div>
 
         <div class="modal-footer d-flex justify-content-between">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulle</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
           <button type="submit" form="editProject" class="btn btn-primary">Modifica</button>
         </div>
 

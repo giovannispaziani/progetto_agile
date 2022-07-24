@@ -21,7 +21,7 @@ class PubblicationTableSeeder extends Seeder
             'titolo' => 'Prima pubblicazione 1',
             'descrizione' => 'Prima descrizione 1',
             'testo' => 'Primo testo 1',
-            'file_path' => '/storage/test_pdf.pdf',
+            'file_path' => 'LFS-BOOK-8.3.pdf',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -34,7 +34,7 @@ class PubblicationTableSeeder extends Seeder
             'titolo' => 'Prima pubblicazione 2',
             'descrizione' => 'Prima',
             'testo' => 'Pub 2',
-            'file_path' => '/storage/test_pdf.pdf',
+            'file_path' => 'LFS-BOOK-8.3.pdf',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -47,7 +47,7 @@ class PubblicationTableSeeder extends Seeder
             'titolo' => 'Prima pubblicazione 3',
             'descrizione' => '',
             'testo' => '',
-            'file_path' => '/storage/test_pdf.pdf',
+            'file_path' => 'LFS-BOOK-8.3.pdf',
             'created_at' => now(),
             'updated_at' => now()
         ]);

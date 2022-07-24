@@ -24,10 +24,17 @@ class ProfiloRicercatoreController extends Controller
 
                 $pubblicazioni = DB::table("pubblications")->where("id_autore", $id)->get();
 
+                $lista_progetti_attivi = DB::table('projects')
+                    ->select('projects.id', 'projects.nome')
+                    ->join('research_groups', 'research_groups.id_progetto', '=', 'projects.id')
+                    ->where('id_ricercatore', $ricercatore->id)->where("stato", "in corso")
+                    ->get();
+
                 $i = 0;
                 $pubblicazionisc = [];
                 foreach ($scientifiche as $pubblicazionesc) {
 
+                    $pubblicazionisc[$i]['idsc'] = $pubblicazionesc->id;
                     $pubblicazionisc[$i]['titolosc'] = $pubblicazionesc->titolo;
                     $pubblicazionisc[$i]['descrizionesc'] = $pubblicazionesc->descrizione;
                     $pubblicazionisc[$i]['testosc'] = $pubblicazionesc->testo;
@@ -39,13 +46,26 @@ class ProfiloRicercatoreController extends Controller
                 $pubblicazionipr = [];
                 foreach ($pubblicazioni as $pubblicazionepr) {
 
+                    $progetto = DB::table("projects")->where("id", $pubblicazionepr->id_progetto)->first();
+
+                    $pubblicazionipr[$i]['idpr'] = $pubblicazionepr->id;
                     $pubblicazionipr[$i]['titolopr'] = $pubblicazionepr->titolo;
-                    $pubblicazionipr[$i]['progettopr'] = $pubblicazionepr->id_progetto;
+                    $pubblicazionipr[$i]['id_progettopr'] = $pubblicazionepr->id_progetto;
+                    $pubblicazionipr[$i]['progettopr'] = $progetto->nome;
                     $pubblicazionipr[$i]['descrizionepr'] = $pubblicazionepr->descrizione;
                     $pubblicazionipr[$i]['testopr'] = $pubblicazionepr->testo;
                     $pubblicazionipr[$i]['fileName'] = $pubblicazionepr->file_path;
                     $i++;
                 }
+
+                $i = 0;
+                $progetti_attivi = [];
+                foreach ($lista_progetti_attivi as $progettoattivo) {
+                    $progetti_attivi[$i]['id'] = $progettoattivo->id;
+                    $progetti_attivi[$i]['nome'] = $progettoattivo->nome;
+                    $i++;
+                }
+
 
                 $data = [
 
@@ -57,7 +77,8 @@ class ProfiloRicercatoreController extends Controller
                     "email" => $ricercatore->email,
                     "linkedin" => $ricercatore->linkedin,
                     "pubblicazioni_scientifiche" => $pubblicazionisc,
-                    "pubblicazioni_progetti" => $pubblicazionipr
+                    "pubblicazioni_progetti" => $pubblicazionipr,
+                    "progetti_attivi" => $progetti_attivi
 
                 ];
 

@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pubblication;
+use App\Models\ResearchGroup;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
+use function PHPUnit\Framework\isNull;
 
 class PubblicazioniController extends Controller
 {
@@ -15,13 +19,11 @@ class PubblicazioniController extends Controller
 
         $id_ricercatore = Auth::user()->id;
 
-        $lista_progetti = DB::table("research_groups")->where("id_ricercatore",$id_ricercatore);
-
         $lista_progetti_attivi = DB::table('projects')
-        ->select('projects.id','projects.nome')
-        ->join('research_groups', 'research_groups.id_progetto', '=', 'projects.id')
-        ->where('id_ricercatore',$id_ricercatore)->where("stato","in corso")
-        ->get();
+            ->select('projects.id','projects.nome')
+            ->join('research_groups', 'research_groups.id_progetto', '=', 'projects.id')
+            ->where('id_ricercatore',$id_ricercatore)->where("stato","in corso")
+            ->get();
 
         $i = 0;
         $progetti_attivi = [];
@@ -34,12 +36,12 @@ class PubblicazioniController extends Controller
 
         }
 
-                    $data = [
+        $data = [
 
-                        "id" => $id_ricercatore,
-                        "progetti_attivi" => $progetti_attivi,
+            "id" => $id_ricercatore,
+            "progetti_attivi" => $progetti_attivi,
 
-                    ];
+        ];
 
         return view('pages.aggiungiPubblicazione')->with("title", "Aggiungi Pubblicazione")->with("data",$data);
 
@@ -53,11 +55,14 @@ class PubblicazioniController extends Controller
 
     public function aggiungiPubblicazione(Request $request) {
 
-        
-        $request->validate([
-                    'file' => 'required|mimes:pdf,xlxs,xlx,docx,doc,csv,txt|max:6024',
-                ]);
 
+        $request->validate([
+            'file' => 'required|mimes:pdf,xlxs,xlx,docx,doc,csv,txt|max:6024',
+        ]);
+
+        if (!ResearchGroup::where('id_progetto',$request['id_progetto'])->where('id_ricercatore',Auth::user()->id)->exists()) {
+            return response('',403);
+        }
 
         $pubblications = new Pubblication();
         $pubblications->id_autore = Auth::user()->id;
@@ -65,25 +70,78 @@ class PubblicazioniController extends Controller
         $pubblications->titolo = $request['titolo'];
         $pubblications->descrizione = $request['descrizione'];
         $pubblications->testo = $request['testo'];
-        
-        
-        
- 
+
         //$fileName = Str::random(25);
         //$fileName = $file->name;
         $fileName = $request->file->getClientOriginalName();
-        $file_path = $fileName;
- 
-        $path = Storage::disk('local')->put($file_path, file_get_contents($request->file));
-        $path = Storage::disk('local')->url($path);
-        
-        // Perform the database operation here
-        $pubblications->file_path =$file_path;
+        Storage::disk('local')->put($fileName, file_get_contents($request->file));
+        $pubblications->file_path = $fileName;
 
         $pubblications->save();
 
-        return view('pages.pubblicazioneSuccess')->with("message","Pubblicazione aggiunta");
+        return view('pages.pubblicazioneSuccess')->with("message", "Pubblicazione aggiunta");
+    }
 
+    public function modificaPubblicazione(Request $request)
+    {
+        try {
+
+            $request->validate([
+                'file' => 'mimes:pdf,xlxs,xlx,docx,doc,csv,txt|max:6024',
+            ]);
+
+            $pubblication = Pubblication::where('id', $request->id)->first();   //prendo la pubblicazione in questione
+    
+            if (Auth::user()->id != $pubblication->id_autore) {        //mi assicuro che la richiesta provenga del autore
+                return response('',403);
+            }
+
+            if (!ResearchGroup::where('id_progetto',$request['pr_progetto'])->where('id_ricercatore',Auth::user()->id)->exists()) {
+                return response('',403);
+            }
+    
+            //applico le modifiche richieste
+            $pubblication->id_progetto = $request['pr_progetto'];
+            $pubblication->titolo = $request['titolo'];
+            $pubblication->descrizione = $request['descrizione'];
+            $pubblication->testo = $request['testo'];
+        
+            //se un nuovo file viene fornito sostituisco il file
+            if (gettype($request->file) != 'NULL') {
+
+                //salvo nuovo file
+                $fileName = $request->file->getClientOriginalName();
+                Storage::disk('local')->put($fileName, file_get_contents($request->file));
+                $pubblication->file_path = $fileName;
+            }
+
+            $pubblication->save();
+            
+            return redirect('users/' . (Auth::user()->id));   //riporto alla pagina del profilo
+
+        } catch (\Throwable $th) {
+            return view('pages.error')->with("title", "errore")->with("description", "Si è verificato un errore :-(".$th->getMessage());
+        }
+    }
+
+    public function eliminaPubblicazione($id)
+    {
+
+        try {
+
+            $pubblicazione = Pubblication::where('id', $id)->first();   //pubblicazione in questione
+
+            if(Auth::user()->id == $pubblicazione->id_autore){                     //se è l'autore a fare questa richiesta
+                $pubblicazione->delete();
+            }
+            else{                                        //se NON è l'autore a fare questa richiesta do errore
+                return response('',403);
+            }
+        } catch (\Throwable $th) {
+            return view('pages.error')->with("title", "errore")->with("description","Si è verificato un errore :-(");
+        }
+
+        return redirect('users/'.(Auth::user()->id));   //riporto alla pagina del profilo
     }
 
 }
