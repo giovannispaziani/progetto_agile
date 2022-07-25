@@ -20,9 +20,14 @@
               </p>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-              <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profilo') }}</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Esci') }}</a>
+              @auth
+                <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profilo') }}</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Esci') }}</a>
+              @endauth
+              @guest
+              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();window.location = '/'">{{ __('Esci') }}</a>
+              @endguest
             </div>
           </li>
         </ul>

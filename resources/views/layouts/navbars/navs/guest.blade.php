@@ -14,6 +14,11 @@
       <ul class="navbar-nav">
     </li>
     <li class="nav-item{{ $activePage == 'login' ? ' active' : '' }}">
+      <a href="/project-list" class="nav-link">
+        {{ __('Entra come ospite') }}
+      </a>
+    </li>
+    <li class="nav-item{{ $activePage == 'login' ? ' active' : '' }}">
       <a href="{{ route('login') }}" class="nav-link">
         <i class="material-icons">fingerprint</i> {{ __('Accedi') }}
       </a>
