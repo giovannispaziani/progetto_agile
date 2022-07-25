@@ -42,6 +42,14 @@ class FinanziatoreTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
+        DB::table('finanziatore')->insert([
+            'id' => 4,
+            'id_progetto' => 1,
+            'id_finanziatore' => 7,
+            'fondo' => '80000',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
 
     }
 }

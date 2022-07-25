@@ -4,6 +4,41 @@
 <div class="content">
 
   <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">store</i>
+            </div>
+            <p class="card-category">Budget</p>
+              <h3 class="card-title">{{$data['budget']}} $</h3>
+            </div>
+            <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">date_range</i> Last 24 Hours
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">content_copy</i>
+          </div>
+          <p class="card-category">Pubblicazioni</p>
+          <h3 class="card-title">{{$data['numeroPub']}}</h3>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
     @auth
     @if (Auth::user()->type == "Manager")
@@ -15,6 +50,7 @@
         data-target="#editDialog">Modifica</button>
         <a href="../sottoProgettiList/{{ $data['id_progetto'] }}" class="btn btn-primary btn-round" role="button" aria-disabled="true">Lista sottoprogetti</a>
         <a href="../aggiungiSottoprogetto/{{ $data['id_progetto'] }}" class="btn btn-primary btn-round" role="button" aria-disabled="true">Aggiungi sottoprogetto</a>
+        <a href="../dashboard-budget/{{$data['id_progetto']}}" class="btn btn-primary btn-round" role="button" aria-disabled="true">Modifica Budget</a>
     </div>
 
     @endif
@@ -162,11 +198,11 @@
             </tr>
           </thead>
           <tbody>
-            @forelse ($data['budget'] as $budget)
+            @forelse ($data['spese'] as $spesa)
             <tr>
-              <td class="text-center"><a href="../budgets/{{ $budget['id'] }}">&#10150;</a></td>
-              <td> {{ $budget['scopo'] }}</td>
-              <td> {{ $budget['budget'] }}</td>
+              <td class="text-center"><a href="../budgets/{{ $spesa['id'] }}">&#10150;</a></td>
+              <td> {{ $spesa['scopo'] }}</td>
+              <td> {{ $spesa['budget'] }}</td>
               <td></td>
             </tr>
             @empty

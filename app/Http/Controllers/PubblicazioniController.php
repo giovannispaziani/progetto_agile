@@ -54,7 +54,7 @@ class PubblicazioniController extends Controller
 
         
         $request->validate([
-                    'file' => 'required|mimes:pdf,xlxs,xlx,docx,doc,csv,txt|max:6024',
+                    'file' => 'required|mimes:pdf,xlxs,jpeg,bib,xlx,docx,doc,csv,txt|max:6024',
                 ]);
 
 
