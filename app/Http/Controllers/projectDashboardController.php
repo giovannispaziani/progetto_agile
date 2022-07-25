@@ -56,7 +56,7 @@ class projectDashboardController extends Controller
             $pubblicazioni = [];
             foreach ($pubblicazioni_table as $pubblicazione) {
                 $autore = DB::table("users")->where("id",$pubblicazione->id_autore)->first();
-                $pubblicazioni[$i]['id'] = $pubblicazione->id;
+                $pubblicazioni[$i]['fileName'] = $pubblicazione->file_path;
                 $pubblicazioni[$i]['titolo'] = $pubblicazione->titolo;
                 $pubblicazioni[$i]['autore'] = $autore->name;
                 $i++;
