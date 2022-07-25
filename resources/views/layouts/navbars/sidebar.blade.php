@@ -138,6 +138,12 @@
         <p>{{ __('Lista progetti')}}</p>
       </a>
     </li>
+    <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+      <a class="nav-link" href="{{ route('users-list') }}">
+      <i class="material-icons">face</i>
+        <p>{{ __('Lista utenti')}}</p>
+      </a>
+    </li>
   </ul>
 </div>
 @endguest

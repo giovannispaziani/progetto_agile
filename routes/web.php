@@ -12,6 +12,7 @@ use App\Http\Controllers\dashboardAcquistiController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\PubblicazioniController;
 use App\Http\Controllers\PubblicazioniScientificheController;
+use App\Http\Controllers\UsersListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -186,3 +187,6 @@ Route::get('/milestoneList/{id_sottoprogetto}', 'App\Http\Controllers\ListaMiles
 
 /* Stato Avanzamento Lavori */
 Route::get('/statoAvanzamentoLavori/{id_progetto}', 'App\Http\Controllers\StatoAvanzamentoLavoriController@index')->name('statoAvanzamentoLavori')->middleware();
+
+/* Lista Progetti */
+Route::get('/users-list',[UsersListController::class,'index'])->name('users-list')->middleware();
