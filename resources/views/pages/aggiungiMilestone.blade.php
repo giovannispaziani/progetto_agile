@@ -4,6 +4,7 @@
   <div class="content">
     <div class="container-fluid">
 
+      <a href="/sottoProgettiList/{{ $data['id_sottoprogetto'] }}" class="btn btn-primary btn-round" role="button" aria-disabled="true">Torna alle milestone</a>
 
     <form class="form" method="POST" action="{{ route('aggiungiMilestone-post') }}">
         @csrf
