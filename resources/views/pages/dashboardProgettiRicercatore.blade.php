@@ -32,7 +32,7 @@
           <tbody>
             @forelse ($data['progetti_attivi'] as $progettoattivo)
               <tr>
-                  <td>{{ $progettoattivo['nome'] }}</td>
+                  <td><a href="/project-dashboard/{{ $progettoattivo['id'] }}">{{ $progettoattivo['nome'] }}</a></td>
                   <td>{{ $progettoattivo['descrizione'] }}</td>
                   <td>{{ $progettoattivo['data_inizio'] }}</td>
                   <td>{{ $progettoattivo['data_fine'] }}</td>
@@ -73,7 +73,7 @@
           <tbody>
             @forelse ($data['progetti_conclusi'] as $progettoconcluso)
               <tr>
-                  <td>{{ $progettoconcluso['nome'] }}</td>
+                  <td><a href="/project-dashboard/{{ $progettoconcluso['id'] }}">{{ $progettoconcluso['nome'] }}</a></td>
                   <td>{{ $progettoconcluso['descrizione'] }}</td>
                   <td>{{ $progettoconcluso['data_inizio'] }}</td>
                   <td>{{ $progettoconcluso['data_fine'] }}</td>
@@ -114,7 +114,7 @@
           <tbody>
             @forelse ($data['progetti_eliminati'] as $progettoeliminato)
               <tr>
-                  <td>{{ $progettoeliminato['nome'] }}</td>
+                  <td><a href="/project-dashboard/{{ $progettoeliminato['id'] }}">{{ $progettoeliminato['nome'] }}</a></td>
                   <td>{{ $progettoeliminato['descrizione'] }}</td>
                   <td>{{ $progettoeliminato['data_inizio'] }}</td>
                   <td>{{ $progettoeliminato['data_fine'] }}</td>
