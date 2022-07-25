@@ -57,8 +57,8 @@ class PubblicazioniController extends Controller
 
 
         $request->validate([
-            'file' => 'required|mimes:pdf,xlxs,xlx,docx,doc,csv,txt|max:6024',
-        ]);
+                    'file' => 'required|mimes:pdf,xlxs,jpeg,bib,xlx,docx,doc,csv,txt|max:6024',
+                ]);
 
         if (!ResearchGroup::where('id_progetto',$request['id_progetto'])->where('id_ricercatore',Auth::user()->id)->exists()) {
             return response('',403);

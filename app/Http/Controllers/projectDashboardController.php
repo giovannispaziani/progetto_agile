@@ -19,6 +19,11 @@ class projectDashboardController extends Controller
             $responsabile = DB::table("users")->where("id",$progetto->id_responsabile)->first();
             $research_groups = DB::table("research_groups")->where("id_progetto",$progetto->id)->pluck("id_ricercatore");
             $financial_groups = DB::table("financial_groups")->where("id_progetto",$progetto->id)->pluck("id_finanziatore");
+            $pubblicazioni_number= DB::table("pubblications")->where("id_progetto",$progetto->id)->count();
+            
+            $spese=DB::table("budgets")->where("id_progetto",$progetto->id)->where("stato",true)->pluck("budget")->sum();
+            $budget=DB::table("finanziatore")->where("id_progetto",$progetto->id)->pluck("fondo")->sum();
+            $budget=$budget-$spese;
 
             $i = 0;
             $ricercatori = [];
@@ -40,13 +45,13 @@ class projectDashboardController extends Controller
                 $i++;
             }
 
-            $budgets_table = DB::table("budgets")->where("id_progetto",$progetto->id)->get();
+            $spese_table = DB::table("budgets")->where("id_progetto",$progetto->id)->get();
             $i = 0;
-            $budgets = [];
-            foreach ($budgets_table as $budget) {
-                $budgets[$i]['id'] = $budget->id;
-                $budgets[$i]['scopo'] = $budget->scopo;
-                $budgets[$i]['budget'] = $budget->budget;
+            $spese = [];
+            foreach ($spese_table as $spesa) {
+                $spese[$i]['id'] = $spesa->id;
+                $spese[$i]['scopo'] = $spesa->scopo;
+                $spese[$i]['budget'] = $spesa->budget;
                 $i++;
             }
 
@@ -73,7 +78,9 @@ class projectDashboardController extends Controller
                 "data_fine" => $progetto->data_fine,
                 "ricercatori" => $ricercatori,
                 "finanziatori" => $finanziatori,
-                "budget" => $budgets,
+                "budget" => $budget,
+                "numeroPub"=>$pubblicazioni_number,
+                "spese" => $spese,
                 "pubblicazioni" => $pubblicazioni
             ];
 

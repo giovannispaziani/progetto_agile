@@ -16,15 +16,15 @@ class dashboardAcquistiController extends Controller
         $data=[];
         foreach($progetti as $progetto){
 
+            $spese=[];
             $arr=[
                 "id"=>$progetto->id,
                 "nome"=>$progetto->nome,
                 "data_inizio"=>$progetto->data_inizio,
                 "data_fine"=>$progetto->data_fine
             ];
-
             array_push($data,$arr);
-        }
+        }  
         return view("pages.responsabileProjectList")->with("title","Progetti di cui sei il responsabile")
                     ->with("data",$data);
     }
@@ -32,22 +32,43 @@ class dashboardAcquistiController extends Controller
     public function index($id){
         if(DB::table("projects")->where("id",$id)->exists()){
             $id_responsabile=DB::table("projects")->where("id",$id)->pluck("id_responsabile")->first();
-            if(Auth::user()->type!="Manager" || Auth::user()->id != $id_responsabile){abort(403);}
-            $spese=DB::table('budgets')->where("stato","in attesa")->where("id_progetto",$id)->get();
+            if(Auth::user()->type !="Manager" && Auth::user()->id != $id_responsabile){abort(403);}
+            $spese_table=DB::table('budgets')->where("stato","in attesa")->where("id_progetto",$id)->get();
+            $financial_groups = DB::table("financial_groups")->where("id_progetto",$id)->pluck("id_finanziatore");
+            $passivo=DB::table("budgets")->where("id_progetto",$id)->where("stato",true)->pluck("budget")->sum();
+            $budget=DB::table("finanziatore")->where("id_progetto",$id)->pluck("fondo")->sum();
+            $budget=$budget-$passivo;
 
             $data=[];
-            foreach($spese as $spesa){
+            $spese=[];
+            foreach($spese_table as $spesa){
                 $arr=[
                     "id"=>$spesa->id,
                     "id_ricercatore"=>$spesa->id_ricercatore,
                     "scopo"=>$spesa->scopo,
                     "budget"=>$spesa->budget
                 ];
-                array_push($data,$arr);
+                array_push($spese,$arr);
             }
+            $i = 0;
+            $finanziatori = [];
+            foreach ($financial_groups as $id_finanziatore) {
+                $finanziatore = DB::table("users")->where("id",$id_finanziatore)->first();
+                $finanziatori[$i]['id'] = $id_finanziatore;
+                $finanziatori[$i]['nome'] = $finanziatore->name;
+                $finanziatori[$i]['cognome'] = $finanziatore->surname;
+                $i++;
+            }
+            $data=[
+                "id_progetto"=>$id,
+                "spese" => $spese,
+                "budget" => $budget,
+                "finanziatori"=>$finanziatori
+            ];
+
             return view("pages.dashboardBudget")->with("title","dashboard spese")
                         ->with("data",$data)->with("id_progetto",$id);
-        }else{
+        }else{      
             abort(404);
         }
         
@@ -56,7 +77,7 @@ class dashboardAcquistiController extends Controller
     public function storico($id){
         if(DB::table("projects")->where("id",$id)->exists()){
             $id_responsabile=DB::table("projects")->where("id",$id)->pluck("id_responsabile")->first();
-            if(Auth::user()->type!="Manager" || Auth::user()->id != $id_responsabile){abort(403);}
+            if(Auth::user()->type!="Manager" && Auth::user()->id != $id_responsabile){abort(403);}
             $spese=DB::table('budgets')->where("stato","!=","in attesa")->where("id_progetto",$id)->get();
 
             $data=[];
@@ -81,7 +102,7 @@ class dashboardAcquistiController extends Controller
         $id_progetto=$request['progetto'];
         $id_budget=$request['budget'];
         $id_responsabile=DB::table("projects")->where("id",$id_progetto)->pluck("id_responsabile")->first();
-        if(Auth::user()->type!="Manager" || Auth::user()->id != $id_responsabile){abort(403);}
+        if(Auth::user()->type!="Manager" && Auth::user()->id != $id_responsabile){abort(403);}
         if(DB::table("projects")->where("id",$id_progetto)->exists()){
            
             DB::table('budgets')->where("id",$id_budget)->update(["stato"=>"approvato"]);
@@ -95,9 +116,19 @@ class dashboardAcquistiController extends Controller
         $id_budget=$request['budget'];
         if(DB::table("projects")->where("id",$id_progetto)->exists()){
             $id_responsabile=DB::table("projects")->where("id",$id_progetto)->pluck("id_responsabile")->first();
-            if(Auth::user()->type!="Manager" || Auth::user()->id != $id_responsabile){abort(403);}
+            if(Auth::user()->type!="Manager" && Auth::user()->id != $id_responsabile){abort(403);}
             DB::table('budgets')->where("id",$id_budget)->update(["stato" => 'rifiutato']);
             return redirect("/dashboard-budget/$id_progetto");
         }
+    }
+    public function aggiungiBudget(Request $request){
+        if(Auth::user()->type!="Manager" && Auth::user()->id != $id_responsabile){abort(403);}
+        $id_progetto=$request['id_progetto'];
+        DB::table("finanziatore")->insert(array(
+            "id_progetto"=>$id_progetto,
+            "id_finanziatore"=>$request['id_finanziatore'],
+            "fondo"=>$request['importo']
+        ));
+        return redirect("/dashboard-budget/$id_progetto");
     }
 }
