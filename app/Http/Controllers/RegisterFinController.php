@@ -63,6 +63,9 @@ class RegisterFinController extends Controller
             'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'studi' => ['required', 'string', 'max:255'],
+            'occupazione' => ['required', 'string', 'max:255'],
+            'linkedin' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -81,6 +84,9 @@ class RegisterFinController extends Controller
             $User->type = 'Finanziatore';
             $User->email = $request['email'];
             $User->password = Hash::make($request['password']);
+            $User->studi = $request['studi'];
+            $User->occupazione = $request['occupazione'];
+            $User->linkedin = $request['linkedin'];
             $User->save();
             return redirect("home");
         }else{

@@ -15,31 +15,34 @@ class ScientificPublicationsSeeder extends Seeder
     public function run()
     {
         DB::table('scientific_publications')->insert([
+            'id' => 1,
             'id_ricercatore' => 2,
             'titolo' => 'nasa',
-            'descrizione' => '',
-            'testo' => '',
-            'fonte' => 'nasa.com',
+            'descrizione' => 'pubblicazione nasa',
+            'testo' => 'prima pubblicazione nasa',
+            'fonte' => 'https://www.nasa.gov/',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         DB::table('scientific_publications')->insert([
+            'id' => 2,
             'id_ricercatore' => 2,
             'titolo' => 'unicef',
-            'descrizione' => '',
-            'testo' => '',
-            'fonte' => 'unicef.com',
+            'descrizione' => 'pubblicazione unicef',
+            'testo' => 'prima pubblicazione unicef',
+            'fonte' => 'https://www.unicef.it/',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         DB::table('scientific_publications')->insert([
+            'id' => 3,
             'id_ricercatore' => 2,
             'titolo' => 'crocerossa',
-            'descrizione' => 'croce',
-            'testo' => 'rossa',
-            'fonte' => 'crocerossa.com',
+            'descrizione' => 'pubblicazione crocerossa',
+            'testo' => 'prima pubblicazione crocerossa',
+            'fonte' => 'https://cri.it/',
             'created_at' => now(),
             'updated_at' => now()
         ]);

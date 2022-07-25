@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'registerFin', 'title' => __('Registrazione Finanziatore')])
+@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'dashboard', 'title' => __('Registrazione Finanziatore')])
 
 @section('content')
 <div class="container" style="height: auto; padding-top:100px">
@@ -23,7 +23,7 @@
                       <i class="material-icons">face</i>
                   </span>
                 </div>
-                <input type="text" name="name" class="form-control" placeholder="{{ __('Name...') }}" value="{{ old('name') }}" required>
+                <input type="text" name="name" class="form-control" placeholder="{{ __('Nome...') }}" value="{{ old('name') }}" required>
               </div>
               @if ($errors->has('name'))
                 <div id="name-error" class="error text-danger pl-3" for="name" style="display: block;">
@@ -39,7 +39,7 @@
                       <i class="material-icons">face</i>
                   </span>
                 </div>
-                <input type="text" name="surname" class="form-control" placeholder="{{ __('Surname...') }}" value="{{ old('surname') }}" required>
+                <input type="text" name="surname" class="form-control" placeholder="{{ __('Cognome...') }}" value="{{ old('surname') }}" required>
               </div>
               @if ($errors->has('surname'))
                 <div id="name-error" class="error text-danger pl-3" for="surname" style="display: block;">
@@ -87,7 +87,7 @@
                     <i class="material-icons">lock_outline</i>
                   </span>
                 </div>
-                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="{{ __('Confirm Password...') }}" required>
+                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="{{ __('Conferma Password...') }}" required>
               </div>
               @if ($errors->has('password_confirmation'))
                 <div id="password_confirmation-error" class="error text-danger pl-3" for="password_confirmation" style="display: block;">
@@ -95,19 +95,69 @@
                 </div>
               @endif
             </div>
-             
+            <!--Titolo di studio-->
+            <div class="bmd-form-group{{ $errors->has('studi') ? ' has-danger' : '' }}" style="margin-top: 5%">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">school</i>
+                  </span>
+                </div>
+                <input type="text" name="studi" class="form-control" placeholder="{{ __('Titolo di studio...') }}" value="{{ old('studi') }}" >
+              </div>
+              @if ($errors->has('studi'))
+                <div id="name-error" class="error text-danger pl-3" for="studi" style="display: block;">
+                  <strong>{{ $errors->first('studi') }}</strong>
+                </div>
+              @endif
+            </div>
+            <!--Occupazione-->
+          <div class="bmd-form-group{{ $errors->has('occupazione') ? ' has-danger' : '' }}" style="margin-top: 5%">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">work</i>
+                  </span>
+                </div>
+                <input type="text" name="occupazione" class="form-control" placeholder="{{ __('Occupazione...') }}" value="{{ old('occupazione') }}" >
+              </div>
+              @if ($errors->has('occupazione'))
+                <div id="name-error" class="error text-danger pl-3" for="occupazione" style="display: block;">
+                  <strong>{{ $errors->first('occupazione') }}</strong>
+                </div>
+              @endif
+            </div>
+            <!--Linkedin-->
+          <div class="bmd-form-group{{ $errors->has('linkedin') ? ' has-danger' : '' }}" style="margin-top: 5%">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons"><span class="material-icons">
+                          contact_emergency
+                          </span></i>
+                  </span>
+                </div>
+                <input type="text" name="linkedin" class="form-control" placeholder="{{ __('Profilo LinkedIn...') }}" value="{{ old('linkedin') }}" >
+              </div>
+              @if ($errors->has('linkedin'))
+                <div id="name-error" class="error text-danger pl-3" for="linkedin" style="display: block;">
+                  <strong>{{ $errors->first('linkedin') }}</strong>
+                </div>
+              @endif
+            </div>
+            <!--Privacy policy-->
             <div class="form-check mr-auto ml-3 mt-3">
               <label class="form-check-label" style="margin-top:10%">
                 <input class="form-check-input" type="checkbox" id="policy" name="policy" {{ old('policy', 1) ? 'checked' : '' }} >
                 <span class="form-check-sign">
                   <span class="check"></span>
                 </span>
-                {{ __('I agree with the ') }} <a href="#">{{ __('Privacy Policy') }}</a>
+                {{ __('Accetto la ') }} <a href="https://www.freeprivacypolicy.com/live/e2cc06f4-1999-47da-bc71-f7fa2d873f9c">{{ __('Privacy Policy') }}</a>
               </label>
             </div>
           </div>
           <div class="card-footer justify-content-center">
-            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Create account') }}</button>
+            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Crea account') }}</button>
           </div>
         </div>
       </form>

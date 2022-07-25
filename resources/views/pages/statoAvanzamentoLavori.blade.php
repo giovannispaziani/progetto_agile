@@ -18,7 +18,7 @@
           <h4 class="card-text">{{ $data['descrizione_progetto'] }}</h4>
           <h4 class="card-text font-weight-bold">Data inizio:</h4>
           <h4 class="card-text">{{ $data['data_inizio'] }}</h4>
-          <a href="../sottoProgettiList/{{ $data['id_progetto'] }}"><button class="btn btn-success">Sottoprogetti</button></a>
+          <div style="text-align:center"> <a href="../sottoProgettiList/{{ $data['id_progetto'] }}"><button class="btn btn-success ml-auto mr-auto">Sottoprogetti</button></a> </div>
         </div>
       </div>
     </div>

@@ -24,16 +24,7 @@ class MilestoneTest extends TestCase
 
         $this->seed();
 
-        $user = User::factory()->create([
-            'name' => 'Manager',
-            'surname' => 'Di Prova',
-            'email' => 'manager@prova.com',
-            'email_verified_at' => now(),
-            'type' => 'Manager',
-            'password' => Hash::make('secret'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        $user = User::where('id', 3)->first();
 
         $response = $this->actingAs($user)
                         ->get('/milestoneList/1');
@@ -45,16 +36,7 @@ class MilestoneTest extends TestCase
 
         $this->seed();
 
-        $user = User::factory()->create([
-            'name' => 'Manager',
-            'surname' => 'Di Prova',
-            'email' => 'manager@prova.com',
-            'email_verified_at' => now(),
-            'type' => 'Manager',
-            'password' => Hash::make('secret'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        $user = User::where('id', 3)->first();
 
         $response = $this->actingAs($user)
                         ->get('/milestoneList/1');
