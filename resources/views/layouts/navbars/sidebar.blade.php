@@ -22,6 +22,12 @@
             </a>
           </li>
           <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+            <a class="nav-link" href="/project-list-responsabile">
+              <i class="material-icons">work</i>
+                <p>{{ __('Progetti in gestione') }}</p>
+            </a>
+          </li>
+          <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('budgetRicercatore') }}">
               <i class="material-icons">monetization_on</i>
                 <p>{{ __('Richieste Budget') }}</p>
@@ -37,6 +43,8 @@
             <a class="nav-link" href="{{ route('pubblicazioniScientifiche') }}">
               <i class="material-icons">library_books</i>
                 <p>{{ __('Pubblicazioni scientifiche') }}</p>
+            </a>
+          </li>
         </ul>
       </div>
       @break
