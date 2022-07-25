@@ -16,22 +16,22 @@
 
                       <div class="form-group">
                         <label for="titolo">Titolo</label>
-                        <input type="text" class="form-control" name="titolo" placeholder="Inserisci titolo pubblicazione">
+                        <input type="text" class="form-control" name="titolo" placeholder="Inserisci titolo pubblicazione" required>
                       </div>
 
                       <div class="form-group">
                         <label for="descrizione">Descrizione</label>
-                        <input type="text" class="form-control" name="descrizione" placeholder="Inserisci descrizione pubblicazione">
+                        <input type="text" class="form-control" name="descrizione" placeholder="Inserisci descrizione pubblicazione" required>
                       </div>
 
                       <div class="form-group">
                         <label for="testo">Testo</label>
-                        <input type="text" class="form-control" name="testo" placeholder="Inserisci testo pubblicazione">
+                        <input type="text" class="form-control" name="testo" placeholder="Inserisci testo pubblicazione" required>
                       </div>
 
                       <div class="form-group">
                         <label for="fonte">Fonte</label>
-                        <input type="text" class="form-control" name="fonte" placeholder="Inserisci link pubblicazione">
+                        <input type="text" class="form-control" name="fonte" placeholder="Inserisci link pubblicazione" required>
                       </div>
                 </div>
               <div class="card-footer ml-auto mr-auto">
