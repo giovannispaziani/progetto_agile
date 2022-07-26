@@ -162,7 +162,6 @@ Route::get('/scarica{fileName}', 'App\Http\Controllers\ProfiloRicercatoreControl
 Route::get('/aggiungiVoce', 'App\Http\Controllers\AggiungiVoceController@index')->name('aggiungiVoce');
 Route::post('/aggiungiVoce','App\Http\Controllers\AggiungiVoceController@aggiungiVoce')->name('aggiungiVoce-post');
 
-
 Route::get('file-upload', [ FileUploadController::class, 'getFileUploadForm' ])->name('get.fileupload');
 Route::post('file-upload', [ FileUploadController::class, 'store' ])->name('store.file');
 

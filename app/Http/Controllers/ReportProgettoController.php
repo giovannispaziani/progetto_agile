@@ -8,7 +8,9 @@ use App\Models\ResearchGroup;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 
 use function PHPUnit\Framework\isNull;
@@ -123,6 +125,25 @@ if (!ResearchGroup::where('id_progetto',$request['id_progetto'])->where('id_rice
     } catch (\Throwable $th) {
         return view('pages.error')->with("title", "errore")->with("description", "Si è verificato un errore :-(");
     }
+    }
+
+    public function download(Request $request, $fileName) {
+
+        $path = storage_path('app/' . $fileName);
+        if (file_exists($path)) {
+            return response(
+                file_get_contents($path),
+                200,
+                [
+                    'Content-Type' => 'application/octet-stream',
+                    "Content-disposition" => "attachment; filename=\"".$fileName. "\""
+                ]
+            );
+        }
+        else{
+            return view('pages.error')->with("title", "Errore")->with("description", "File mancante");
+        }
+
     }
 
 }

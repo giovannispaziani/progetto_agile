@@ -21,8 +21,6 @@
                   <th>Ricercatore</th>
                   <th>Data</th>
                   <th>Report</th>
-                  <th></th>
-                  <th></th>
               </tr>
           </thead>
           <tbody>
@@ -32,7 +30,7 @@
                 <td>{{ $rep['descrizione'] }}</td>
                 <td>{{ $rep['ricercatore'] }}</td>
                 <td>{{ $rep['data'] }}</td>
-                <td></td>
+                <td><a href="{{route("pubblicazionefile.scarica", $rep['fileName'])}}"><i class="material-icons">file_download</i></a></td>
               </tr>
             @empty
             @endforelse

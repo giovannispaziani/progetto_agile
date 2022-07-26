@@ -4,7 +4,7 @@
 <div class="content">
 
 <div class="container-fluid">
-<h2> Progetti finanziati: </h2>
+<h2> I miei finanziamenti: </h2>
 <br>
 @if (!empty($data))
     <div class="card card-nav-tabs" style="width: 90%; margin: 0 auto">

@@ -138,7 +138,7 @@ class ProfiloRicercatoreController extends Controller
             );
         }
         else{
-            return view('pages.error')->with("title", "Errore")->with("description", "File mancante");
+            return view('pages.error')->with("title", "Errore")->with("description", "File mancante pubblicazione");
         }
 
     }

@@ -16,12 +16,6 @@
             </a>
           </li>
           <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-            <a class="nav-link" href="../users/{{ auth()->user()->id }}">
-            <i class="material-icons">face</i>
-              <p>{{ __('Profilo pubblico')}}</p>
-            </a>
-          </li>
-          <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
             <a class="nav-link" href="/project-list-responsabile">
               <i class="material-icons">work</i>
                 <p>{{ __('Progetti in gestione') }}</p>
@@ -63,12 +57,6 @@
   <div class="sidebar-wrapper">
     <ul class="nav">
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-        <a class="nav-link" href="../users/{{ auth()->user()->id }}">
-        <i class="material-icons">face</i>
-          <p>{{ __('Profilo pubblico')}}</p>
-        </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('project-list') }}">
         <i class="material-icons">work</i>
           <p>{{ __('Lista progetti')}}</p>
@@ -109,12 +97,6 @@
               <p>{{ __('Dashboard')}}</p>
             </a>
           </li>
-      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-        <a class="nav-link" href="../users/{{ auth()->user()->id }}">
-            <i class="material-icons">face</i>
-              <p>{{ __('Profilo pubblico')}}</p>
-        </a>
-      </li>
     </ul>
   </div>
   @break

@@ -15,7 +15,7 @@ class FinanziatoreTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
         DB::table('finanziatore')->insert([
             'id' => 1,
             'id_progetto' => 1,
@@ -27,29 +27,20 @@ class FinanziatoreTableSeeder extends Seeder
 
         DB::table('finanziatore')->insert([
             'id' => 2,
-            'id_progetto' => 2,
+            'id_progetto' => 4,
             'id_finanziatore' => 7,
-            'fondo' => '7000',
+            'fondo' => '50000',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         DB::table('finanziatore')->insert([
             'id' => 3,
-            'id_progetto' => 3,
+            'id_progetto' => 7,
             'id_finanziatore' => 8,
-            'fondo' => '9000',
+            'fondo' => '10000',
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('finanziatore')->insert([
-            'id' => 4,
-            'id_progetto' => 1,
-            'id_finanziatore' => 7,
-            'fondo' => '80000',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
     }
 }
