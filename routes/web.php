@@ -191,3 +191,8 @@ Route::get('/statoAvanzamentoLavori/{id_progetto}', 'App\Http\Controllers\StatoA
 
 /* Lista Progetti */
 Route::get('/users-list',[UsersListController::class,'index'])->name('users-list')->middleware();
+
+/* Report Progetti */
+Route::get('/reportList/{id_progetto}','App\Http\Controllers\ReportProgettoController@index')->name('reportList')->middleware();
+Route::get('/aggiungiReport','App\Http\Controllers\ReportProgettoController@aggiuntaReport')->name('aggiungiReport');
+Route::post('/aggiungiReport','App\Http\Controllers\ReportProgettoController@caricaReport')->name('aggiungiReport-post');

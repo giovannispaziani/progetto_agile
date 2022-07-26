@@ -45,6 +45,12 @@
                 <p>{{ __('Pubblicazioni scientifiche') }}</p>
             </a>
           </li>
+          <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('aggiungiReport') }}">
+              <i class="material-icons">report</i>
+                <p>{{ __('Report Progetto') }}</p>
+            </a>
+          </li>
         </ul>
       </div>
       @break

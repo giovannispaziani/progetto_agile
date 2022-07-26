@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call([SubprojectsSeeder::class]);
         $this->call([SubprojectsResearchersSeeder::class]);
         $this->call([MilestoneSeeder::class]);
+        $this->call([ReportSeeder::class]);
     }
 }
