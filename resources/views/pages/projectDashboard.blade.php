@@ -202,8 +202,8 @@
             @forelse ($data['spese'] as $spesa)
             <tr>
               <td></td>
-              <td> {{ $budget['scopo'] }}</td>
-              <td> {{ $budget['budget'] }}</td>
+              <td> {{ $spesa['scopo'] }}</td>
+              <td> {{ $spesa['budget'] }}</td>
               <td></td>
             </tr>
             @empty
