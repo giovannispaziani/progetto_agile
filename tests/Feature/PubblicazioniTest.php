@@ -41,7 +41,7 @@ class PubblicazioniTest extends TestCase
 
         DB::table('pubblications')->where("titolo","Pubblicazione Test")->delete();
 
-        $file = UploadedFile::fake()->create('test.pdf');
+        $file = UploadedFile::fake()->create('test.bib');
 
         $response = $this->actingAs($user)
             ->post('/aggiungiPubblicazione',[
@@ -90,7 +90,7 @@ class PubblicazioniTest extends TestCase
     {
         $user = User::where('id', 2)->first();
 
-        $file = UploadedFile::fake()->create('test.pdf');
+        $file = UploadedFile::fake()->create('test.bib');
 
         $response = $this->actingAs($user)
             ->post('/modificaPubblicazione', [
@@ -107,7 +107,7 @@ class PubblicazioniTest extends TestCase
         $this->assertDatabaseHas('pubblications', [
             'id' => 1,
             'id_autore' => 2,
-            'file_path' => 'test.pdf',
+            'file_path' => 'test.bib',
             'id_progetto' => 1,
             'titolo' => "Pubblicazione Test",
             'descrizione' => "Descrizione Test",
@@ -133,7 +133,7 @@ class PubblicazioniTest extends TestCase
         $this->assertDatabaseHas('pubblications', [
             'id' => 1,
             'id_autore' => 2,
-            'file_path' => 'LFS-BOOK-8.3.pdf',
+            'file_path' => 'AMM.373-375.130.bib',
             'id_progetto' => 1,
             'titolo' => "Pubblicazione Test",
             'descrizione' => "Descrizione Test",
@@ -145,7 +145,7 @@ class PubblicazioniTest extends TestCase
     {
         $user = User::where('id', 5)->first();
 
-        $file = UploadedFile::fake()->create('test.pdf');
+        $file = UploadedFile::fake()->create('test.bib');
 
         $response = $this->actingAs($user)
             ->post('/modificaPubblicazione', [
@@ -162,7 +162,7 @@ class PubblicazioniTest extends TestCase
         $this->assertDatabaseMissing('pubblications', [
             'id' => 1,
             'id_autore' => 2,
-            'file_path' => 'test.pdf',
+            'file_path' => 'test.bib',
             'id_progetto' => 1,
             'titolo' => "Pubblicazione Test",
             'descrizione' => "Descrizione Test",
@@ -176,7 +176,7 @@ class PubblicazioniTest extends TestCase
             'titolo' => 'Prima pubblicazione 1',
             'descrizione' => 'Prima descrizione 1',
             'testo' => 'Primo testo 1',
-            'file_path' => 'LFS-BOOK-8.3.pdf'
+            'file_path' => 'AMM.373-375.130.bib'
         ]);
     }
 }

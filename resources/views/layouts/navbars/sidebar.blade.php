@@ -1,4 +1,5 @@
 <div class="sidebar" data-color="orange" data-background-color="white" data-image="{{ asset('material') }}/img/sidebar-1.jpg">
+  @auth
     @switch(Auth::user()->type)
       @case("Ricercatore")
       <div class="logo">
@@ -21,6 +22,12 @@
             </a>
           </li>
           <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+            <a class="nav-link" href="/project-list-responsabile">
+              <i class="material-icons">work</i>
+                <p>{{ __('Progetti in gestione') }}</p>
+            </a>
+          </li>
+          <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('budgetRicercatore') }}">
               <i class="material-icons">monetization_on</i>
                 <p>{{ __('Richieste Budget') }}</p>
@@ -36,6 +43,8 @@
             <a class="nav-link" href="{{ route('pubblicazioniScientifiche') }}">
               <i class="material-icons">library_books</i>
                 <p>{{ __('Pubblicazioni scientifiche') }}</p>
+            </a>
+          </li>
         </ul>
       </div>
       @break
@@ -121,5 +130,30 @@
   </div>
   @break
 @endswitch
+@endauth
+
+@guest
+<div class="logo">
+  <a href="http://127.0.0.1:8000/home" class="simple-text logo-normal">
+    {{ __('Stark Industries') }}
+  </a>
+</div>
+<div class="sidebar-wrapper">
+  <ul class="nav">
+    <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+      <a class="nav-link" href="{{ route('project-list') }}">
+      <i class="material-icons">work</i>
+        <p>{{ __('Lista progetti')}}</p>
+      </a>
+    </li>
+    <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+      <a class="nav-link" href="{{ route('users-list') }}">
+      <i class="material-icons">face</i>
+        <p>{{ __('Lista utenti')}}</p>
+      </a>
+    </li>
+  </ul>
+</div>
+@endguest
 
 </div>

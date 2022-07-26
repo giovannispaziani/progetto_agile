@@ -16,6 +16,7 @@ class AggiungiVoceController extends Controller
         $lista_progetti = DB::table("research_groups")->where("id_ricercatore",$id_ricercatore);
 
         $lista_progetti_attivi = DB::table('projects')
+        ->select('projects.id','projects.nome')
         ->join('research_groups', 'research_groups.id_progetto', '=', 'projects.id')
         ->where('id_ricercatore',$id_ricercatore)->where("stato","in corso")
         ->get();

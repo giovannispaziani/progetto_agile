@@ -55,11 +55,21 @@ class PubblicazioniController extends Controller
 
     public function aggiungiPubblicazione(Request $request) {
 
+      try {
+          $request->validate([
+              'file' => 'required|mimes:bib,txt|max:6024',
+              'titolo' =>'required',
+              'descrizione' =>'required',
+              'testo' =>'required',
+              'id_progetto' =>'required'
+          ]);
 
-        $request->validate([
-                    'file' => 'required|mimes:pdf,xlxs,jpeg,bib,xlx,docx,doc,csv,txt|max:6024',
-                ]);
-
+      } catch (\Throwable $th) {
+          return view('pages.error')->with("title", "errore")->with("description", "Il file inserito non è nel formato corretto (Formati supportati: BibTex/.bib)");
+      }
+        
+     try{
+    
         if (!ResearchGroup::where('id_progetto',$request['id_progetto'])->where('id_ricercatore',Auth::user()->id)->exists()) {
             return response('',403);
         }
@@ -80,14 +90,18 @@ class PubblicazioniController extends Controller
         $pubblications->save();
 
         return view('pages.pubblicazioneSuccess')->with("message", "Pubblicazione aggiunta");
+
+    }  catch (\Throwable $th) {
+        return view('pages.error')->with("title", "errore")->with("description", "Si è verificato un errore :-(");
     }
+}    
 
     public function modificaPubblicazione(Request $request)
     {
         try {
 
             $request->validate([
-                'file' => 'mimes:pdf,xlxs,xlx,docx,doc,csv,txt|max:6024',
+                'file' => 'mimes:bib,txt|max:6024',
             ]);
 
             $pubblication = Pubblication::where('id', $request->id)->first();   //prendo la pubblicazione in questione
@@ -120,7 +134,7 @@ class PubblicazioniController extends Controller
             return redirect('users/' . (Auth::user()->id));   //riporto alla pagina del profilo
 
         } catch (\Throwable $th) {
-            return view('pages.error')->with("title", "errore")->with("description", "Si è verificato un errore :-(".$th->getMessage());
+            return view('pages.error')->with("title", "errore")->with("description", "Si è verificato un errore :-(");
         }
     }
 

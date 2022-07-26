@@ -186,7 +186,7 @@
 
       <!--TABELLA BUDGET-->
       <div class="card card-nav-tabs" style="width: 45%">
-        <div class="card-header card-header-primary text-center"> BUDGET </div>
+        <div class="card-header card-header-primary text-center"> SPESE </div>
 
         <table class="table" style="width: 90%">
 
@@ -195,12 +195,13 @@
               <th></th>
               <th>scopo</th>
               <th>ammontare</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             @forelse ($data['spese'] as $spesa)
             <tr>
-              <td class="text-center"><a href="../budgets/{{ $spesa['id'] }}">&#10150;</a></td>
+              <td></td>
               <td> {{ $spesa['scopo'] }}</td>
               <td> {{ $spesa['budget'] }}</td>
               <td></td>
@@ -238,7 +239,7 @@
           <tbody>
             @forelse ($data['pubblicazioni'] as $pubblicazione)
               <tr>
-                <td class="text-center"><a href="../pubblicazioni/{{ $pubblicazione['id'] }}">&#10150;</a></td>
+                <td><a href="{{route("pubblicazionefile.scarica", $pubblicazione['fileName'])}}"><i class="material-icons">file_download</i></a></td>
                 <td>{{ $pubblicazione['titolo'] }}</td>
                 <td>{{ $pubblicazione['autore'] }}</td>
                 @auth
@@ -265,60 +266,6 @@
         </table>
       </div>
       <!--FINE TABELLA PUBBLICAZIONI-->
-
-      <!--TABELLA SOTTOPROGETTI-->
-      <!--<div class="card card-nav-tabs" >
-        <div class="card-header card-header-primary text-center"> SOTTOPROGETTI </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th class="text-center">#</th>
-              <th>Nome</th>
-              <th>Cognome</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-center">1</td>
-              <td>Andrew Mike</td>
-              <td>Develop</td>
-            </tr>
-            <tr>
-              <td class="text-center">2</td>
-              <td>John Doe</td>
-              <td>Design</td>
-            </tr>
-          </tbody>
-        </table>
-      </div> -->
-      <!--FINE TABELLA SOTTOPROGETTI-->
-
-      <!--TABELLA ENTI-->
-      <!--<div class="card card-nav-tabs" >
-        <div class="card-header card-header-primary text-center"> ENTI </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th class="text-center">#</th>
-              <th>Nome</th>
-              <th>Cognome</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-center">1</td>
-              <td>Andrew Mike</td>
-              <td>Develop</td>
-            </tr>
-            <tr>
-              <td class="text-center">2</td>
-              <td>John Doe</td>
-              <td>Design</td>
-            </tr>
-          </tbody>
-        </table>
-      </div> -->
-      <!--FINE TABELLA ENTI-->
 
     </div>
   </div>

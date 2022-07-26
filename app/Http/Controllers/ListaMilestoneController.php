@@ -28,7 +28,8 @@ foreach ($milestone as $evento) {
             $data = [
 
                 "id_sottoprogetto" => $id_sottoprogetto,
-                "lista_milestone" => $lista
+                "lista_milestone" => $lista,
+                'id_subproject' => $id_sottoprogetto
 
             ];
 
