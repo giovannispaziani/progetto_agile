@@ -55,18 +55,18 @@ class PubblicazioniController extends Controller
 
     public function aggiungiPubblicazione(Request $request) {
 
-try {
-    $request->validate([
-        'file' => 'required|mimes:bib,txt|max:6024',
-        'titolo' =>'required',
-        'descrizione' =>'required',
-        'testo' =>'required',
-        'id_progetto' =>'required'
-    ]);
+      try {
+          $request->validate([
+              'file' => 'required|mimes:bib,txt|max:6024',
+              'titolo' =>'required',
+              'descrizione' =>'required',
+              'testo' =>'required',
+              'id_progetto' =>'required'
+          ]);
 
-} catch (\Throwable $th) {
-    return view('pages.error')->with("title", "errore")->with("description", "Il file inserito non è nel formato corretto (Formati supportati: BibTex/.bib)");
-}
+      } catch (\Throwable $th) {
+          return view('pages.error')->with("title", "errore")->with("description", "Il file inserito non è nel formato corretto (Formati supportati: BibTex/.bib)");
+      }
         
      try{
     
