@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ResearchGroup extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id_progetto',
+        'id_ricercatore',
+    ];
 }

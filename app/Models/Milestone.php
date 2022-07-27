@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Milestone extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id_sottoprogetto',
+        'data',
+        'titolo',
+        'descrizione',
+    ];
 }
